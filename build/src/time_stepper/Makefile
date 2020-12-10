@@ -125,6 +125,33 @@ time_stepper/fast:
 	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build" && $(MAKE) -f src/time_stepper/CMakeFiles/time_stepper.dir/build.make src/time_stepper/CMakeFiles/time_stepper.dir/build
 .PHONY : time_stepper/fast
 
+adaptive_backward_euler.o: adaptive_backward_euler.f90.o
+
+.PHONY : adaptive_backward_euler.o
+
+# target to build an object file
+adaptive_backward_euler.f90.o:
+	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build" && $(MAKE) -f src/time_stepper/CMakeFiles/time_stepper.dir/build.make src/time_stepper/CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.o
+.PHONY : adaptive_backward_euler.f90.o
+
+adaptive_backward_euler.i: adaptive_backward_euler.f90.i
+
+.PHONY : adaptive_backward_euler.i
+
+# target to preprocess a source file
+adaptive_backward_euler.f90.i:
+	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build" && $(MAKE) -f src/time_stepper/CMakeFiles/time_stepper.dir/build.make src/time_stepper/CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.i
+.PHONY : adaptive_backward_euler.f90.i
+
+adaptive_backward_euler.s: adaptive_backward_euler.f90.s
+
+.PHONY : adaptive_backward_euler.s
+
+# target to generate assembly for a file
+adaptive_backward_euler.f90.s:
+	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build" && $(MAKE) -f src/time_stepper/CMakeFiles/time_stepper.dir/build.make src/time_stepper/CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.s
+.PHONY : adaptive_backward_euler.f90.s
+
 adaptive_forward_euler.o: adaptive_forward_euler.f90.o
 
 .PHONY : adaptive_forward_euler.o
@@ -242,6 +269,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... time_stepper"
+	@echo "... adaptive_backward_euler.o"
+	@echo "... adaptive_backward_euler.i"
+	@echo "... adaptive_backward_euler.s"
 	@echo "... adaptive_forward_euler.o"
 	@echo "... adaptive_forward_euler.i"
 	@echo "... adaptive_forward_euler.s"

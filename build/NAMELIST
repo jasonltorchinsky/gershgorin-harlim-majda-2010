@@ -21,8 +21,8 @@
 &SIMPARAMS
 	timeStepSize = 0.25
 	timeStepCount = 1000
-	seed = 69
-	timeStepScheme = 1
+	seed = 420
+	timeStepScheme = 3
 	runCount = 1
 	outputFreq = 1
 /

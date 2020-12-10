@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfinalize.a  CMakeFiles/finalize.dir/finalize.f90.o
+/usr/bin/ranlib libfinalize.a

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libinitialize.a  CMakeFiles/initialize.dir/initialize.f90.o
+/usr/bin/ranlib libinitialize.a

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdet_forcing.a  CMakeFiles/det_forcing.dir/det_forcing.f90.o
+/usr/bin/ranlib libdet_forcing.a

@@ -8,6 +8,7 @@ add_library(time_stepper
 	    forward_euler.f90
 	    backward_euler.f90
 	    adaptive_forward_euler.f90
+	    adaptive_backward_euler.f90
 	   )
 
 # Add libraries to link to the module

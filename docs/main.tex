@@ -1,0 +1,35 @@
+\documentclass[letterpaper, 12pt]{article}
+\usepackage{DocumentationFormatting}
+\usepackage{MathTypesetting}
+
+\begin{document}
+\heading
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+    \import{}{introduction.tex}
+    
+\section{Compiling and Running}
+	\import{}{use.tex}
+
+\section{Code Structure}
+	\import{}{structure.tex}
+
+\addcontentsline{toc}{section}{Acknowledgements}
+\section*{Acknowledgements}
+	\import{}{acknowledgements.tex}
+    
+\newpage
+    
+\clearpage
+\addcontentsline{toc}{section}{References}
+\bibliography{refs}
+\bibliographystyle{siam}
+
+\end{document}
+ 

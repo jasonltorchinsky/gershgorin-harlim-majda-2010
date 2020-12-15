@@ -1,0 +1,103 @@
+\ProvidesPackage{DocumentationFormatting}
+
+%Page formatting
+\usepackage[margin = 1in]{geometry}
+
+% Translates standard inputs, such as accents
+\usepackage[utf8]{inputenc}
+
+% Enables figures and wrapped figures
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+% All imported packages
+\usepackage{alltt}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bigstrut}
+\usepackage{braket}
+\usepackage{comment}
+\usepackage[nodayofweek]{datetime}
+\usepackage{enumerate}
+\usepackage{eucal}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{gensymb}
+\PassOptionsToPackage{spaces}{url}\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage[htt]{hyphenat}
+\usepackage{import}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{nicefrac}
+\usepackage{mathrsfs}
+\usepackage{physics}
+\usepackage{ragged2e}
+\usepackage{soul}
+\usepackage{stix}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{times}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{xcolor}
+\usepackage{xurl}
+
+% Defines the color formatting for code blocks.
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+
+% Defines new ``Theorem'' types, such as proposition and corollary, and styles them all as definitions.
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{Rule}[theorem]{Rule}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}{Example}[section]
+
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem*{recall}{Recall}
+
+% Sets the date formatting for \today
+\longdate
+
+% The general page style.
+\pagestyle{fancyplain}
+\fancyhead[L]{}
+\fancyhead[R]{}
+\fancyfoot[C]{Page \thepage \hspace{1pt} of \pageref{LastPage}}
+\fancyfoot[R]{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Makes \par skip a line and not indent new paragraphs.
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1em}
+
+\setlength{\headheight}{14.5pt}
+
+\titleformat{\section} % Partition to be formatted
+[block] % Shape
+{\bfseries\large} % Format
+{\thesection. } % Label
+{12pt} % Separation between label and title body
+{} % Code preceding title body
+[] % Code following title body
+
+\titlespacing*{\section} % Command
+{0pt} % Left margin
+{6pt} % Vertical space before title
+{-6pt} % Vertical space after title
+[0pt] % Right margin
+
+% The title to be places at the top of the front page
+\newcommand{\heading}{\begin{center}\large{Multi-Model Communication Project \\ University of Wisconsin-Madison} \\ \vspace{6em} \Large{Gershgorin-Majda 2010 System Simulator} \vspace{6em} \\ \large{Jason Turner} \\ \vspace{18em} \Large{\today}\end{center} \newpage}
+
+% Makes a black square at the end of proofs.
+\renewcommand{\qedsymbol}{$\blacksquare$}

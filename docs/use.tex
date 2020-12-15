@@ -1,0 +1,18 @@
+This code utilizes CMake as a build system, and was designed for compilation on Ubuntu 20.04.1. In particular, here are the requirements for compiling and running the code:
+\begin{itemize}
+	\item \href{https://gitlab.kitware.com/cmake/cmake}{CMake} (at least version 3.16).
+	\item \href{https://github.com/Unidata/netcdf-fortran}{netCDF-Fortran} (at least version 4.8.0).
+\end{itemize}
+
+Once you have these, simply navigate to the \texttt{build} subdirectory and enter the standard CMake commands
+\begin{lstlisting}[language=bash]
+	cmake ..
+	cmake --build .
+\end{lstlisting}
+
+This will compile the code, build the headers and \texttt{NAMELIST}, and create the executable \texttt{gershgorin\_majda\_10}. To run the code, enter the command
+\begin{lstlisting}[language=bash]
+	./gershgorin_majda_10
+\end{lstlisting}
+and an output file \texttt{out.nc} will be generated.
+ 

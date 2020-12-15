@@ -81,6 +81,23 @@ MODULE TIME_STEPPER
 
   END INTERFACE ADAPTIVE_FORWARD_EULER
 
+  !> An adaptive Backward Euler time-stepping scheme, based on the absolute
+  !! stability criteria.
+
+  INTERFACE ADAPTIVE_BACKWARD_EULER
+
+     SUBROUTINE ADAPTIVE_BACKWARD_EULER_SBR(currTime, defaultTimeStepSize)
+       USE INITIALIZE
+       USE DET_FORCING
+       USE UTILS
+       INCLUDE 'kinds.h' ! Defines the kinds of real, complex, and integer
+       REAL(dp), INTENT(IN) :: currTime !< Current time in the simulation
+       REAL(dp), INTENT(IN) :: defaultTimeStepSize !< The original time-step
+       !! size
+     END SUBROUTINE ADAPTIVE_BACKWARD_EULER_SBR
+
+  END INTERFACE ADAPTIVE_BACKWARD_EULER
+
   
 CONTAINS
 
@@ -129,6 +146,9 @@ CONTAINS
 
        CASE(2) ! Adaptive Forward Euler
           CALL ADAPTIVE_FORWARD_EULER(time, defaultTimeStepSize)
+
+       CASE(3) ! Adaptive Backward Euler
+          CALL ADAPTIVE_BACKWARD_EULER(time, defaultTimeStepSize)
           
        CASE DEFAULT ! Choose Forward Euler by default
           ERROR STOP "Invalid time-stepper selected."

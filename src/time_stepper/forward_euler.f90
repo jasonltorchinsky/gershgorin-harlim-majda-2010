@@ -20,7 +20,7 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 !> @author Jason Turner, University of Wisconsin-Madison
 !> @brief
-!> Uses the Foreard Euler scheme to progress that state variable, additive
+!> Uses the Forward Euler scheme to progress that state variable, additive
 !! bias, and multiplicative bias.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

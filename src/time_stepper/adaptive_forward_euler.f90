@@ -21,7 +21,7 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 !> @author Jason Turner, University of Wisconsin-Madison
 !> @brief
-!> Uses an adaptive Foreward Euler scheme to progress that state variable,
+!> Uses an adaptive Forward Euler scheme to progress that state variable,
 !! additive bias, and multiplicative bias to maximize the time-step size during
 !! exponential decay periods (when the method is absolutely stable).
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

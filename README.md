@@ -10,7 +10,7 @@ This code utilizes CMake as a build system, and was designed for compilation on 
   - [CMake](https://gitlab.kitware.com/cmake/cmake) (at least version 3.16).
   - [netCDF-Fortran](https://github.com/Unidata/netcdf-fortran) (at least version 4.8.0).
 
-Once you have these, simply navigate to the \texttt{build} subdirectory and enter the standard CMake commands
+Once you have these, simply navigate to the `build` subdirectory and enter the standard CMake commands
 ```
 	cmake ..
 	cmake --build .

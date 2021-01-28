@@ -25,4 +25,4 @@ and an output file `out.nc` will be generated.
 # Citing this Code
 
 If you end up using this code in your work, please include the following statement (or a similar statement) in your acknowledgements:
-"This project took advantage of the Gershgorin-Majda 2010 System Simulator written by Jason Turner, available at [https://github.com/jasonlturner/gershgorin-majda-10]."
+"This project took advantage of the Gershgorin-Majda 2010 System Simulator written by Jason Torchinsky, available at [https://github.com/jasonltorchinsky/gershgorin-majda-10]."

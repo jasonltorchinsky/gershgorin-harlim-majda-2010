@@ -16,7 +16,7 @@ Once you have these, simply navigate to the \texttt{build} subdirectory and ente
 	cmake --build .
 ```
 
-This will compile the code, build the headers and `NAMELIST`, and create the executable `gershgorin\_majda\_10`. To run the code, enter the command
+This will compile the code, build the headers and `NAMELIST`, and create the executable `gershgorin_majda_10`. To run the code, enter the command
 ```
 	./gershgorin_majda_10
 ```

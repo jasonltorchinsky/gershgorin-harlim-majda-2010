@@ -17,6 +17,8 @@ target_link_libraries(time_stepper
 		      PUBLIC write_output
 		      PUBLIC det_forcing
 		      PUBLIC utils
+		      PUBLIC lapack
+		      PUBLIC blas
 		     )
 
 

@@ -5,7 +5,7 @@
 ! TITLE            : Multi-Model Communication
 ! PROJECT          : GERSHGORIN-MAJDA_10
 ! MODULE           : TIME_STEPPER
-! URL              : N/A, will be posted to GitHub.
+! URL              : https://github.com/jasonlturner/gershgorin-majda-10
 ! AFFILIATION      : University of Wisconisn-Madison
 ! DATE             : Winter 2020
 ! REVISION         : 1.00

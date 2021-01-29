@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/time_stepper.dir/backward_euler.f90.o"
   "CMakeFiles/time_stepper.dir/forward_euler.f90.o"
   "CMakeFiles/time_stepper.dir/time_stepper.f90.o"
+  "CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o"
   "libtime_stepper.a"
   "libtime_stepper.pdb"
 )

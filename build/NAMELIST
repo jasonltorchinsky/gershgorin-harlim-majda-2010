@@ -22,7 +22,7 @@
 	timeStepSize = 0.25
 	timeStepCount = 1000
 	seed = 420
-	timeStepScheme = 3
+	timeStepScheme = 4
 	runCount = 1
 	outputFreq = 1
 /

@@ -16,3 +16,6 @@ src/time_stepper/CMakeFiles/time_stepper.dir/forward_euler.f90.o
 src/time_stepper/CMakeFiles/time_stepper.dir/time_stepper.f90.o
  /mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/src/time_stepper/time_stepper.f90
  inc/kinds.h
+src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o
+ /mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/src/time_stepper/trapezoidal_analytic.f90
+ inc/kinds.h

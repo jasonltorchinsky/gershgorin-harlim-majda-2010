@@ -122,13 +122,27 @@ src/time_stepper/CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.s: cmak
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling Fortran source to assembly CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.s"
 	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build/src/time_stepper" && /usr/bin/f95 $(Fortran_DEFINES) $(Fortran_INCLUDES) $(Fortran_FLAGS) -S "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/src/time_stepper/adaptive_backward_euler.f90" -o CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.s
 
+src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o: src/time_stepper/CMakeFiles/time_stepper.dir/flags.make
+src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o: ../src/time_stepper/trapezoidal_analytic.f90
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building Fortran object src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o"
+	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build/src/time_stepper" && /usr/bin/f95 $(Fortran_DEFINES) $(Fortran_INCLUDES) $(Fortran_FLAGS) -c "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/src/time_stepper/trapezoidal_analytic.f90" -o CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o
+
+src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing Fortran source to CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.i"
+	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build/src/time_stepper" && /usr/bin/f95 $(Fortran_DEFINES) $(Fortran_INCLUDES) $(Fortran_FLAGS) -E "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/src/time_stepper/trapezoidal_analytic.f90" > CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.i
+
+src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling Fortran source to assembly CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.s"
+	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build/src/time_stepper" && /usr/bin/f95 $(Fortran_DEFINES) $(Fortran_INCLUDES) $(Fortran_FLAGS) -S "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/src/time_stepper/trapezoidal_analytic.f90" -o CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.s
+
 # Object files for target time_stepper
 time_stepper_OBJECTS = \
 "CMakeFiles/time_stepper.dir/time_stepper.f90.o" \
 "CMakeFiles/time_stepper.dir/forward_euler.f90.o" \
 "CMakeFiles/time_stepper.dir/backward_euler.f90.o" \
 "CMakeFiles/time_stepper.dir/adaptive_forward_euler.f90.o" \
-"CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.o"
+"CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.o" \
+"CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o"
 
 # External object files for target time_stepper
 time_stepper_EXTERNAL_OBJECTS =
@@ -138,9 +152,10 @@ src/time_stepper/libtime_stepper.a: src/time_stepper/CMakeFiles/time_stepper.dir
 src/time_stepper/libtime_stepper.a: src/time_stepper/CMakeFiles/time_stepper.dir/backward_euler.f90.o
 src/time_stepper/libtime_stepper.a: src/time_stepper/CMakeFiles/time_stepper.dir/adaptive_forward_euler.f90.o
 src/time_stepper/libtime_stepper.a: src/time_stepper/CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.o
+src/time_stepper/libtime_stepper.a: src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o
 src/time_stepper/libtime_stepper.a: src/time_stepper/CMakeFiles/time_stepper.dir/build.make
 src/time_stepper/libtime_stepper.a: src/time_stepper/CMakeFiles/time_stepper.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking Fortran static library libtime_stepper.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking Fortran static library libtime_stepper.a"
 	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build/src/time_stepper" && $(CMAKE_COMMAND) -P CMakeFiles/time_stepper.dir/cmake_clean_target.cmake
 	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build/src/time_stepper" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/time_stepper.dir/link.txt --verbose=$(VERBOSE)
 

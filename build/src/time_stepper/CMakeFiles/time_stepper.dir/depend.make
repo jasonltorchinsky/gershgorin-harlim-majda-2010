@@ -34,3 +34,8 @@ src/time_stepper/CMakeFiles/time_stepper.dir/time_stepper.mod.stamp: src/time_st
 src/time_stepper/CMakeFiles/time_stepper.dir/time_stepper.f90.o.provides.build:
 	$(CMAKE_COMMAND) -E touch src/time_stepper/CMakeFiles/time_stepper.dir/time_stepper.f90.o.provides.build
 src/time_stepper/CMakeFiles/time_stepper.dir/build: src/time_stepper/CMakeFiles/time_stepper.dir/time_stepper.f90.o.provides.build
+src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o: inc/kinds.h
+
+src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o: src/det_forcing/CMakeFiles/det_forcing.dir/det_forcing.mod.stamp
+src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o: src/initialize/CMakeFiles/initialize.dir/initialize.mod.stamp
+src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o: src/utils/CMakeFiles/utils.dir/utils.mod.stamp

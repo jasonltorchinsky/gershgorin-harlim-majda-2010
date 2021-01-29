@@ -260,6 +260,33 @@ time_stepper.f90.s:
 	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build" && $(MAKE) -f src/time_stepper/CMakeFiles/time_stepper.dir/build.make src/time_stepper/CMakeFiles/time_stepper.dir/time_stepper.f90.s
 .PHONY : time_stepper.f90.s
 
+trapezoidal_analytic.o: trapezoidal_analytic.f90.o
+
+.PHONY : trapezoidal_analytic.o
+
+# target to build an object file
+trapezoidal_analytic.f90.o:
+	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build" && $(MAKE) -f src/time_stepper/CMakeFiles/time_stepper.dir/build.make src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o
+.PHONY : trapezoidal_analytic.f90.o
+
+trapezoidal_analytic.i: trapezoidal_analytic.f90.i
+
+.PHONY : trapezoidal_analytic.i
+
+# target to preprocess a source file
+trapezoidal_analytic.f90.i:
+	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build" && $(MAKE) -f src/time_stepper/CMakeFiles/time_stepper.dir/build.make src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.i
+.PHONY : trapezoidal_analytic.f90.i
+
+trapezoidal_analytic.s: trapezoidal_analytic.f90.s
+
+.PHONY : trapezoidal_analytic.s
+
+# target to generate assembly for a file
+trapezoidal_analytic.f90.s:
+	cd "/mnt/c/Users/Owner/Education and Research/Graduate School/Multi-Model Communication Project/Toy Problems/gershgorin-majda_10/build" && $(MAKE) -f src/time_stepper/CMakeFiles/time_stepper.dir/build.make src/time_stepper/CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.s
+.PHONY : trapezoidal_analytic.f90.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -284,6 +311,9 @@ help:
 	@echo "... time_stepper.o"
 	@echo "... time_stepper.i"
 	@echo "... time_stepper.s"
+	@echo "... trapezoidal_analytic.o"
+	@echo "... trapezoidal_analytic.i"
+	@echo "... trapezoidal_analytic.s"
 .PHONY : help
 
 

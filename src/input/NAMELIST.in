@@ -19,11 +19,11 @@
 /
 
 &SIMPARAMS
-	timeStepSize = 0.25
-	timeStepCount = 1000
+	timeStepSize = 0.0000005
+	timeStepCount = 100
 	seed = 420
-	timeStepScheme = 2
-	runCount = 1
+	timeStepScheme = 4
+	runCount = 1000
 	outputFreq = 1
 /
 

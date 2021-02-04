@@ -34,7 +34,6 @@ MODULE TIME_STEPPER
   !> Declare the subroutines here as public so that they may be called from
   !! elsewhere as necessary.
   PUBLIC :: RUN_SIMULATION
-  PUBLIC :: FORWARD_EULER
 
   ! Declare the interfaces for subroutines outside of this module
 
@@ -98,6 +97,21 @@ MODULE TIME_STEPPER
 
   END INTERFACE ADAPTIVE_BACKWARD_EULER
 
+  !> An analytic technique based on the exact statistics of the system,
+  !! utilizing the trapezoidal method of numeric integration.
+
+  INTERFACE TRAPEZOIDAL_ANALYTIC
+
+     SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR(currTime)
+       USE INITIALIZE
+       USE DET_FORCING
+       USE UTILS
+       INCLUDE 'kinds.h' ! Defines the kinds of real, complex, and integer
+       REAL(dp), INTENT(IN) :: currTime !< Current time in the simulation
+     END SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR
+
+  END INTERFACE TRAPEZOIDAL_ANALYTIC
+
   
 CONTAINS
 
@@ -141,14 +155,17 @@ CONTAINS
        CASE (0) ! Forward Euler
           CALL FORWARD_EULER(time)
           
-       CASE(1) ! Backward Euler
+       CASE (1) ! Backward Euler
           CALL BACKWARD_EULER(time)
 
-       CASE(2) ! Adaptive Forward Euler
+       CASE (2) ! Adaptive Forward Euler
           CALL ADAPTIVE_FORWARD_EULER(time, defaultTimeStepSize)
 
-       CASE(3) ! Adaptive Backward Euler
+       CASE (3) ! Adaptive Backward Euler
           CALL ADAPTIVE_BACKWARD_EULER(time, defaultTimeStepSize)
+
+       CASE (4) ! Trapezoidal analytic.
+          CALL TRAPEZOIDAL_ANALYTIC(time)
           
        CASE DEFAULT ! Choose Forward Euler by default
           ERROR STOP "Invalid time-stepper selected."
@@ -156,7 +173,7 @@ CONTAINS
        END SELECT
 
        ! Update the step number and time
-       stepNum = stepNum + 1
+       stepNum = stepNum + 1_qb
        time = time + timeStepSize
 
        ! Output the updated state

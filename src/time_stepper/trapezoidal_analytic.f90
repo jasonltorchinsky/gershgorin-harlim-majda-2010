@@ -44,16 +44,37 @@ SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR(currTime)
   !! at the next time-step.
   COMPLEX(dp) :: meanUNext !< Mean value of the state variable (u) at the
   !! next time step.
-  REAL(dp) :: varAlpha !< Variance of the real part of b
-  REAL(dp) :: varBeta !< Variance of the imaginary part of b
-  REAL(dp) :: varGamma !< Variance of gamma
+  REAL(dp) :: varAlpha !< Variance of the real part of b.
+  REAL(dp) :: varBeta !< Variance of the imaginary part of b.
+  REAL(dp) :: varGamma !< Variance of gamma.
   COMPLEX(dp) :: varU !< Variance of u, to be used in calculating
   !! other variances.
   COMPLEX(dp) :: covUUConjg !< Covariance of uConjg(u), to be used in calculating
   !! other variances.
-  REAL(dp) :: varMu !< Variance of the real part of u
-  REAL(dp) :: varNu !< Varianve of the imaginary part of u
+  REAL(dp) :: varMu !< Variance of the real part of u.
+  REAL(dp) :: varNu !< Varianve of the imaginary part of u.
   REAL(dp) :: covMuNu !< Covariance of the real and imaginary part of u.
+  COMPLEX(dp) :: covUGamma !< Covariance of u and gamma.
+  COMPLEX(dp) :: covUB !< Covariance of u and b.
+  COMPLEX(dp) :: covUBConjg !< Covariance of u and CONJG(b).
+  REAL(dp) :: covMuGamma !< Covariance of the real part of u and gamma.
+  REAL(dp) :: covNuGamma !< Covariance of the imaginary part of u and gamma.
+  REAL(dp) :: covMuAlpha !< Covariance of the real parts of u and b.
+  REAL(dp) :: covNuAlpha !< Covariance of the imaginary part of u and the real
+  !! part of b.
+  REAL(dp) :: covMuBeta !< Covariance of the real part of u and the imaginary
+  !! part of b.
+  REAL(dp) :: covNuBeta !< Covariance of the imaginary parts of u and b.
+  INTEGER(qb) :: i !< Counter for DO loops.
+  REAL(dp) :: nextState(5) !< Vector to hold the value the real and imaginary
+  !! parts of the additive bias, multiplicative bias, and state variable at the
+  !! next time-step.
+  REAL(dp) :: covMtx(5,5) !< Matrix of covariances of the real and imaginary
+  !! parts of b, gamma, and u.
+  REAL(dp) :: eValsCovMtx(5) !< Eigenvalues of the covaraince matrix.
+  REAL(dp) :: work(170) !< Work array for the eigenvalue decomposition
+  !! subroutine.
+  INTEGER(qb) :: info !< Output integer for eigenvalue decompisiotn subroutine.
 
 
   ! Calculate the mean value of the additive bias (b), multiplicative bias (gamma)
@@ -69,16 +90,69 @@ SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR(currTime)
   varBeta = varAlpha
   varGamma = (noiseStrGamma**2_qb / (2.0_dp * dampGamma)) &
        & * (1.0_dp - EXP(-2.0_dp * dampGamma * timeStepSize))
-  
+
   varU = VARU_FUNC(currTime, meanUNext)
   covUUConjg = COVUUCONJG_FUNC(currTime, meanUNext)
   varMu = 0.5_dp * REAL(varU + covUUConjg, dp)
   varNu = 0.5_dp * REAL(varU - covUUConjg, dp)
   covMuNu = 0.5_dp * REAL((0.0_dp, 1.0_dp) * (covUUConjg - varU))
 
-  ! TO-DO: COVARIANCE OF COVARIANCE OF U WITH GAMMA,
-  ! COVARIANCE OF U WITH B, COVARIANCE OF U WITH CONJG(B).
+  covUGamma = COVUGAMMA_FUNC(currTime, meanUNext)
+  covMuGamma = REAL(covUGamma, dp)
+  covNuGamma = -1.0_dp * REAL((0.0_dp, 1.0_dp) * covUGamma, dp)
+
+  covUB = COVUB_FUNC(currTime, meanUNext)
+  covUBConjg = COVUBCONJG_FUNC(currTime, meanUNext)
+  covMuAlpha = 0.5_dp * REAL(covUB + covUBConjg, dp)
+  covNuAlpha = -0.5_dp * REAL((0.0_dp, 1.0_dp) * (covUB + covUBConjg), dp)
+  covMuBeta = 0.5_dp * REAL((0.0_dp, 1.0_dp) * (covUB - covUBConjg), dp)
+  CovNuBeta = 0.5_dp * REAL(covUB - covUBConjg, dp)
+
+  ! Generate five random Gaussian numbers.
+  DO i = 1, 5
+     CALL RAND_NORMAL_DP(nextState(i))
+  END DO
+  ! Set the covariance matrix
+  covMtx = 0.0_dp
+  covMtx(1,1) = varAlpha
+  covMtx(4,1) = covMuAlpha
+  covMtx(5,1) = covNuAlpha
+  covMtx(2,2) = varBeta
+  covMtx(4,2) = covMuBeta
+  covMtx(5,2) = covNuBeta
+  covMtx(3,3) = varGamma
+  covMtx(4,3) = covMuGamma
+  covMtx(5,3) = covNuGamma
+  covMtx(1,4) = covMuAlpha
+  covMtx(2,4) = covMuBeta
+  covMtx(3,4) = covMuGamma
+  covMtx(4,4) = varMu
+  covMtx(5,4) = covMuNu
+  covMtx(1,5) = covNuAlpha
+  covMtx(2,5) = covNuBeta
+  covMtx(3,5) = covNuGamma
+  covMtx(4,5) = covMuNu
+  covMtx(5,5) = varNu
+
   
+  ! Obtain the eigen-decomposition of the covariance matrix.
+  CALL DSYEV('V', 'U', 5, covMtx, 5, eValsCovMtx, work, 170, info)
+  ! NOTE: covMtx is now the eigenvector matrix of covMtx.
+
+  IF (info .NE. 0_qb) THEN
+     PRINT *, "LAPACK subroutine DSYEV has failed, info = ", info
+     PRINT *, "Time-step: ", INT(currTime / timeStepSize, qb)
+     ERROR STOP &
+          & "Eigenvalue decomposition for the trapezoidal-analytic method failed."
+  END IF
+
+  ! Use the eigen-decomposition to adjust the random Gaussian numbers, and update
+  ! b, gamma, and u.
+  nextState =  MATMUL(covMtx, eValsCovMtx * nextState)
+  addBias = meanBNext + nextState(1) + (0.0_dp, 1.0_dp) * nextState(2)
+  multBias = meanGammaNext + nextState(3)
+  stateVar = meanUNext + nextState(4) + (0.0_dp, 1.0_dp) * nextState(5)
+
 
 CONTAINS
 
@@ -97,7 +171,7 @@ CONTAINS
 
     output = meanB + (addBias - meanB) &
          & * EXP((-1.0_dp * dampB + (0.0_dp, 1.0_dp) * oscFreqB) &
-         &       * (s - currTime)
+         &       * (s - currTime))
 
   END FUNCTION MEANBS_FUNC
 
@@ -152,7 +226,7 @@ CONTAINS
     REAL(dp), INTENT(IN) :: s !< Lower bound for the input of J(s,t_{k+1}).
     REAL(dp), INTENT(IN) :: r !< Lower bound for the input of J(r,t_{k+1}).
 
-    IF (s .LE. r) THEN
+    IF (r .LE. s) THEN
 
        output = -1.0_dp * ((noiseStrGamma ** 2_qb) &
             &                 / (2.0_dp * (dampGamma ** 3_qb))) &
@@ -166,9 +240,9 @@ CONTAINS
             &            + EXP(-1.0_dp * dampGamma * (currTime &
             &                                         + timeStepSize - r)))))
 
-    ELSE IF (r .LT. s) THEN
+    ELSE IF (s .LT. r) THEN
 
-      output = -1.0_dp * ((noiseStrGamma ** 2_qb) &
+       output = -1.0_dp * ((noiseStrGamma ** 2_qb) &
             &                 / (2.0_dp * (dampGamma ** 3_qb))) &
             & * ((1.0_dp + EXP(-1.0_dp * dampGamma * (s - r))) &
             &    - 2.0_dp * dampGamma * (currTime + timeStepSize - r) &
@@ -179,7 +253,7 @@ CONTAINS
             &         - (EXP(dampGamma * (currTime + timeStepSize - r)) &
             &            + EXP(-1.0_dp * dampGamma * (currTime &
             &                                         + timeStepSize - s)))))
-       
+
     END IF
 
   END FUNCTION COVJSTJRT_FUNC
@@ -191,6 +265,8 @@ CONTAINS
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   COMPLEX(dp) FUNCTION MEANUS_FUNC(currTime, s) RESULT(output)
+
+    USE DET_FORCING
 
     IMPLICIT NONE
 
@@ -240,14 +316,14 @@ CONTAINS
        CALL DET_FORCING_DEFAULT(currTime + i * integrateSize, detForce)
        meanJst = MEANJST_FUNC(currTime, currTime + i * integrateSize)
        covJstJrt = COVJSTJRT_FUNC(currTime, currTime + i * integrateSize, &
-         & currTime + i * integrateSize)
+            & currTime + i * integrateSize)
        output = output + integrateSize * (meanBs + detForce) &
             &            * EXP(-1.0_dp * meanJst + 0.5_dp * covJstJrt &
             &                  + (-1.0_dp * meanGamma &
             &                     + (0.0_dp, 1.0_dp) * oscFreqU) &
             &                    * (timeStepSize - (i * integrateSize)))
     END DO
-       
+
   END FUNCTION MEANUS_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -284,12 +360,12 @@ CONTAINS
     REAL(dp), INTENT(IN) :: s, r !< Times for b(s), b(r)
 
     output = ((noiseStrB**2_qb) / (2.0_dp * dampB)) &
-         & * EXP(-1.0_dp & dampB * (s + r - 2.0_dp * currTime)) &
+         & * EXP(-1.0_dp * dampB * (s + r - 2.0_dp * currTime)) &
          & * (EXP(2.0_dp * dampB * (MIN(s,r) - currTime)) - 1.0_dp)
-    
+
   END FUNCTION COVBSBR_FUNC
 
-  
+
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   !> @author Jason Turner, University of Wisconsin-Madison
   !> @brief
@@ -297,6 +373,8 @@ CONTAINS
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   COMPLEX(dp) FUNCTION BVAR_FUNC(currTime, s, r) RESULT(output)
+
+    USE DET_FORCING
 
     IMPLICIT NONE
 
@@ -316,7 +394,7 @@ CONTAINS
          & * (COVBSBR_FUNC(currTime, s, r) &
          &    + (MEANBS_FUNC(currTime, s) + detForceS) &
          &       * (CONJG(MEANBS_FUNC(currTime, r)) + CONJG(detForceR)))
-    
+
   END FUNCTION BVAR_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -345,7 +423,7 @@ CONTAINS
          & + BVAR_FUNC(currTime, currTime, currTime + timeStepSize) &
          & + BVAR_FUNC(currTime, currTime + timeStepSize, currTime) &
          & + BVAR_FUNC(currTime, currTime + timeStepSize, &
-         &             currTime + timeStepSize)
+         &             currTime + timeStepSize))
 
     ! Add the single summation term
     DO i = 1, integrateCount - 1
@@ -370,9 +448,9 @@ CONTAINS
 
     ! Scale output by integrateSize
     output = output * integrateSize**2_qb
-    
+
   END FUNCTION MEANABSB2_FUNC
-  
+
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   !> @author Jason Turner, University of Wisconsin-Madison
   !> @brief
@@ -430,6 +508,8 @@ CONTAINS
 
   COMPLEX(dp) FUNCTION MEANABCONJG_FUNC(currTime) RESULT(output)
 
+    USE DET_FORCING
+
     IMPLICIT NONE
 
     REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
@@ -447,13 +527,13 @@ CONTAINS
     CALL DET_FORCING_DEFAULT(currTime, detForce)
     output = 0.5_dp * stateVar &
          & * (CONJG(MEANBS_FUNC(currTime, currTime)) + CONJG(detForce)) &
-         & * EXP(-2.0_dp * MEANJST(currTime, currTime) &
+         & * EXP(-2.0_dp * MEANJST_FUNC(currTime, currTime) &
          &       + 2.0_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
          &       - 2.0_dp * meanGamma * timeStepSize)
     CALL DET_FORCING_DEFAULT(currTime + timeStepSize, detForce)
     output = output + 0.5_dp * stateVar &
          & * (CONJG(MEANBS_FUNC(currTime, currTime + timeStepSize)) + CONJG(detForce)) &
-         & * EXP(-1.0_dp * MEANJST(currTime, currTime) &
+         & * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
          &       - MEANJST_FUNC(currTime, currTime + timeStepSize) &
          &       + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
          &       + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime + timeStepSize, &
@@ -463,12 +543,12 @@ CONTAINS
          &       + (0.0_dp, 1.0_dp) * oscFreqU * timeStepSize)
 
     ! Add the summation term
-    DO i = 1, integrationCount
+    DO i = 1, integrateCount
        CALL DET_FORCING_DEFAULT(currTime + i * integrateSize, detForce)
        output = output + 0.5_dp * stateVar &
             & * (CONJG(MEANBS_FUNC(currTime, currTime + i * integrateSize)) &
             &    + CONJG(detForce)) &
-            & * EXP(-1.0_dp * MEANJST(currTime, currTime) &
+            & * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
             &       - MEANJST_FUNC(currTime, currTime + i * integrateSize) &
             &       + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
             &       + 0.5_dp * COVJSTJRT_FUNC(currTime, &
@@ -482,7 +562,7 @@ CONTAINS
 
     ! Scale the output by the trapezoid size.
     output = output * integrateSize
-    
+
   END FUNCTION MEANABCONJG_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -497,7 +577,7 @@ CONTAINS
 
     REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
     COMPLEX(dp), INTENT(IN) :: meanU !< Mean of u_{k+1}
-    
+
     output = MEANABSA2_FUNC(currTime) + MEANABSB2_FUNC(currTime) &
          & + MEANABSC2_FUNC(currTime) &
          & + 2.0_dp * REAL(MEANABCONJG_FUNC(currTime), dp) &
@@ -532,7 +612,7 @@ CONTAINS
   !> Calculates the covariance of b(s) and CONJG(b(r)).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  COMPLEX(dp) FUNCTION COVBSCONJGBR_FUNC(currTime, s, r)) RESULT(output)
+  COMPLEX(dp) FUNCTION COVBSBRCONJG_FUNC(currTime, s, r) RESULT(output)
 
     IMPLICIT NONE
 
@@ -544,9 +624,9 @@ CONTAINS
     output = (noiseStrB**2_qb) / (2.0_dp * lambdaB) &
          & * EXP(lambdaB * (s + r - 2.0_dp * currTime))
 
-  END FUNCTION COVBSCONJGBR_FUNC
+  END FUNCTION COVBSBRCONJG_FUNC
 
-  
+
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   !> @author Jason Turner, University of Wisconsin-Madison
   !> @brief
@@ -554,6 +634,8 @@ CONTAINS
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   COMPLEX(dp) FUNCTION BCOVAR_FUNC(currTime, s, r) RESULT(output)
+
+    USE DET_FORCING
 
     IMPLICIT NONE
 
@@ -563,21 +645,22 @@ CONTAINS
     COMPLEX(dp) :: detForceS, detForceR !< The determinsitc forcing at s, r.
 
     lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU
-    CALL DET_FORCE_DEFAULT(s, detForceS)
-    CALL DET_FORCE_DEFAULT(r, detForceR)
-    output = (COVBSCONJGBR_FUNC(currTime, s, r) &
+    CALL DET_FORCING_DEFAULT(s, detForceS)
+    CALL DET_FORCING_DEFAULT(r, detForceR)
+    output = (COVBSBRCONJG_FUNC(currTime, s, r) &
          &    + (MEANBS_FUNC(currTime, s) + detForceS) &
          &       * (MEANBS_FUNC(currTime, r) + detForceR)) &
          & * EXP(-1.0_dp * MEANJST_FUNC(currTime, s) &
          &       - MEANJST_FUNC(currTime, r) &
          &       + 0.5_dp * COVJSTJRT_FUNC(currTime, s, s) &
          &       + 0.5_dp * COVJSTJRT_FUNC(currTime, r, r) &
-         &       + COVJSTJRT(currTime, s, r) &
+         &       + COVJSTJRT_FUNC(currTime, s, r) &
          &       + lambdaHat * (2.0_dp * (currTime + timeStepSize - s - r)))
+    
 
   END FUNCTION BCOVAR_FUNC
 
-    !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   !> @author Jason Turner, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of B^2 (see cov(u, CONJG(u))).
@@ -598,12 +681,14 @@ CONTAINS
     integrateCount = 10_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
+   
+
     ! Add the terms that are outside of the summation terms
     output = 0.25_dp * (BCOVAR_FUNC(currTime, currTime, currTime) &
          & + BCOVAR_FUNC(currTime, currTime, currTime + timeStepSize) &
          & + BCOVAR_FUNC(currTime, currTime + timeStepSize, currTime) &
          & + BCOVAR_FUNC(currTime, currTime + timeStepSize, &
-         &             currTime + timeStepSize)
+         &             currTime + timeStepSize))
 
     ! Add the single summation term
     DO i = 1, integrateCount - 1
@@ -618,6 +703,7 @@ CONTAINS
             &                         currTime + timeStepSize))
     END DO
 
+
     ! Add the double summation term.
     DO j = 1, integrateCount - 1
        DO i = 1, integrateCount - 1
@@ -626,13 +712,14 @@ CONTAINS
        END DO
     END DO
 
+
     ! Scale output by integrateSize
     output = output * integrateSize**2_qb
-    
+
   END FUNCTION MEANB2_FUNC
 
 
-    !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   !> @author Jason Turner, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of C^2 (see cov(u, CONJG(u))).
@@ -683,7 +770,7 @@ CONTAINS
 
   END FUNCTION MEANC2_FUNC
 
-    !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   !> @author Jason Turner, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of AB (see var(u)).
@@ -691,9 +778,12 @@ CONTAINS
 
   COMPLEX(dp) FUNCTION MEANAB_FUNC(currTime) RESULT(output)
 
+    USE DET_FORCING
+
     IMPLICIT NONE
 
     REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
+    INTEGER(qb) :: i !< Counter for DO loops.
     INTEGER(qb) :: integrateCount !< Number of intervals used for the trapezoidal
     !! rule.
     REAL(dp) :: integrateSize !< Size of intervals used for the trapezoidal
@@ -710,13 +800,13 @@ CONTAINS
     CALL DET_FORCING_DEFAULT(currTime, detForce)
     output = 0.5_dp * stateVar &
          & * (MEANBS_FUNC(currTime, currTime) + detForce) &
-         & * EXP(-2.0_dp * MEANJST(currTime, currTime) &
+         & * EXP(-2.0_dp * MEANJST_FUNC(currTime, currTime) &
          &       + 2.0_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
          &       + 2.0_dp * lambdaHat * timeStepSize)
     CALL DET_FORCING_DEFAULT(currTime + timeStepSize, detForce)
     output = output + 0.5_dp * stateVar &
          & * (MEANBS_FUNC(currTime, currTime + timeStepSize) + detForce) &
-         & * EXP(-1.0_dp * MEANJST(currTime, currTime) &
+         & * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
          &       - MEANJST_FUNC(currTime, currTime + timeStepSize) &
          &       + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
          &       + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime + timeStepSize, &
@@ -725,12 +815,12 @@ CONTAINS
          &       + lambdaHat * timeStepSize)
 
     ! Add the summation term
-    DO i = 1, integrationCount
+    DO i = 1, integrateCount
        CALL DET_FORCING_DEFAULT(currTime + i * integrateSize, detForce)
-       output = output + 0.5_dp * stateVar &
+       output = output + stateVar &
             & * (MEANBS_FUNC(currTime, currTime + i * integrateSize) &
             &    + detForce) &
-            & * EXP(-1.0_dp * MEANJST(currTime, currTime) &
+            & * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
             &       - MEANJST_FUNC(currTime, currTime + i * integrateSize) &
             &       + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
             &       + 0.5_dp * COVJSTJRT_FUNC(currTime, &
@@ -743,7 +833,7 @@ CONTAINS
 
     ! Scale the output by the trapezoid size.
     output = output * integrateSize
-    
+
   END FUNCTION MEANAB_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -758,11 +848,279 @@ CONTAINS
 
     REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
     COMPLEX(dp), INTENT(IN) :: meanU !< Mean of u_{k+1}
-    
+
     output = MEANA2_FUNC(currTime) + MEANB2_FUNC(currTime) &
          & + MEANC2_FUNC(currTime) &
          & + 2.0_dp * MEANAB_FUNC(currTime) - meanU**2_qb
 
   END FUNCTION COVUUCONJG_FUNC
-  
+
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @brief
+  !> Calculates the mean of ugamma (see Cov(u, gamma)).
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  COMPLEX(dp) FUNCTION MEANUGAMMA_FUNC(currTime, meanU) RESULT(output)
+
+    USE DET_FORCING
+
+    IMPLICIT NONE
+
+    REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
+    COMPLEX(dp), INTENT(IN) :: meanU !< Mean value of u at the next time-step.
+    INTEGER(qb) :: i !< Counter for DO loops.
+    INTEGER(qb) :: integrateCount !< Number of intervals used for the trapezoidal
+    !! rule.
+    REAL(dp) :: integrateSize !< Size of intervals used for the trapezoidal
+    !! rule.
+    COMPLEX(dp) :: lambdaHat !< The parameter lambda^hat  in the equations.
+    COMPLEX(dp) :: detForce !< Deterministic forcing.
+
+    ! Set up trapezoidal rule.
+    integrateCount = 10_qb
+    integrateSize = timeStepSize / REAL(integrateCount, dp)
+
+    lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU
+
+    ! Add the non-integral terms.
+
+    output = meanGamma * meanU &
+         & + stateVar * (multBias - meanGamma) &
+         &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
+         &         + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
+         &         + (lambdaHat - dampGamma) * timeStepSize)
+
+    ! Add the not-do loop terms of the integral
+    CALL DET_FORCING_DEFAULT(currTime, detForce)
+    output = output &
+         & + 0.5_dp * integrateSize * (multBias - meanGamma) &
+         &   * (MEANBS_FUNC(currTime, currTime) + detForce) &
+         &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
+         &         + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
+         &         + (lambdaHat - dampGamma) * timeStepSize)
+
+    CALL DET_FORCING_DEFAULT(currTime + timeStepSize, detForce)
+    output = output &
+         & + 0.5_dp * integrateSize * (multBias - meanGamma) &
+         &   * (MEANBS_FUNC(currTime, currTime + timeStepSize) + detForce) &
+         &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime + timeStepSize) &
+         &         + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime + timeStepSize, &
+         &                                   currTime + timeStepSize) &
+         &         - dampGamma * timeStepSize)
+
+    DO i = 1, integrateCount - 1
+       CALL DET_FORCING_DEFAULT(currTime + i * integrateSize, detForce)
+       output = output &
+            & + integrateSize * (multBias - meanGamma) &
+            &   * (MEANBS_FUNC(currTime, currTime + i * integrateSize) + detForce) &
+            &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime + i * integrateSize) &
+            &         + 0.5_dp * COVJSTJRT_FUNC(currTime, &
+            &                                   currTime + i * integrateSize, &
+            &                                   currTime + i * integrateSize) &
+            &         + lambdaHat * (timeStepSize - i * integrateSize) &
+            &         - dampGamma * timeStepSize)
+    END DO
+
+  END FUNCTION MEANUGAMMA_FUNC
+
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @brief
+  !> Calculates the covariance of u and gamma.
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  COMPLEX(dp) FUNCTION COVUGAMMA_FUNC(currTime, meanU) RESULT(output)
+
+    IMPLICIT NONE
+
+    REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
+    COMPLEX(dp), INTENT(IN) :: meanU !< Mean value of U at the next time-step.
+
+    output = MEANUGAMMA_FUNC(currTime, meanU) &
+         & - meanU * MEANGAMMAS_FUNC(currTime, currTime + timeStepSize)
+
+  END FUNCTION COVUGAMMA_FUNC
+
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @brief
+  !> Calculates the mean of uCONJG(b) (see Cov(u, b)).
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  COMPLEX(dp) FUNCTION MEANUBCONJG_FUNC(currTime, meanU) RESULT(output)
+
+    USE DET_FORCING
+
+    IMPLICIT NONE
+
+    REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
+    COMPLEX(dp), INTENT(IN) :: meanU !< Mean value of u at the next time-step.
+    INTEGER(qb) :: i !< Counter for DO loops.
+    INTEGER(qb) :: integrateCount !< Number of intervals used for the trapezoidal
+    !! rule.
+    REAL(dp) :: integrateSize !< Size of intervals used for the trapezoidal
+    !! rule.
+    COMPLEX(dp) :: lambdaHat !< The parameter lambda^hat in the equations.
+    COMPLEX(dp) :: lambdaB !< The parameter lambda_b in the equations.
+    COMPLEX(dp) :: detForce !< Deterministic forcing.
+
+    ! Set up trapezoidal rule.
+    integrateCount = 10_qb
+    integrateSize = timeStepSize / REAL(integrateCount, dp)
+
+    lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU
+    lambdaB = -1.0_dp * meanB + (0.0_dp, 1.0_dp) * oscFreqB
+
+    ! Add the non-integral terms.
+
+    output = CONJG(meanB) * meanU &
+         & + stateVar * (CONJG(addBias) - CONJG(meanB)) &
+         &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
+         &         + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
+         &         + (lambdaHat + CONJG(lambdaB)) * timeStepSize)
+
+    ! Add the not-do loop terms of the integral
+    CALL DET_FORCING_DEFAULT(currTime, detForce)
+    output = output &
+         & + 0.5_dp * integrateSize * (CONJG(addBias) - CONJG(meanB)) &
+         &   * (MEANBS_FUNC(currTime, currTime) + detForce) &
+         &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
+         &         + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
+         &         + (lambdaHat + CONJG(lambdaB)) * timeStepSize)
+
+    CALL DET_FORCING_DEFAULT(currTime + timeStepSize, detForce)
+    output = output &
+         & + 0.5_dp * integrateSize * (CONJG(addBias) - CONJG(meanB)) &
+         &   * (MEANBS_FUNC(currTime, currTime + timeStepSize) + detForce) &
+         &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime + timeStepSize) &
+         &         + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime + timeStepSize, &
+         &                                   currTime + timeStepSize) &
+         &         + CONJG(lambdaB) * timeStepSize)
+
+    DO i = 1, integrateCount - 1
+       CALL DET_FORCING_DEFAULT(currTime + i * integrateSize, detForce)
+       output = output &
+            & + integrateSize * (CONJG(addBias) - CONJG(meanB)) &
+            &   * (MEANBS_FUNC(currTime, currTime + i * integrateSize) &
+            &      + detForce) &
+            &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, &
+            &                                currTime + i * integrateSize) &
+            &         + 0.5_dp * COVJSTJRT_FUNC(currTime, &
+            &                                   currTime + i * integrateSize, &
+            &                                   currTime + i * integrateSize) &
+            &         + lambdaHat * (timeStepSize - i * integrateSize) &
+            &         + CONJG(lambdaB) * timeStepSize)
+    END DO
+
+  END FUNCTION MEANUBCONJG_FUNC
+
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @brief
+  !> Calculates the covariance of u and b.
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  COMPLEX(dp) FUNCTION COVUB_FUNC(currTime, meanU) RESULT(output)
+
+    IMPLICIT NONE
+
+    REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
+    COMPLEX(dp), INTENT(IN) :: meanU !< Mean value of U at the next time-step.
+
+    output = MEANUBCONJG_FUNC(currTime, meanU) &
+         & - meanU * MEANBS_FUNC(currTime, currTime + timeStepSize)
+
+  END FUNCTION COVUB_FUNC
+
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @brief
+  !> Calculates the mean of ub (see Cov(u, CONJG(b))).
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  COMPLEX(dp) FUNCTION MEANUB_FUNC(currTime, meanU) RESULT(output)
+
+    USE DET_FORCING
+
+    IMPLICIT NONE
+
+    REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
+    COMPLEX(dp), INTENT(IN) :: meanU !< Mean value of u at the next time-step.
+    INTEGER(qb) :: i !< Counter for DO loops.
+    INTEGER(qb) :: integrateCount !< Number of intervals used for the trapezoidal
+    !! rule.
+    REAL(dp) :: integrateSize !< Size of intervals used for the trapezoidal
+    !! rule.
+    COMPLEX(dp) :: lambdaHat !< The parameter lambda^hat in the equations.
+    COMPLEX(dp) :: lambdaB !< The parameter lambda_b in the equations.
+    COMPLEX(dp) :: detForce !< Deterministic forcing.
+
+    ! Set up trapezoidal rule.
+    integrateCount = 10_qb
+    integrateSize = timeStepSize / REAL(integrateCount, dp)
+
+    lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU
+    lambdaB = -1.0_dp * meanB + (0.0_dp, 1.0_dp) * oscFreqB
+
+    ! Add the non-integral terms.
+
+    output = meanB * meanU &
+         & + stateVar * (addBias - meanB) &
+         &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
+         &         + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
+         &         + (lambdaHat + lambdaB) * timeStepSize)
+
+    ! Add the not-do loop terms of the integral
+    CALL DET_FORCING_DEFAULT(currTime, detForce)
+    output = output &
+         & + 0.5_dp * integrateSize * (addBias - meanB) &
+         &   * (MEANBS_FUNC(currTime, currTime) + detForce) &
+         &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime) &
+         &         + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime, currTime) &
+         &         + (lambdaHat + lambdaB) * timeStepSize)
+
+    CALL DET_FORCING_DEFAULT(currTime + timeStepSize, detForce)
+    output = output &
+         & + 0.5_dp * integrateSize * (addBias - meanB) &
+         &   * (MEANBS_FUNC(currTime, currTime + timeStepSize) + detForce) &
+         &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime + timeStepSize) &
+         &         + 0.5_dp * COVJSTJRT_FUNC(currTime, currTime + timeStepSize, &
+         &                                   currTime + timeStepSize) &
+         &         + lambdaB * timeStepSize)
+
+    DO i = 1, integrateCount - 1
+       CALL DET_FORCING_DEFAULT(currTime + i * integrateSize, detForce)
+       output = output &
+            & + integrateSize * (addBias - meanB) &
+            &   * (MEANBS_FUNC(currTime, currTime + i * integrateSize) + detForce) &
+            &   * EXP(-1.0_dp * MEANJST_FUNC(currTime, currTime + i * integrateSize) &
+            &         + 0.5_dp * COVJSTJRT_FUNC(currTime, &
+            &                                   currTime + i * integrateSize, &
+            &                                   currTime + i * integrateSize) &
+            &         + lambdaHat * (timeStepSize - i * integrateSize) &
+            &         + lambdaB * timeStepSize)
+    END DO
+
+  END FUNCTION MEANUB_FUNC
+
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @brief
+  !> Calculates the covariance of u and CONJG(b).
+  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  COMPLEX(dp) FUNCTION COVUBCONJG_FUNC(currTime, meanU) RESULT(output)
+
+    IMPLICIT NONE
+
+    REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
+    COMPLEX(dp), INTENT(IN) :: meanU !< Mean value of U at the next time-step.
+
+    output = MEANUBCONJG_FUNC(currTime, meanU) &
+         & - meanU * MEANBS_FUNC(currTime, currTime + timeStepSize)
+
+  END FUNCTION COVUBCONJG_FUNC
+
+
 END SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR

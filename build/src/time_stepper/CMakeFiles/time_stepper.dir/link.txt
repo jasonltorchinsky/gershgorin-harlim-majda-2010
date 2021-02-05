@@ -1,2 +1,0 @@
-/usr/bin/ar qc libtime_stepper.a  CMakeFiles/time_stepper.dir/time_stepper.f90.o CMakeFiles/time_stepper.dir/forward_euler.f90.o CMakeFiles/time_stepper.dir/backward_euler.f90.o CMakeFiles/time_stepper.dir/adaptive_forward_euler.f90.o CMakeFiles/time_stepper.dir/adaptive_backward_euler.f90.o CMakeFiles/time_stepper.dir/trapezoidal_analytic.f90.o
-/usr/bin/ranlib libtime_stepper.a

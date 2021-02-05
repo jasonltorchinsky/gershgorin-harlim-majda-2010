@@ -51,6 +51,7 @@ CONTAINS
     USE WRITE_OUTPUT
     USE TIME_STEPPER
     USE FINALIZE
+    USE UTILS
 
     IMPLICIT NONE
 
@@ -63,6 +64,9 @@ CONTAINS
     CALL INITIALIZE_SIMULATION_PARAMETERS
     CALL INITIALIZE_OUTPUT_FILE
 
+    ! Seed RANDOM_NUMBER, we seed it here so that each run will use
+    ! different random numbers.
+    CALL RAND_INIT(seed)
     ! Run the simulation.
     DO runNum = 1, runCount
        CALL INITIALIZE_SIMULATION(runNum)

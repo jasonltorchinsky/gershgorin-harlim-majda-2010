@@ -1,2 +1,0 @@
-/usr/bin/ar qc libwrite_output.a  CMakeFiles/write_output.dir/write_output.f90.o
-/usr/bin/ranlib libwrite_output.a

@@ -143,9 +143,6 @@ CONTAINS
     IF (outputFreq .NE. 0_qb) THEN
        CALL OUTPUT_STATE(stepNum, time)
     END IF
-    
-    ! Seed RANDOM_NUMBER
-    CALL RAND_INIT(seed)
 
     ! Main time-stepping loop
     DO WHILE (stepNum .LT. timeStepCount)

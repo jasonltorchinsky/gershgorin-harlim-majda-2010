@@ -134,6 +134,8 @@ SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR(currTime)
   covMtx(4,5) = covMuNu
   covMtx(5,5) = varNu
 
+  PRINT *, "Covariance Matrix: "
+  Print *, covMtx
   
   ! Obtain the eigen-decomposition of the covariance matrix.
   CALL DSYEV('V', 'U', 5, covMtx, 5, eValsCovMtx, work, 170, info)
@@ -142,6 +144,40 @@ SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR(currTime)
   IF (info .NE. 0_qb) THEN
      PRINT *, "LAPACK subroutine DSYEV has failed, info = ", info
      PRINT *, "Time-step: ", INT(currTime / timeStepSize, qb)
+     ! Reset the covariance matrix
+     covMtx = 0.0_dp
+     covMtx(1,1) = varAlpha
+     covMtx(4,1) = covMuAlpha
+     covMtx(5,1) = covNuAlpha
+     covMtx(2,2) = varBeta
+     covMtx(4,2) = covMuBeta
+     covMtx(5,2) = covNuBeta
+     covMtx(3,3) = varGamma
+     covMtx(4,3) = covMuGamma
+     covMtx(5,3) = covNuGamma
+     covMtx(1,4) = covMuAlpha
+     covMtx(2,4) = covMuBeta
+     covMtx(3,4) = covMuGamma
+     covMtx(4,4) = varMu
+     covMtx(5,4) = covMuNu
+     covMtx(1,5) = covNuAlpha
+     covMtx(2,5) = covNuBeta
+     covMtx(3,5) = covNuGamma
+     covMtx(4,5) = covMuNu
+     covMtx(5,5) = varNu
+     PRINT *, "Covariance matrix: "
+     PRINT *, covMtx
+     PRINT *, "Means for next time-step: "
+     PRINT *, "b: ", meanBNext
+     PRINT *, "gamma: ", meanGammaNext
+     PRINT *, "u: ", meanUNext
+     PRINT *, "Previous state: "
+     PRINT *, "b: "
+     PRINT *, addBias
+     PRINT *, "gamma: "
+     PRINT *, multBias
+     PRINT *, "u: "
+     PRINT *, stateVar
      ERROR STOP &
           & "Eigenvalue decomposition for the trapezoidal-analytic method failed."
   END IF
@@ -152,8 +188,7 @@ SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR(currTime)
   addBias = meanBNext + nextState(1) + (0.0_dp, 1.0_dp) * nextState(2)
   multBias = meanGammaNext + nextState(3)
   stateVar = meanUNext + nextState(4) + (0.0_dp, 1.0_dp) * nextState(5)
-
-
+  
 CONTAINS
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -283,7 +318,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing term.
 
     ! Set up trapezoidal integraion.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-integral term
@@ -292,6 +327,7 @@ CONTAINS
     output = stateVar * EXP(-1.0_dp * meanJst + 0.5_dp * covJstJrt &
          &                  + (-1.0_dp * meanGamma &
          &                     + (0.0_dp, 1.0_dp) * oscFreqU) * timeStepSize)
+    
     ! Add the integral term. Since we are doing a single trapezoidal rule,
     ! we have two terms outside of the summation. The first term (t_k) and last
     ! term (t_{k+1}).
@@ -415,7 +451,7 @@ CONTAINS
     !! trapezoidal rule, same for both directions.
 
     ! Set up the trapezoidals integration.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the terms that are outside of the summation terms
@@ -468,7 +504,7 @@ CONTAINS
     !! rule.
 
     ! Set up trapezoidal rule.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-summation terms of the trapezoidal rule.
@@ -520,7 +556,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-summation terms.
@@ -678,7 +714,7 @@ CONTAINS
     !! trapezoidal rule, same for both directions.
 
     ! Set up the trapezoidals integration.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
    
@@ -737,7 +773,7 @@ CONTAINS
     COMPLEX(dp) :: lambdaHat !< The parameter lambda^hat in the equations.
 
     ! Set up trapezoidal rule.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-summation terms of the trapezoidal rule.
@@ -792,7 +828,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-summation terms.
@@ -878,7 +914,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU
@@ -966,7 +1002,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU
@@ -1031,6 +1067,9 @@ CONTAINS
     output = MEANUBCONJG_FUNC(currTime, meanU) &
          & - meanU * MEANBS_FUNC(currTime, currTime + timeStepSize)
 
+    PRINT *, MEANUBCONJG_FUNC(currTime, meanU)
+    PRINT *, meanU * MEANBS_FUNC(currTime, currTime + timeStepSize)
+
   END FUNCTION COVUB_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1057,7 +1096,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 10_qb
+    integrateCount = 100_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU

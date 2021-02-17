@@ -3,14 +3,8 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import xarray as xr
-import cartopy.crs as ccrs
-from scipy import integrate
 from os import mkdir, path
 
-import geocat.datafiles as gdf
-from geocat.viz import cmaps as gvcmaps
-import geocat.viz.util as gvutil
 
 ###############################################################################
 # Plotting functions:

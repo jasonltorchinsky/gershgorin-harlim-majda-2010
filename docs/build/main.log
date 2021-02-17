@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.3.26)  15 DEC 2020 13:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.3.26)  17 FEB 2021 14:39
 entering extended mode
 **./main.tex
 (main.tex
@@ -766,7 +766,9 @@ Package: xurl 2020/01/24 v 0.09 modify URL breaks
 )
 (MathTypesetting.sty
 Package: MathTypesetting 
-) (main.aux)
+)
+("C:\Users\Owner\Education and Research\Graduate School\Multi-Model Communicati
+on Project\Toy Problems\gershgorin-majda_10\docs\build\main.aux")
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -898,7 +900,11 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 5.
 LaTeX Info: Redefining \pageref on input line 5.
 LaTeX Info: Redefining \nameref on input line 5.
- (main.out) (main.out)
+
+("C:\Users\Owner\Education and Research\Graduate School\Multi-Model Communicati
+on Project\Toy Problems\gershgorin-majda_10\docs\build\main.out")
+("C:\Users\Owner\Education and Research\Graduate School\Multi-Model Communicati
+on Project\Toy Problems\gershgorin-majda_10\docs\build\main.out")
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
@@ -1099,11 +1105,13 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [1
 
 {C:/Users/Owner/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(main.toc)
+("C:\Users\Owner\Education and Research\Graduate School\Multi-Model Communicati
+on Project\Toy Problems\gershgorin-majda_10\docs\build\main.toc")
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [2] (introduction.tex [3]) (use.tex
+ [2]
+(introduction.tex [3]) (use.tex
 ("C:\Users\Owner\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang1.
 sty"
 File: lstlang1.sty 2019/09/10 1.8c listings language file
@@ -1111,44 +1119,114 @@ File: lstlang1.sty 2019/09/10 1.8c listings language file
 ("C:\Users\Owner\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang1.
 sty"
 File: lstlang1.sty 2019/09/10 1.8c listings language file
-)) (structure.tex [4]) (acknowledgements.tex) [5] (main.bbl)
+)) (structure.tex [4]) (acknowledgements.tex) [5]
+("C:\Users\Owner\Education and Research\Graduate School\Multi-Model Communicati
+on Project\Toy Problems\gershgorin-majda_10\docs\build\main.bbl")
+(pathwisesolns.tex
 
+LaTeX Warning: Reference `eqn:pathwise_u' on page 6 undefined on input line 3.
+
+) (pathwiseidents.tex)
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 39.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\left' on input line 39.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\right' on input line 39.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 39.
+
+(pathwiseb.tex [6
+
+] [7])
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 41.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\gamma' on input line 41.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\left' on input line 41.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\right' on input line 41.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 41.
+
+(pathwisegamma.tex)
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 43.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\left' on input line 43.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\right' on input line 43.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 43.
+
+(pathwiseu.tex) [8] (exactstats.tex) 
 AED: lastpage setting LastPage
-[6
+[9]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 49.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 49.
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 34.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 34.
- (main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 34.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 34.
+("C:\Users\Owner\Education and Research\Graduate School\Multi-Model Communicati
+on Project\Toy Problems\gershgorin-majda_10\docs\build\main.aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 49.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 49.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 5C4624BED77C536F790DB1DB988EF12E;323.
+(rerunfilecheck)             Checksum: 3C230E91AB19B5B3F16BB17240AB1302;861.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 16353 strings out of 480932
- 240810 string characters out of 2899905
- 694468 words of memory out of 3000000
- 31816 multiletter control sequences out of 15000+200000
- 593744 words of font info for 127 fonts, out of 3000000 for 9000
+ 16431 strings out of 480932
+ 243937 string characters out of 2899905
+ 698983 words of memory out of 3000000
+ 31862 multiletter control sequences out of 15000+200000
+ 608394 words of font info for 159 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,12n,108p,1204b,1210s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Owner/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
 }<C:/Users/Owner/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/stix/stix
--mathex.pfb><C:/Users/Owner/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/stix/stix-mathit.pfb><C:/Users/Owner/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/stix/stix-mathrm.pfb><C:/Users/Owner/AppData/Local/Programs/MiKTeX
- 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Owner/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Owner/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Owner/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 87965 bytes).
+-mathcal.pfb><C:/Users/Owner/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+ic/stix/stix-mathex.pfb><C:/Users/Owner/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/stix/stix-mathit.pfb><C:/Users/Owner/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/Owner/AppData/Local/Pro
+grams/MiKTeX 2.9/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/Owner/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Owner/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Ow
+ner/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/User
+s/Owner/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "C:\Users\Owner\Education and Research\Graduate School\Multi-
+Model Communication Project\Toy Problems\gershgorin-majda_10\docs\build\main.pd
+f" (9 pages, 118373 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 28 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 192 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
+ 97 words of extra memory for PDF output out of 10000 (max. 10000000)
 

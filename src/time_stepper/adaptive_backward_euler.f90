@@ -41,10 +41,12 @@ SUBROUTINE ADAPTIVE_BACKWARD_EULER_SBR(currTime, defaultTimeStepSize)
   REAL(dp) :: realNoise !< The noise to be added to the multiplicative bias
   REAL(dp) :: prevMultBias !< The multiplicative bias of the previous step, in
   !! case we must adjust the step size
-  REAL(dp) :: timeStepSizeBound
+  REAL(dp) :: timeStepSizeBound !< Loweer bound for the time-step size
   COMPLEX(dp) :: cmplxNoise !< The noise to be added to the additive bias
   !! and state variable
   COMPLEX(dp) :: detForce !< The deterministic forcing for the state variable
+  COMPLEX(dp) :: lambdaB !< The lambda_b parameter in the equations
+  COMPLEX(dp) :: lambda !< Holds the value -gamma_{k+1} + i omegaU
 
   ! Always try the default time-step size first
   timeStepSize = defaultTimeStepSize
@@ -74,13 +76,11 @@ SUBROUTINE ADAPTIVE_BACKWARD_EULER_SBR(currTime, defaultTimeStepSize)
      END DO
   END IF
   
-  
   ! Update additive bias
   CALL RAND_NORMAL(cmplxNoise) ! Get noise for additive bias
-  addBias = (1.0_dp / (1.0_dp &
-       & - (-1.0_dp * dampB + (0.0_dp, 1.0_dp) * oscFreqB) * timeStepSize)) &
-       & * (addBias - ((-1.0_dp * dampB + (0.0_dp, 1.0_dp) * oscFreqB) &
-       & * meanB  * timeStepSize) &
+  lambdaB = -1.0_dp * dampB + (0.0_dp, 1.0_dp) * oscFreqB
+  addBias = (1.0_dp / (1.0_dp - (lambdaB * timeStepSize))) &
+       & * (addBias - (lambdaB * meanB  * timeStepSize) &
        & + (noiseStrB * SQRT(timeStepSize) * cmplxNoise))
 
   ! Update deterministic forcing
@@ -88,8 +88,8 @@ SUBROUTINE ADAPTIVE_BACKWARD_EULER_SBR(currTime, defaultTimeStepSize)
   
   ! Update state variable
   CALL RAND_NORMAL(cmplxNoise) ! Get noise for state variable
-  stateVar = (1.0_dp/(1.0_dp &
-       & - (-1.0_dp * multBias + (0.0_dp, 1.0_dp) * oscFreqU) * timeStepSize)) &
+  lambda = -1.0_dp * multBias + (0.0_dp, 1.0_dp) * oscFreqU
+  stateVar = (1.0_dp / (1.0_dp - lambda * timeStepSize)) &
        & * (stateVar + ((addBias + detForce) * timeStepSize) &
        & * (noiseStrU * SQRT(timeStepSize) * cmplxNoise))
 

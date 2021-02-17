@@ -1,11 +1,11 @@
 This is BibTeX, Version 0.99d (MiKTeX 2.9.7380 64-bit)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: main.aux
+The top-level auxiliary file: build\main.aux
 The style file: siam.bst
 Database file #1: refs.bib
 You've used 1 entry,
             2030 wiz_defined-function locations,
-            506 strings with 3927 characters,
+            506 strings with 3939 characters,
 and the built_in function-call counts, 384 in all, are:
 = -- 36
 > -- 18

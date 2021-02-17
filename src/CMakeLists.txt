@@ -25,6 +25,9 @@ add_subdirectory(utils)
 configure_file(ver.h.in $ENV{INCLUDE_DIR}/ver.h)
 configure_file(kinds.h.in $ENV{INCLUDE_DIR}/kinds.h)
 
+# Find MPI needed.
+find_package(MPI REQUIRED)
+
 # Define the project's executable
 add_executable(gershgorin_majda_10)
 
@@ -35,6 +38,7 @@ target_sources(gershgorin_majda_10
 
 # Add libraries to link to the executable
 target_link_libraries(gershgorin_majda_10
+		      PRIVATE ${MPI_Fortran_LIBRARIES}
                       PUBLIC initialize
 		      PUBLIC write_output
 		      PUBLIC time_stepper
@@ -43,6 +47,7 @@ target_link_libraries(gershgorin_majda_10
 
 # Add directories to include with the executable
 target_include_directories(gershgorin_majda_10
+			   PUBLIC ${MPI_Fortran_INCLUDE_PATH}
                            PUBLIC $ENV{INCLUDE_DIR}
 			   PUBLIC $ENV{INITIALIZE_DIR}
 			   PUBLIC $ENV{WRITE_OUTPUT_DIR}

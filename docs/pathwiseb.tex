@@ -1,0 +1,49 @@
+The pathwise solution for $\func{b}{t}$ may be obtained in a relatively straightforward manner,  utilizing an integrating factor of the form $e^{\func{g}{t}}$. We later find the exact form of $\func{g}{t}$, which leads to the pathwise solution for $\func{b}{t}$. For notational convenience, we define $\lambda_b := -\gamma_b + i\,\omega_b$ and $b_0 := \func{b}{t_0}$. We proceed as follows:
+
+\begin{alignat*}{2}
+    &	& \dv{\func{b}{t}}{t} &= \lambda_{b}\,\gpr{\func{b}{t} - \widehat{b}} + \sigma_{b}\,\func{\dot{W}_{b}}{t} \\
+    &\impl\qquad	& \dv{\func{b}{t}}{t} - \lambda_{b}\,\func{b}{t} &= -\lambda_{b}\,\widehat{b} + \sigma_{b}\,\func{\dot{W}_{b}}{t} \\
+    &\impl\qquad	& \dv{t}\gbkt{e^{\func{g}{t}}\,\func{b}{t}} &= -\lambda_{b}\,\widehat{b}\,e^{\func{g}{t}} + \sigma_{b}\,e^{\func{g}{t}}\,\func{\dot{W}_{b}}{t} \\
+    &\impl\qquad	& \int_{t_{0}}^{t} \dv{s}\gbkt{e^{\func{g}{s}}\,\func{b}{s}}\,ds &= -\lambda_{b}\,\widehat{b}\,\int_{t_{0}}^{t} e^{\func{g}{s}}\,ds + \sigma_{b}\,\int_{t_{0}}^{t} e^{\func{g}{s}}\,\dv{\func{{W}_{b}}{s}}{s}\,ds \\
+    &\impl\qquad	& e^{\func{g}{t}}\,\func{b}{t} &= e^{\func{g}{t_{0}}}\,b_{0} - \lambda_{b}\,\widehat{b}\,\int_{t_{0}}^{t} e^{\func{g}{s}}\,ds + \sigma_{b}\,\int_{t_{0}}^{t} e^{\func{g}{s}}\,\func{d{W}_{b}}{s} \\
+    &\impl\qquad	& \func{b}{t} &= e^{\func{g}{t_{0}} - \func{g}{t}}\,b_{0} - \lambda_{b}\,\widehat{b}\,\int_{t_{0}}^{t} e^{\func{g}{s} - \func{g}{t}}\,ds + \sigma_{b}\,\int_{t_{0}}^{t} e^{\func{g}{s} - \func{g}{t}}\,\func{d{W}_{b}}{s}
+\end{alignat*}
+
+At this point, it is convenient to find the exact for of $\func{g}{t}$ so that we may evaluate the second integral in the final line above. In particular, $\func{g}{t}$ must satisfy 
+
+\begin{equation*}
+    \dv{t}\gbkt{e^{\func{g}{t}}\,\func{b}{t}} = e^{\func{g}{t}}\,\dv{\func{b}{t}}{t} + \dv{\func{g}{t}}{t}\,e^{\func{g}{t}}\,\func{b}{t} = e^{\func{g}{t}}\,\dv{\func{b}{t}}{t} - \lambda_{b}\,e^{\func{g}{t}}\,\func{b}{t}.
+\end{equation*}
+
+Therefore,
+
+\begin{alignat*}{2}
+    &	& \dv{\func{g}{t}}{t} &= -\lambda_{b} \\
+    &\impl\qquad	& \int_{t}^{s} \dv{\func{g}{t'}}{t'}\,dt' &= -\lambda_b\,\int_{t}^{s} dt' \\
+    &\impl\qquad	& \func{g}{s} - \func{g}{t} &= -\lambda_{b}\,\gpr{s - t} = \lambda_b\,\gpr{t - s}.
+\end{alignat*}
+
+With this, we may continue our derivation of the path-wise solution for $\func{b}{t}$
+
+\begin{alignat*}{2}
+    &	& \func{b}{t} &= e^{\lambda_{b}\,\gpr{t - t_0}}\,b_{0} - \lambda_{b}\,\widehat{b}\,\int_{t_{0}}^{t} e^{\lambda_b\,\gpr{t - s}}\,ds + \sigma_{b}\,\int_{t_{0}}^{t} e^{\lambda_b\,\gpr{t - s}}\,\func{d{W}_{b}}{s} \\
+    &\impl\qquad	& \func{b}{t} &= e^{\lambda_{b}\,\gpr{t - t_0}}\,b_{0} + \widehat{b}\,\gpr{1 - e^{\lambda_b\,\gpr{t - t_0}}} + \sigma_{b}\,\int_{t_{0}}^{t} e^{\lambda_b\,\gpr{t - s}}\,\func{d{W}_{b}}{s} 
+\end{alignat*}
+
+from which we obtain
+
+\begin{equation}
+    \func{b}{t} = \widehat{b} + \gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{t - t_0}} + \sigma_{b}\,\int_{t_{0}}^{t} e^{\lambda_b\,\gpr{t - s}}\,\func{d{W}_{b}}{s}.
+    \label{eqn:pathwise_b}
+\end{equation}
+
+To verify this result, we may simply differentiate it with respect to $t$. To do this, we utilize the identity Eq.~\ref{eqn:ftoc_1}
+
+\begin{align*}
+    \dv{\func{b}{t}}{t} &= \dv{t} \gbkt{\widehat{b} + \gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{t - t_0}} + \sigma_{b}\,\int_{t_{0}}^{t} e^{\lambda_b\,\gpr{t - s}}\,\func{d{W}_{b}}{s}} \\
+     	&= \lambda_{b}\,\gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{t - t_0}} + \sigma_{b}\,\gpr{\func{\dot{W}_{b}}{t} + \lambda_b\,\int_{t_{0}}^{t} e^{\lambda_b\,\gpr{t - s}}\,\func{d{W}_{b}}{s}} \\
+     	&= \lambda_{b}\,\gpr{\gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{t - t_0}} + \sigma_{b}\,\int_{t_{0}}^{t} e^{\lambda_b\,\gpr{t - s}}\,\func{d{W}_{b}}{s}} + \sigma_{b}\,\func{\dot{W}_{b}}{t} \\
+     	&= \lambda_{b}\,\gpr{\func{b}{t} - \widehat{b}} + \sigma_{b}\,\func{\dot{W}_{b}}{t} 
+\end{align*}
+
+which matches the original differential equation for $\func{b}{t}$ (Eq.~\ref{eqn:diff_b}).

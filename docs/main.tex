@@ -14,10 +14,10 @@
 \section{Introduction}
     \import{}{introduction.tex}
     
-\section{Compiling and Running}
+\section{Compiling and running}
 	\import{}{use.tex}
 
-\section{Code Structure}
+\section{Code structure}
 	\import{}{structure.tex}
 
 \addcontentsline{toc}{section}{Acknowledgements}
@@ -30,6 +30,21 @@
 \addcontentsline{toc}{section}{References}
 \bibliography{refs}
 \bibliographystyle{siam}
+
+\appendix
+	\section{Pathwise Solutions of the Gershgorin-Harlim-Majda 2010 System}
+		\import{}{pathwisesolns.tex}
+		\subsection{Identities Used in Pathwise Solution Derivations}
+			\import{}{pathwiseidents.tex}
+		\subsection{Pathwise solution for $\func{b}{t}$} \label{app:pathwise_b}
+			\import{}{pathwiseb.tex}
+		\subsection{Pathwise solution for $\func{\gamma}{t}$}
+			\import{}{pathwisegamma.tex}
+		\subsection{Pathwise solution for $\func{u}{t}$}
+			\import{}{pathwiseu.tex}
+	
+	\section{Exact Statistics of the Gershgorin-Harlim-Majda 2010 System}
+		\import{}{exactstats.tex}
 
 \end{document}
  

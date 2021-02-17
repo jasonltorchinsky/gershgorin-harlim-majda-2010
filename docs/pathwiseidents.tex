@@ -1,0 +1,6 @@
+The first identity we will use is for the derivative with respect to $t$ of an integral whose bounds depend on $t$ and integrand depends on $t$ and another argument $s$, where $s$ is the variable of integration.
+
+\begin{equation}
+    \dv{t} \gbkt{\int_{\func{a_0}{t}}^{\func{a_1}{t}} \func{h}{t,\ s}\,ds} = \func{h}{t,\ \func{a_1}{t}}\,\dv{\func{a_1}{t}}{t} - \func{h}{t,\ \func{a_0}{t}}\,\dv{\func{a_0}{t}}{t} + \int_{\func{a_0}{t}}^{\func{a_1}{t}} \pdv{t} \gbkt{\func{h}{t,\ s}}\,ds.
+    \label{eqn:ftoc_1}
+\end{equation}

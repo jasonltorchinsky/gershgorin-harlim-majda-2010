@@ -65,8 +65,11 @@ MODULE INITIALIZE
   INTEGER(qb), PUBLIC :: runCount !< Number of runs to perform
   INTEGER(qb), PUBLIC :: outputFreq !< Frequency of output to file (every n steps)
 
+  ! Parallelization parameters.
+  INTEGER(qb), PUBLIC :: procID
+
   ! Output file parameters
-  CHARACTER(LEN=*), PARAMETER, PUBLIC :: outFileName = "out.nc" !< Output file name
+  CHARACTER(LEN=9), PUBLIC :: outFileName !< Output file name
   INTEGER(qb), PUBLIC :: outFileID !< NetCDF ID for output file
   INTEGER(qb), PUBLIC :: stepCountID !< NetCDF ID for step number dimension
   INTEGER(qb), PUBLIC :: varCountID !< NetCDF ID for the vars dimension (seven
@@ -163,13 +166,17 @@ CONTAINS
 
     USE NETCDF
     USE UTILS
+    USE MPI
 
     IMPLICIT NONE
+
+    INTEGER(qb) :: ierror !< Flag for MPI calls.
 
     ! outputFreq = 0 means no output
     IF (outputFreq .NE. 0_qb) THEN 
        ! Create the netCDF file. NF90_CLOBBER tells netCDF to overwrite the file
        ! if it already exists.
+       WRITE(outFileName,"(A,I0.3,A)") "out", procID, ".nc"
        CALL NETCDF_ERR_CHECK( NF90_CREATE(outFileName, NF90_CLOBBER, &
             & outFileID) )
        

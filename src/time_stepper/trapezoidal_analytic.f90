@@ -134,8 +134,8 @@ SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR(currTime)
   covMtx(4,5) = covMuNu
   covMtx(5,5) = varNu
 
-  PRINT *, "Covariance Matrix: "
-  Print *, covMtx
+!!$  PRINT *, "Covariance Matrix: "
+!!$  Print *, covMtx
   
   ! Obtain the eigen-decomposition of the covariance matrix.
   CALL DSYEV('V', 'U', 5, covMtx, 5, eValsCovMtx, work, 170, info)
@@ -260,36 +260,37 @@ CONTAINS
     REAL(dp), INTENT(IN) :: currTime !< Current time in simulation.
     REAL(dp), INTENT(IN) :: s !< Lower bound for the input of J(s,t_{k+1}).
     REAL(dp), INTENT(IN) :: r !< Lower bound for the input of J(r,t_{k+1}).
+    REAL(dp) :: nextTime !< Time of next time-step in simulation.
+
+    nextTime = currTime + timeStepSize
 
     IF (r .LE. s) THEN
 
-       output = -1.0_dp * ((noiseStrGamma ** 2_qb) &
-            &                 / (2.0_dp * (dampGamma ** 3_qb))) &
-            & * ((1.0_dp + EXP(-1.0_dp * dampGamma * (r - s))) &
-            &    - 2.0_dp * dampGamma * (currTime + timeStepSize - s) &
+       output = (1.0_dp + EXP(-1.0_dp * dampGamma * (s - r))) &
+            &    - 2.0_dp * dampGamma * (nextTime - s) &
             &    - EXP(-1.0_dp * dampGamma * (s + timeStepSize - currTime)) &
             &      * ((1.0_dp + EXP(dampGamma * (s - r))) &
             &         + (EXP(2.0_dp * dampGamma * (s - currTime)) &
             &            + EXP(dampGamma * (s + r - 2.0_dp * currTime))) &
-            &         - (EXP(dampGamma * (currTime + timeStepSize - s)) &
-            &            + EXP(-1.0_dp * dampGamma * (currTime &
-            &                                         + timeStepSize - r)))))
+            &         - (EXP(dampGamma * (nextTime - s)) &
+            &            + EXP(-1.0_dp * dampGamma * (nextTime - r))))
 
     ELSE IF (s .LT. r) THEN
 
-       output = -1.0_dp * ((noiseStrGamma ** 2_qb) &
-            &                 / (2.0_dp * (dampGamma ** 3_qb))) &
-            & * ((1.0_dp + EXP(-1.0_dp * dampGamma * (s - r))) &
-            &    - 2.0_dp * dampGamma * (currTime + timeStepSize - r) &
+       output = (1.0_dp + EXP(-1.0_dp * dampGamma * (r - s))) &
+            &    - 2.0_dp * dampGamma * (nextTime - r) &
             &    - EXP(-1.0_dp * dampGamma * (r + timeStepSize - currTime)) &
             &      * ((1.0_dp + EXP(dampGamma * (r - s))) &
             &         + (EXP(2.0_dp * dampGamma * (r - currTime)) &
             &            + EXP(dampGamma * (r + s - 2.0_dp * currTime))) &
-            &         - (EXP(dampGamma * (currTime + timeStepSize - r)) &
-            &            + EXP(-1.0_dp * dampGamma * (currTime &
-            &                                         + timeStepSize - s)))))
+            &         - (EXP(dampGamma * (nextTime - r)) &
+            &            + EXP(-1.0_dp * dampGamma * (nextTime - s))))
 
     END IF
+
+    output = -1.0_dp * ((noiseStrGamma ** 2_qb) &
+            &                 / (2.0_dp * (dampGamma ** 3_qb))) * output
+
 
   END FUNCTION COVJSTJRT_FUNC
 
@@ -318,7 +319,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing term.
 
     ! Set up trapezoidal integraion.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-integral term
@@ -431,6 +432,16 @@ CONTAINS
          &    + (MEANBS_FUNC(currTime, s) + detForceS) &
          &       * (CONJG(MEANBS_FUNC(currTime, r)) + CONJG(detForceR)))
 
+!!$    IF (ISNAN(REAL(output, dp))) THEN
+!!$       PRINT *, "s, r: ", s, r
+!!$       PRINT *, -1.0_dp * MEANJST_FUNC(currTime, s) - MEANJST_FUNC(currTime, r)
+!!$       PRINT *,  0.5_dp * COVJSTJRT_FUNC(currTime, s, s) 
+!!$       PRINT *,  0.5_dp * COVJSTJRT_FUNC(currTime, r, r) 
+!!$       PRINT *,  COVJSTJRT_FUNC(currTime, s, r) 
+!!$       PRINT *,  meanGamma * (2.0_dp * (currTime + timeStepSize) - s - r) &
+!!$            &       + (0.0_dp, 1.0_dp) * oscFreqU * (s - r)
+!!$    END IF
+    
   END FUNCTION BVAR_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -451,39 +462,39 @@ CONTAINS
     !! trapezoidal rule, same for both directions.
 
     ! Set up the trapezoidals integration.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the terms that are outside of the summation terms
-    output = 0.25_dp * (BVAR_FUNC(currTime, currTime, currTime) &
-         & + BVAR_FUNC(currTime, currTime, currTime + timeStepSize) &
-         & + BVAR_FUNC(currTime, currTime + timeStepSize, currTime) &
-         & + BVAR_FUNC(currTime, currTime + timeStepSize, &
-         &             currTime + timeStepSize))
+    output = 0.25_dp * integrateSize**2_qb &
+         & * (BVAR_FUNC(currTime, currTime, currTime) &
+         &    + BVAR_FUNC(currTime, currTime, currTime + timeStepSize) &
+         &    + BVAR_FUNC(currTime, currTime + timeStepSize, currTime) &
+         &    + BVAR_FUNC(currTime, currTime + timeStepSize, &
+         &                currTime + timeStepSize))
 
     ! Add the single summation term
     DO i = 1, integrateCount - 1
-       output = output &
-            & + 0.5_dp * (BVAR_FUNC(currTime, currTime, &
-            &                       currTime + i * integrateSize) &
-            &             + BVAR_FUNC(currTime, currTime + timeStepSize, &
+       output = output + 0.5_dp * integrateSize**2_qb &
+            &            * (BVAR_FUNC(currTime, currTime, &
             &                         currTime + i * integrateSize) &
-            &             + BVAR_FUNC(currTime, currTime + i * integrateSize, &
-            &                         currTime) &
-            &             + BVAR_FUNC(currTime, currTime + i * integrateSize, &
-            &                         currTime + timeStepSize))
+            &               + BVAR_FUNC(currTime, currTime + timeStepSize, &
+            &                           currTime + i * integrateSize) &
+            &               + BVAR_FUNC(currTime, currTime + i * integrateSize, &
+            &                           currTime) &
+            &               + BVAR_FUNC(currTime, currTime + i * integrateSize, &
+            &                           currTime + timeStepSize))
     END DO
 
     ! Add the double summation term.
     DO j = 1, integrateCount - 1
        DO i = 1, integrateCount - 1
-          output = output + BVAR_FUNC(currTime, currTime + i * integrateSize, &
-               &                      currTime + j * integrateSize)
+          output = output + integrateSize**2_qb &
+               &            * BVAR_FUNC(currTime, currTime + i * integrateSize, &
+               &                        currTime + j * integrateSize)
        END DO
     END DO
 
-    ! Scale output by integrateSize
-    output = output * integrateSize**2_qb
 
   END FUNCTION MEANABSB2_FUNC
 
@@ -504,35 +515,37 @@ CONTAINS
     !! rule.
 
     ! Set up trapezoidal rule.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-summation terms of the trapezoidal rule.
-    output = 0.5_dp * (EXP(2.0_dp &
-         &                * (COVJSTJRT_FUNC(currTime, currTime, currTime) &
-         &                   - MEANJST_FUNC(currTime, currTime) &
-         &                   - meanGamma * timeStepSize)) &
-         &             + EXP(2.0_dp &
-         &                   * (COVJSTJRT_FUNC(currTime, &
-         &                      currTime + timeStepSize, &
-         &                      currTime + timeStepSize) &
-         &                   - MEANJST_FUNC(currTime, currTime + timeStepSize))))
+    output = 0.5_dp * integrateSize &
+         & * (EXP(2.0_dp &
+         &        * (COVJSTJRT_FUNC(currTime, currTime, currTime) &
+         &           - MEANJST_FUNC(currTime, currTime) &
+         &           - meanGamma * timeStepSize)) &
+         &    + EXP(2.0_dp &
+         &          * (COVJSTJRT_FUNC(currTime, &
+         &                            currTime + timeStepSize, &
+         &                            currTime + timeStepSize) &
+         &             - MEANJST_FUNC(currTime, currTime + timeStepSize))))
 
     ! Add the summation term of the trapezoidal rule
     DO i = 1, integrateCount - 1
-       output = output + EXP(2.0_dp &
-            &                * (COVJSTJRT_FUNC(currTime, &
-            &                   currTime + i * integrateSize, &
-            &                   currTime + i * integrateSize) &
-            &                   - MEANJST_FUNC(currTime, &
-            &                                  currTime + i * integrateSize) &
-            &                   - meanGamma * (timeStepSize &
+       output = output &
+            & + integratesize &
+            &   * EXP(2.0_dp &
+            &         * (COVJSTJRT_FUNC(currTime, &
+            &                           currTime + i * integrateSize, &
+            &                           currTime + i * integrateSize) &
+            &            - MEANJST_FUNC(currTime, &
+            &                           currTime + i * integrateSize) &
+            &            - meanGamma * (timeStepSize &
             &                                  - (i * integrateSize))))
     END DO
 
-    ! Scale the numerical integral by the noise strength of u and the
-    ! integration interval size
-    output = output * noiseStrU**2_qb * integrateSize
+    ! Scale the by the noise strength of u
+    output = output * noiseStrU**2_qb
 
   END FUNCTION MEANABSC2_FUNC
 
@@ -556,7 +569,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-summation terms.
@@ -618,6 +631,12 @@ CONTAINS
          & + MEANABSC2_FUNC(currTime) &
          & + 2.0_dp * REAL(MEANABCONJG_FUNC(currTime), dp) &
          & - ABS(meanU)**2_qb
+
+!!$    PRINT *, "<|A|^2>: ", MEANABSA2_FUNC(currTime)
+!!$    PRINT *, "<|B|^2>: ", MEANABSB2_FUNC(currTime)
+!!$    PRINT *, "<|C|^2>: ", MEANABSC2_FUNC(currTime)
+!!$    PRINT *, 2.0_dp * REAL(MEANABCONJG_FUNC(currTime), dp)
+!!$    PRINT *, ABS(meanU)**2_qb
 
   END FUNCTION VARU_FUNC
 
@@ -714,7 +733,7 @@ CONTAINS
     !! trapezoidal rule, same for both directions.
 
     ! Set up the trapezoidals integration.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
    
@@ -773,7 +792,7 @@ CONTAINS
     COMPLEX(dp) :: lambdaHat !< The parameter lambda^hat in the equations.
 
     ! Set up trapezoidal rule.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-summation terms of the trapezoidal rule.
@@ -828,7 +847,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     ! Add the non-summation terms.
@@ -914,7 +933,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU
@@ -1002,7 +1021,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU
@@ -1067,9 +1086,6 @@ CONTAINS
     output = MEANUBCONJG_FUNC(currTime, meanU) &
          & - meanU * MEANBS_FUNC(currTime, currTime + timeStepSize)
 
-    PRINT *, MEANUBCONJG_FUNC(currTime, meanU)
-    PRINT *, meanU * MEANBS_FUNC(currTime, currTime + timeStepSize)
-
   END FUNCTION COVUB_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1096,7 +1112,7 @@ CONTAINS
     COMPLEX(dp) :: detForce !< Deterministic forcing.
 
     ! Set up trapezoidal rule.
-    integrateCount = 100_qb
+    integrateCount = 1000_qb
     integrateSize = timeStepSize / REAL(integrateCount, dp)
 
     lambdaHat = -1.0_dp * meanGamma + (0.0_dp, 1.0_dp) * oscFreqU

@@ -7,7 +7,7 @@
 	noiseStrB = 0.7745
 	dampGamma = 0.015
 	meanGamma = 1.5 
-	noiseStrGamma = 5.0
+	noiseStrGamma = 0.7745
 	strForce = 0.0
 	oscFreqForce = 0.0
 /
@@ -19,11 +19,11 @@
 /
 
 &SIMPARAMS
-	timeStepSize = 1.0
-	timeStepCount = 1000
-	seed = 420
-	timeStepScheme = 4
-	runCount = 250
+	timeStepSize = 0.01
+	timeStepCount = 300
+	seed = 7
+	timeStepScheme = 1
+	runCount = 100
 	outputFreq = 1
 /
 

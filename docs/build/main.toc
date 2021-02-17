@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}The Gershgorin-Majda 2010 System}{3}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Compiling and running}{4}{section.2}%
+\contentsline {section}{\numberline {3}Code structure}{4}{section.3}%
+\contentsline {section}{Acknowledgements}{5}{Item.3}%
+\contentsline {section}{References}{6}{Item.3}%
+\contentsline {section}{\numberline {A}Pathwise Solutions of the Gershgorin-Harlim-Majda 2010 System}{6}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Identities Used in Pathwise Solution Derivations}{6}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Pathwise solution for $\ensuremath {b \left ( t \right )}$}{6}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Pathwise solution for $\ensuremath {\gamma \left ( t \right )}$}{8}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}Pathwise solution for $\ensuremath {u \left ( t \right )}$}{9}{subsection.A.4}%
+\contentsline {section}{\numberline {B}Exact Statistics of the Gershgorin-Harlim-Majda 2010 System}{9}{appendix.B}%
+\contentsfinish 

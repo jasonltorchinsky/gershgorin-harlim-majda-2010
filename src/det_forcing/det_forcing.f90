@@ -1,19 +1,20 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! The GERSHGORIN-MAJDA_10 Project of the the multi-model communication research.
+! The GERSHGORIN-HARLIM-MAJDA_10 Project of the the multi-model communication
+! research.
 ! To create the initial solver.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! TITLE            : Multi-Model Communication
-! PROJECT          : GERSHGORIN-MAJDA_10
-! MODULE           : DET_FORCING
-! URL              : N/A, will be posted to GitHub.
-! AFFILIATION      : University of Wisconisn-Madison
-! DATE             : Winter 2020
-! REVISION         : 1.00
+! TITLE       : Multi-Model Communication
+! PROJECT     : GERSHGORIN-HARLIM-MAJDA_10
+! MODULE      : DET_FORCING
+! URL         : https://github.com/jasonltorchinsky/gershgorin-harlim-majda-2010
+! AFFILIATION : University of Wisconsin-Madison
+! DATE        : Winter 2020
+! REVISION    : 1.00
 !
 !> @author
-!> Jason Turner
+!> Jason Torchinsky
 !
-!> @brief The determinstic forcing the Gershgorin-Majda 2010 system.
+!> @brief The determinstic forcing the Gershgorin-Harlim-Majda 2010 system.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MODULE DET_FORCING
@@ -31,7 +32,7 @@ MODULE DET_FORCING
 CONTAINS
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> The standard deterministic forcing for the system, complex exponential.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

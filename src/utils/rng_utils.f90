@@ -1,24 +1,25 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! The GERSHGORIN-MAJDA_10 Project of the the multi-model communication research.
+! The GERSHGORIN-HARLIM-MAJDA_10 Project of the the multi-model communication
+! research.
 ! To create the initial solver.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! TITLE            : Multi-Model Communication
-! PROJECT          : GERSHGORIN-MAJDA_10
-! MODULE           : UTILITIES
-! URL              : N/A, will be posted to GitHub.
-! AFFILIATION      : University of Wisconisn-Madison
-! DATE             : Winter 2020
-! REVISION         : 1.00
+! TITLE       : Multi-Model Communication
+! PROJECT     : GERSHGORIN-HARLIM-MAJDA_10
+! MODULE      : UTILITIES
+! URL         : https://github.com/jasonltorchinsky/gershgorin-harlim-majda-2010
+! AFFILIATION : University of Wisconsin-Madison
+! DATE        : Winter 2020
+! REVISION    : 1.00
 !
 !> @author
-!> Jason Turner
+!> Jason Torchinsky
 !
 !> @brief Contains general random-number generation subroutines that will be
 !! used in various places
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!> @author Jason Turner, University of Wisconsin-Madison
+!> @author Jason Torchinsky, University of Wisconsin-Madison
 !> @brief
 !> Initializes RANDOM_NUMBER with the given seed. Call this for repeatability.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,7 +48,7 @@ SUBROUTINE RAND_INIT_SBR(seed)
 END SUBROUTINE RAND_INIT_SBR
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!> @author Jason Turner, University of Wisconsin-Madison
+!> @author Jason Torchinsky, University of Wisconsin-Madison
 !> @brief
 !> Generates a single-precision real number from a standard Gaussian
 !! distribution.
@@ -75,7 +76,7 @@ SUBROUTINE RAND_NORMAL_SP(randNum)
 END SUBROUTINE RAND_NORMAL_SP
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!> @author Jason Turner, University of Wisconsin-Madison
+!> @author Jason Torchinsky, University of Wisconsin-Madison
 !> @brief
 !> Generates a double-precision real number from a standard Gaussian
 !! distribution.
@@ -103,7 +104,7 @@ END SUBROUTINE RAND_NORMAL_DP
 
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!> @author Jason Turner, University of Wisconsin-Madison
+!> @author Jason Torchinsky, University of Wisconsin-Madison
 !> @brief
 !> Generates a single-precision complex number from a standard Gaussian
 !! distribution, indepndent real and complex parts.
@@ -131,7 +132,7 @@ SUBROUTINE RAND_NORMAL_C_SP(randNum) !< Single-precision complex
 END SUBROUTINE RAND_NORMAL_C_SP
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!> @author Jason Turner, University of Wisconsin-Madison
+!> @author Jason Torchinsky, University of Wisconsin-Madison
 !> @brief
 !> Generates a double-precision complex number from a standard Gaussian
 !! distribution, indepndent real and complex parts.

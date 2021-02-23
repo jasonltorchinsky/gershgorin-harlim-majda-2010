@@ -1,22 +1,23 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! The GERSHGORIN-MAJDA_10 Project of the the multi-model communication research.
+! The GERSHGORIN-HARLIM-MAJDA_10 Project of the the multi-model communication
+! research.
 ! To create the initial solver.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! TITLE            : Multi-Model Communication
-! PROJECT          : GERSHGORIN-MAJDA_10
-! MODULE           : MAIN
-! URL              : N/A, will be posted to GitHub.
-! AFFILIATION      : University of Wisconisn-Madison
-! DATE             : Winter 2020
-! REVISION         : 1.00
+! TITLE       : Multi-Model Communication
+! PROJECT     : GERSHGORIN-HARLIM-MAJDA_10
+! MODULE      : MAIN
+! URL         : https://github.com/jasonltorchinsky/gershgorin-harlim-majda-2010
+! AFFILIATION : University of Wisconsin-Madison
+! DATE        : Winter 2020
+! REVISION    : 1.00
 !
 !> @author
-!> Jason Turner
+!> Jason Torchinsky
 !
-!> @brief The main module for the Gershgorin-Majda 2010 system solver.
+!> @brief The main module for the Gershgorin-Harlim-Majda 2010 system solver.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-PROGRAM GERSHGORIN_MAJDA_10
+PROGRAM GERSHGORIN_HARLIM_MAJDA_10
   
   IMPLICIT NONE
 
@@ -36,7 +37,7 @@ PROGRAM GERSHGORIN_MAJDA_10
 CONTAINS
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, Unviersity of Wisconsin-Madison
+  !> @author Jason Torchinsky, Unviersity of Wisconsin-Madison
   !> @brief
   !> The main program driver, calls all necessary stages to run the simulation.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,8 +64,8 @@ CONTAINS
     CALL MPI_COMM_RANK(MPI_COMM_WORLD, procID, ierror)
     IF (procID .EQ. 0_qb) THEN
        WRITE(*,"(A,I1,A,I2.2)") "Starting Gershgorin-Majda 2010 solver, version ", &
-            & GERSHGORIN_MAJDA_10_VERSION_MAJOR, ".", &
-            & GERSHGORIN_MAJDA_10_VERSION_MINOR
+            & GERSHGORIN_HARLIM_MAJDA_10_VERSION_MAJOR, ".", &
+            & GERSHGORIN_HARLIM_MAJDA_10_VERSION_MINOR
     END IF
 
     ! Initialize the system parameters, the system variables, the simulation
@@ -100,4 +101,4 @@ CONTAINS
 
   END SUBROUTINE MAIN
 
-END PROGRAM GERSHGORIN_MAJDA_10
+END PROGRAM GERSHGORIN_HARLIM_MAJDA_10

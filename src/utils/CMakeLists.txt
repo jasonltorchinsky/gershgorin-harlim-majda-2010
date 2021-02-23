@@ -1,5 +1,5 @@
 # CMakeLists.txt for src/utils subdirectory.
-# Author: Jason Turner
+# Author: Jason Torchinsky
 # Date: 2012-12-XX
 
 # Defines netcdf_utils as a library

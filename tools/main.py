@@ -14,12 +14,8 @@ Modifying Date: Winter 2021
 import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
-import cartopy.crs as ccrs
 from scipy import integrate
 
-import geocat.datafiles as gdf
-from geocat.viz import cmaps as gvcmaps
-import geocat.viz.util as gvutil
 
 from plot import stat_plot
 from stats import *

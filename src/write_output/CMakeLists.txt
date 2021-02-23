@@ -1,5 +1,5 @@
 # CMakeLists.txt for the src/write_output subdirectory
-# Author: Jason Turner
+# Author: Jason Torchinsky
 # Date: 2020-12-XX
 
 # Defines output as a library

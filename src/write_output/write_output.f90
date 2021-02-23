@@ -1,17 +1,18 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! The GERSHGORIN-MAJDA_10 Project of the the multi-model communication research.
+! The GERSHGORIN-HARLIM-MAJDA_10 Project of the the multi-model communication
+! research.
 ! To create the initial solver.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! TITLE            : Multi-Model Communication
-! PROJECT          : GERSHGORIN-MAJDA_10
-! MODULE           : OUTPUT
-! URL              : N/A, will be posted to GitHub.
-! AFFILIATION      : University of Wisconisn-Madison
-! DATE             : Winter 2020
-! REVISION         : 1.00
+! TITLE       : Multi-Model Communication
+! PROJECT     : GERSHGORIN-HARLIM-MAJDA_10
+! MODULE      : OUTPUT
+! URL         : https://github.com/jasonltorchinsky/gershgorin-harlim-majda-2010
+! AFFILIATION : University of Wisconsin-Madison
+! DATE        : Winter 2020
+! REVISION    : 1.00
 !
 !> @author
-!> Jason Turner
+!> Jason Torchinsky
 !
 !> @brief The output module for the Gershgorin-Majda 2010 system solver,
 !! contains variable declarations and subroutines needed for output.
@@ -32,7 +33,7 @@ MODULE WRITE_OUTPUT
 CONTAINS
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Writes the current state to the netCDF file
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

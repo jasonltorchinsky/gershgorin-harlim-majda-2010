@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.3.26)  23 FEB 2021 10:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.3.26)  23 FEB 2021 10:17
 entering extended mode
 **./main.tex
 (main.tex
@@ -1137,9 +1137,9 @@ ed on the for-ward Euler(-Maruyama)
  []
 
 ) (future.tex [7]) (acknowledgements.tex)
-Overfull \hbox (1.97263pt too wide) in paragraph at lines 1--31
+Overfull \hbox (4.97263pt too wide) in paragraph at lines 1--31
 \T1/ptm/m/n/12 soft-ware, and netCDF soft-ware de-vel-oped by UCAR/U-nidata ([]
-[]http://doi.org/ 10.5065/D6H70CW6[][])
+[]http://doi.org/ 10.5065/D6H70CW6[][]).
  []
 
 [8]
@@ -2525,7 +2525,7 @@ nts/type1/urw/times/utmr8a.pfb><C:/Users/Owner/AppData/Local/Programs/MiKTeX 2.
 9/fonts/type1/urw/times/utmri8a.pfb>
 Output written on "C:\Users\Owner\Education and Research\Graduate School\Multi-
 Model Communication Project\Toy Problems\gershgorin-harlim-majda-2010\docs\buil
-d\main.pdf" (53 pages, 380893 bytes).
+d\main.pdf" (53 pages, 381230 bytes).
 PDF statistics:
  1061 PDF objects out of 1200 (max. 8388607)
  259 named destinations out of 1000 (max. 500000)

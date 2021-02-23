@@ -1,5 +1,5 @@
 # CMakeLists.txt for src/time_stepper subdirectory.
-# Author: Jason Turner
+# Author: Jason Torchinsky
 # Date: 2012-12-XX
 
 # Defines time_stepper as a library

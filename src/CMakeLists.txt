@@ -1,5 +1,5 @@
 # CMakeLists.txt for src directory
-# Author: Jason Turner
+# Author: Jason Torchinsky
 # Date: 2020-12-XX
 
 # Define variables for directories for use throughout the project.
@@ -29,15 +29,15 @@ configure_file(kinds.h.in $ENV{INCLUDE_DIR}/kinds.h)
 find_package(MPI REQUIRED)
 
 # Define the project's executable
-add_executable(gershgorin_majda_10)
+add_executable(gershgorin_harlim_majda_10)
 
 # Add source files to the executable
-target_sources(gershgorin_majda_10
+target_sources(gershgorin_harlim_majda_10
                PUBLIC main.f90
 	      )
 
 # Add libraries to link to the executable
-target_link_libraries(gershgorin_majda_10
+target_link_libraries(gershgorin_harlim_majda_10
 		      PRIVATE ${MPI_Fortran_LIBRARIES}
                       PUBLIC initialize
 		      PUBLIC write_output
@@ -46,7 +46,7 @@ target_link_libraries(gershgorin_majda_10
 		     )
 
 # Add directories to include with the executable
-target_include_directories(gershgorin_majda_10
+target_include_directories(gershgorin_harlim_majda_10
 			   PUBLIC ${MPI_Fortran_INCLUDE_PATH}
                            PUBLIC $ENV{INCLUDE_DIR}
 			   PUBLIC $ENV{INITIALIZE_DIR}

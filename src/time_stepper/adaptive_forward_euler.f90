@@ -1,25 +1,26 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! The GERSHGORIN-MAJDA_10 Project of the the multi-model communication research.
+! The GERSHGORIN-HARLIM-MAJDA_10 Project of the the multi-model communication
+! research.
 ! To create the initial solver.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! TITLE            : Multi-Model Communication
-! PROJECT          : GERSHGORIN-MAJDA_10
-! MODULE           : TIME_STEPPER
-! URL              : N/A, will be posted to GitHub.
-! AFFILIATION      : University of Wisconisn-Madison
-! DATE             : Winter 2020
-! REVISION         : 1.00
+! TITLE       : Multi-Model Communication
+! PROJECT     : GERSHGORIN-HARLIM-MAJDA_10
+! MODULE      : TIME_STEPPER
+! URL         : https://github.com/jasonltorchinsky/gershgorin-harlim-majda-2010
+! AFFILIATION : University of Wisconsin-Madison
+! DATE        : Winter 2020
+! REVISION    : 1.00
 !
 !> @author
-!> Jason Turner
+!> Jason Torchinsky
 !
-!> @brief An adaptive Forward Euler method for solving the Gershgorin-Majda
-!! 2010 system.
+!> @brief An adaptive Forward Euler method for solving the Gershgorin-Harlim-
+!! Majda 2010 system.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!> @author Jason Turner, University of Wisconsin-Madison
+!> @author Jason Torchinsky, University of Wisconsin-Madison
 !> @brief
 !> Uses an adaptive Forward Euler scheme to progress that state variable,
 !! additive bias, and multiplicative bias to maximize the time-step size during

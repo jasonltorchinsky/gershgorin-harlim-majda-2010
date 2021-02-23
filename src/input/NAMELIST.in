@@ -23,7 +23,7 @@
 	timeStepCount = 300
 	seed = 7
 	timeStepScheme = 1
-	runCount = 100
+	runCount = 10
 	outputFreq = 1
 /
 

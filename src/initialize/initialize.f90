@@ -1,20 +1,22 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! The GERSHGORIN-MAJDA_10 Project of the the multi-model communication research.
+! The GERSHGORIN-HARLIM-MAJDA_10 Project of the the multi-model communication
+! research.
 ! To create the initial solver.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! TITLE            : Multi-Model Communication
-! PROJECT          : GERSHGORIN-MAJDA_10
-! MODULE           : INITIALIZE
-! URL              : N/A, will be posted to GitHub.
-! AFFILIATION      : University of Wisconisn-Madison
-! DATE             : Winter 2020
-! REVISION         : 1.00
+! TITLE       : Multi-Model Communication
+! PROJECT     : GERSHGORIN-HARLIM-MAJDA_10
+! MODULE      : INITIALIZE
+! URL         : https://github.com/jasonltorchinsky/gershgorin-harlim-majda-2010
+! AFFILIATION : University of Wisconsin-Madison
+! DATE        : Winter 2020
+! REVISION    : 1.00
 !
 !> @author
-!> Jason Turner
+!> Jason Torchinsky
 !
-!> @brief The initalization module for the Gershgorin-Majda 2010 system solver,
-!! contains variable declarations and subroutines needed for initialization.
+!> @brief The initalization module for the Gershgorin-Harlim-Majda 2010 system
+!! solver, contains variable declarations and subroutines needed for
+!! initialization.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MODULE INITIALIZE
@@ -88,7 +90,7 @@ MODULE INITIALIZE
 CONTAINS
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Reads the NAMELIST for input parameters.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -108,7 +110,7 @@ CONTAINS
   END SUBROUTINE INITIALIZE_SYSTEM_PARAMETERS
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @Author Jason Turner, University of Wisconsin-Madison
+  !> @Author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Assigns the initial value to the state variable (u), additive bias (b), and
   !! multiplicative bias (gamma) in the GM10 system.
@@ -138,7 +140,7 @@ CONTAINS
   END SUBROUTINE INITIALIZE_SYSTEM_CONDITIONS
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @Author Jason Turner, University of Wisconsin-Madison
+  !> @Author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Reads the simulation parameters from file.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,7 +159,7 @@ CONTAINS
   END SUBROUTINE INITIALIZE_SIMULATION_PARAMETERS
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @Author Jason Turner, University of Wisconsin-Madison
+  !> @Author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Initializes the output file for the simulation.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -200,7 +202,7 @@ CONTAINS
 
   
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @Author Jason Turner, University of Wisconsin-Madison
+  !> @Author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Initializes the simulation, e.g., sets up the output.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

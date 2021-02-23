@@ -1,4 +1,4 @@
-! Version information for gershgorin-majda_10
+! Version information for gershgorin_harlim_majda_10
 
-INTEGER, PARAMETER :: GERSHGORIN_MAJDA_10_VERSION_MAJOR = @gershgorin_majda_10_VERSION_MAJOR@
-INTEGER, PARAMETER :: GERSHGORIN_MAJDA_10_VERSION_MINOR = @gershgorin_majda_10_VERSION_MINOR@
+INTEGER, PARAMETER :: GERSHGORIN_HARLIM_MAJDA_10_VERSION_MAJOR = @gershgorin_harlim_majda_10_VERSION_MAJOR@
+INTEGER, PARAMETER :: GERSHGORIN_HARLIM_MAJDA_10_VERSION_MINOR = @gershgorin_harlim_majda_10_VERSION_MINOR@

@@ -1,17 +1,18 @@
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! The GERSHGORIN-MAJDA_10 Project of the the multi-model communication research.
+! The GERSHGORIN-HARLIM-MAJDA_10 Project of the the multi-model communication
+! research.
 ! To create the initial solver.
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! TITLE            : Multi-Model Communication
-! PROJECT          : GERSHGORIN-MAJDA_10
-! MODULE           : TIME_STEPPER
-! URL              : https://github.com/jasonlturner/gershgorin-majda-10
-! AFFILIATION      : University of Wisconisn-Madison
-! DATE             : Winter 2021
-! REVISION         : 1.00
+! TITLE       : Multi-Model Communication
+! PROJECT     : GERSHGORIN-HARLIM-MAJDA_10
+! MODULE      : TIME_STEPPER
+! URL         : https://github.com/jasonltorchinsky/gershgorin-harlim-majda-2010
+! AFFILIATION : University of Wisconsin-Madison
+! DATE        : Winter 2021
+! REVISION    : 1.00
 !
 !> @author
-!> Jason Turner
+!> Jason Torchinsky
 !
 !> @brief The analytic statistical solution for the Gershgorin-Majda 2010
 !! system, using the trapezoidal rule for approximating the necessary integrals.
@@ -19,7 +20,7 @@
 
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!> @author Jason Turner, University of Wisconsin-Madison
+!> @author Jason Torchinsky, University of Wisconsin-Madison
 !> @brief
 !> Uses the statistical analytic equations to progress that state variable,
 !! additive bias, and multiplicative bias, with the trapezoidal rule for
@@ -134,13 +135,12 @@ SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR(currTime)
   covMtx(4,5) = covMuNu
   covMtx(5,5) = varNu
 
-!!$  PRINT *, "Covariance Matrix: "
-!!$  Print *, covMtx
   
   ! Obtain the eigen-decomposition of the covariance matrix.
   CALL DSYEV('V', 'U', 5, covMtx, 5, eValsCovMtx, work, 170, info)
   ! NOTE: covMtx is now the eigenvector matrix of covMtx.
 
+  ! If the eigenvalue decomposition fails, print some failure information.
   IF (info .NE. 0_qb) THEN
      PRINT *, "LAPACK subroutine DSYEV has failed, info = ", info
      PRINT *, "Time-step: ", INT(currTime / timeStepSize, qb)
@@ -192,7 +192,7 @@ SUBROUTINE TRAPEZOIDAL_ANALYTIC_SBR(currTime)
 CONTAINS
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of the additive bias (b) at the time s.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -211,7 +211,7 @@ CONTAINS
   END FUNCTION MEANBS_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of the multiplicative bias (gamma) at time s.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -229,7 +229,7 @@ CONTAINS
   END FUNCTION MEANGAMMAS_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean value of J(s,t_{k+1}).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -248,7 +248,7 @@ CONTAINS
   END FUNCTION MEANJST_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the covariance of J(s,t_{k+1}) and J(r,t_{k+1}).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -295,7 +295,7 @@ CONTAINS
   END FUNCTION COVJSTJRT_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of the state variable (u) at time s.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -364,7 +364,7 @@ CONTAINS
   END FUNCTION MEANUS_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of |A|^2 (see var(u)).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -384,7 +384,7 @@ CONTAINS
   END FUNCTION MEANABSA2_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the covariance of b(s) and b(r) for s, r.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -404,7 +404,7 @@ CONTAINS
 
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the value of bvar(s,r) for given s, r.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -445,7 +445,7 @@ CONTAINS
   END FUNCTION BVAR_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of |B|^2 (see var(u)).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -499,7 +499,7 @@ CONTAINS
   END FUNCTION MEANABSB2_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of |C|^2 (see var(u)).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -550,7 +550,7 @@ CONTAINS
   END FUNCTION MEANABSC2_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of ACONJG(B) (see var(u)).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -615,7 +615,7 @@ CONTAINS
   END FUNCTION MEANABCONJG_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the variance of u.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -641,7 +641,7 @@ CONTAINS
   END FUNCTION VARU_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of A^2 (see Cov(u, CONJG(u))).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -662,7 +662,7 @@ CONTAINS
 
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the covariance of b(s) and CONJG(b(r)).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -683,7 +683,7 @@ CONTAINS
 
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the value of bcovar(s, r) at specified s and r.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -716,7 +716,7 @@ CONTAINS
   END FUNCTION BCOVAR_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of B^2 (see cov(u, CONJG(u))).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -775,7 +775,7 @@ CONTAINS
 
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of C^2 (see cov(u, CONJG(u))).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -826,7 +826,7 @@ CONTAINS
   END FUNCTION MEANC2_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of AB (see var(u)).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -892,7 +892,7 @@ CONTAINS
   END FUNCTION MEANAB_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the covariance of uCONJG(u).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -911,7 +911,7 @@ CONTAINS
   END FUNCTION COVUUCONJG_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of ugamma (see Cov(u, gamma)).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -980,7 +980,7 @@ CONTAINS
   END FUNCTION MEANUGAMMA_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the covariance of u and gamma.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -998,7 +998,7 @@ CONTAINS
   END FUNCTION COVUGAMMA_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of uCONJG(b) (see Cov(u, b)).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1071,7 +1071,7 @@ CONTAINS
   END FUNCTION MEANUBCONJG_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the covariance of u and b.
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1089,7 +1089,7 @@ CONTAINS
   END FUNCTION COVUB_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the mean of ub (see Cov(u, CONJG(b))).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1160,7 +1160,7 @@ CONTAINS
   END FUNCTION MEANUB_FUNC
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !> @author Jason Turner, University of Wisconsin-Madison
+  !> @author Jason Torchinsky, University of Wisconsin-Madison
   !> @brief
   !> Calculates the covariance of u and CONJG(b).
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

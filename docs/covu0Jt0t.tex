@@ -1,0 +1,15 @@
+Using the equation for $\gang{\func{J}{t_0,\ t}}$ (obtained from Eq.~\ref{eqn:mean_Jst} by evaluating it at $s = t_0$), we may quickly find $\cov{u_0}{\func{J}{t_0,\ t}}$.
+
+\begin{align}
+    \cov{u_0}{\func{J}{t_0,\ t}} &= \ev{u_0\,\func{J}{t_0, t}} - \gang{u_0}\,\gang{\func{J}{t_0,\ t}} \nonumber \\
+    	&= \ev{u_0\,\int_{t_0}^{t} \gpr{\func{\gamma}{s'} - \widehat{\gamma}}\,ds'} - \frac{\gang{u_0}\,\gpr{\gang{\gamma_0} - \widehat{\gamma}}}{d_{\gamma}}\,\gpr{1 - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    	&= \ev{u_0\,\int_{t_0}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'} \nonumber \\
+    		&\quad + \ev{u_0\,\sigma_{\gamma}\,\int_{t_0}^{t} \int_{t_0}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,d\func{W_{\gamma}}{t'}\,ds'} \nonumber \\
+    		&\quad - \frac{\gang{u_0}\,\gpr{\gang{\gamma_0} - \widehat{\gamma}}}{d_{\gamma}}\,\gpr{1 - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    	&= \frac{\ev{u_0\,\gpr{\gamma_0 - \widehat{\gamma}}}}{d_{\gamma}}\,\gpr{1 - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad + \sigma_{\gamma}\,\ev{u_0\,\int_{t_0}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,d\func{W_{\gamma}}{t'}} \nonumber \\
+    		&\quad - \frac{\gang{u_0}\,\gpr{\gang{\gamma_0} - \widehat{\gamma}}}{d_{\gamma}}\,\gpr{1 - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    	&= \frac{\ev{u_0\,\gpr{\gamma_0 - \widehat{\gamma}}} - \gang{u_0}\,\gpr{\gang{\gamma_0} - \widehat{\gamma}}}{d_{\gamma}}\,\gpr{1 - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad + \sigma_{\gamma}\,\gang{u_0}\,\ev{\int_{t_0}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,d\func{W_{\gamma}}{t'}} \nonumber \\
+    	&= \frac{\cov{u_0}{\gamma_0}}{d_{\gamma}}\,\gpr{1 - e^{-d_{\gamma}\,\gpr{t - t_0}}}. \label{eqn:cov_u0_Jt0t}
+\end{align}

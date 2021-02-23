@@ -1,0 +1,38 @@
+We calculate the covariance of $A$ (Eq.~\ref{eqn:A}) and $\func{\gamma}{t}$ in a very similar manner to how we calculated $\cov{A}{\func{b}{t}}$ (Appendix~\ref{app:cov_A_b}). We decompose the covariance into the difference of expectations
+
+\begin{equation}
+	\cov{A}{\func{\gamma}{t}} = \ev{A\,\func{\gamma}{t}} - \gang{A}\,\gang{\func{\gamma}{t}}.
+\end{equation}
+
+To calculate the first of these terms on the right-hand side, we utilize the identity Eq.~\ref{eqn:zwebx_ident} to obtain
+
+\begin{align}
+	\ev{A\,\func{\gamma}{t}} &= \ev{u_0\,\widehat{\gamma}\,e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}} + \ev{u_0\,\gpr{\gamma_0 - \widehat{\gamma}}\,e^{-\func{J}{t_0,\ t} + \gpr{\widehat{\lambda} - d_{\gamma}}\,\gpr{t - t_0}}} \nonumber \\
+			&\quad + \ev{u_0\,\sigma_\gamma\,\int_{t_0}^{t} e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0} + \lambda_b\,\gpr{s - t_0}}\,d\func{W_{\gamma}}{t}} \nonumber \\
+		&= \widehat{\gamma}\,\gang{A} \nonumber \\
+			&\quad + \gpr{\cov{u_0}{\gamma_0} + \gpr{\gang{u_0} - \cov{u_0}{\func{J}{t_0,\ t}}}\,\gpr{\gang{\gamma_0} - \widehat{\gamma} - \cov{b_0}{\func{J}{t_0,\ t}}}} \nonumber \\
+			&\qquad\qquad \cdot e^{-\gang{\func{J}{t_0,\ t}} + \frac{1}{2}\,\vr{\func{J}{t_0,\ t}} + \gpr{\widehat{\lambda} - d_\gamma}\,\gpr{t - t_0}}.
+\end{align}
+
+To calculate the second of these terms on the right-hand side, we utilize the identity Eq.~\ref{eqn:zebx_ident} to obtain along with our previous equation for the expected value of $\func{\gamma}{t}$ (Eq.~\ref{eqn:mean_gamma})
+
+\begin{equation}
+	\gang{A}\,\gang{\func{\gamma}{t}} = \widehat{\gamma}\,\gang{A} + \gpr{\gang{u_0} - \cov{u_0}{\func{J}{t_0,\ t}}}\,\gpr{\gang{\gamma_0} - \widehat{\gamma}}\,e^{-\gang{\func{J}{t_0,\ t}} + \frac{1}{2}\,\vr{\func{J}{t_0,\ t}} + \gpr{\widehat{\lambda} + d_{\gamma}}\,\gpr{t - t_0}}.
+\end{equation}
+
+The difference of these terms gives us the desired covariance
+
+\begin{align}
+	\cov{A}{\func{\gamma}{t}} &= \ev{A\,\func{\gamma}{t}} - \gang{A}\,\gang{\func{\gamma}{t}} \nonumber \\
+		&= \gpr{\cov{u_0}{\gamma_0} - \cov{\gamma_0}{\func{J}{t_0,\ t}}\,\gpr{\gang{u_0} - \cov{u_0}{\func{J}{t_0,\ t}}}}\, \nonumber \\
+			&\qquad \cdot e^{-\gang{\func{J}{t_0,\ t}} + \frac{1}{2}\,\vr{\func{J}{t_0,\ t}} + \gpr{\widehat{\lambda} - d_{\gamma}}\,\gpr{t - t_0}}. \label{eqn:cov_A_gamma}
+\end{align}
+
+The statistics required to calculate this value are
+
+\begin{itemize}
+	\item [] $\cov{\gamma_0}{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:cov_gamma0_Jt0t}.
+	\item [] $\cov{u_0}{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:cov_u0_Jt0t}.
+	\item [] $\gang{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:mean_Jst} (with $s = t_0$).
+	\item [] $\vr{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:var_Jst} (with $s = t_0$).
+\end{itemize}

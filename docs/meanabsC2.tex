@@ -1,0 +1,17 @@
+Like the calculation of $\ev{\abs{A}^2}$, the calculation of $\ev{\abs{C}^2}$ is relatively straightforward
+
+\begin{align}
+    \ev{\abs{C}^2} &= \ev{\gpr{\sigma\,\int_{t_0}^{t} e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,d\func{W}{s}}\,\gpr{\sigma\,\int_{t_0}^{t} e^{-\func{J}{s,\ t} + \overline{\widehat{\lambda}}\,\gpr{t - s}}\,\overline{d\func{W}{s}}}} \nonumber \\
+    	&= \sigma^2\,\ev{\int_{t_0}^{t} e^{-2\,\func{J}{s,\ t} - 2\,\widehat{\gamma}\,\gpr{t - s}}\,ds} \nonumber \\
+    	&= \sigma^2\,\int_{t_0}^{t} e^{2\,\gpr{\func{\text{Var}}{\func{J}{s,\ t}} - \gang{\func{J}{s,\ t}} - \widehat{\gamma}\,\gpr{t - s}}}\,ds. \label{eqn:mean_absC2}
+\end{align}
+
+To evaluate this equation, we need the following statistics
+
+\begin{itemize}
+	\item [] $\gang{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:mean_Jst} (substituting $s = t_0$).
+	\item [] $\vr{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:var_Jst} (substituting $s = t_0$).
+\end{itemize}
+
+Substituting these equations into Eq~\ref{eqn:mean_absC2} does not simplify it further, so we will not do so here.
+

@@ -1,0 +1,18 @@
+By decomposing the noise $d\func{W_b}{t} = \frac{1}{\sqrt{2}}\,\gpr{d\func{U_b}{t} + d\func{V_b}{t}}$ into its real and complex parts, we may find $\cov{\func{b}{t}}{\overline{\func{b}{t}}}$ in a manner similar to how we calculated $\vr{\func{b}{t}}$ including our use of the equation for the expected value of $\func{b}{t}$ (Eq.~\ref{eqn:mean_b}). For more detail, see Appendix~\ref{app:var_b}.
+
+\begin{align}
+    \cov{\func{b}{t}}{\overline{\func{b}{t}}} &= \ev{\gpr{\func{b}{t} - \gang{\func{b}{t}}}^2} \nonumber \\
+    	&= \ev{\gpr{\gpr{b_0 - \gang{b_0}}\,e^{\lambda_{b}\,\gpr{t - t_0}} + \sigma_b\,\int_{t_0}^{t} e^{\lambda_{b}\,\gpr{t - s}}\,d\func{W_{b}}{s}}^2} \nonumber \\
+    	&= \ev{\gpr{b_0 - \gang{b_0}}^2\,e^{2\,\lambda_b\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad + \ev{2\,\sigma_b\,\gpr{b_0 - \gang{b_0}}\,\int_{t_0}^{t} e^{\lambda_b\,\gpr{2\,t - s - t_0}}\,d\func{W_b}{s}} \nonumber \\
+    		&\quad + \ev{\sigma_b^2\,\gpr{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{W_b}{s}}^2} \nonumber \\
+    	&= \cov{b_0}{\overline{b_0}}\,e^{2\,\lambda_b\,\gpr{t - t_0}} + \sigma_b^2\,\ev{\int_{t_0}^{t} e^{2\,\lambda_b\,\gpr{t - s}}\,ds} \nonumber \\
+    	&= \cov{b_0}{\overline{b_0}}\,e^{2\,\lambda_b\,\gpr{t - t_0}} \nonumber \\
+    		&\quad + 2\,\sigma_b\,\ev{b_0 - \gang{b_0}}\,\ev{\int_{t_0}^{t} e^{\lambda_b\,\gpr{2\,t - s - t_0}}\,d\func{W_b}{s}} \nonumber \\
+    		&\quad + \frac{\sigma_b^2}{2}\,\ev{\gpr{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{U_b}{s}}^2} \nonumber \\
+    		&\quad + i\,\sigma_b^2\,\ev{\gpr{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{U_b}{s}}\,\gpr{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{V_b}{s}}} \nonumber \\
+    		&\quad - \frac{\sigma_b^2}{2}\,\ev{\gpr{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{V_b}{s}}^2} \nonumber \\
+    	&= \cov{b_0}{\overline{b_0}}\,e^{2\,\lambda_b\,\gpr{t - t_0}} \nonumber \\
+    		&\quad + i\,\sigma_b^2\,\ev{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{U_b}{s}}\,\ev{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{V_b}{s}} \nonumber \\
+    	&= \cov{b_0}{\overline{b_0}}\,e^{2\,\lambda_b\,\gpr{t - t_0}}. \label{eqn:cov_b_conjgb}
+\end{align}

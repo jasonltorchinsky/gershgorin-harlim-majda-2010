@@ -1,0 +1,39 @@
+We calculate the covariance of $B$ (Eq.~\ref{eqn:B}) and the conjugate of $\func{b}{t}$ in a manner very similar to the covariance of $B$ and $\func{b}{t}$ (Appendix~\ref{app:cov_B_b}), we decompose the covariance into the difference of expectations
+
+\begin{equation}
+	\cov{B}{\overline{\func{b}{t}}} = \ev{B\,\func{b}{t}} - \gang{B}\,\gang{\func{b}{t}}.
+\end{equation}
+
+To calculate the first of these terms on the right-hand side, we utilize the identity Eq.~\ref{eqn:zwebx_ident} to obtain
+
+\begin{align}
+	\ev{B\,\func{b}{t}} &= \int_{t_0}^{t} \ev{\gpr{\func{b}{s} + \func{f}{s}}\,\func{b}{t}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}}\,ds \nonumber \\
+		&= \int_{t_0}^{t} \gpr{\cov{\func{b}{s}}{\overline{\func{b}{t}}} + \gpr{\gang{\func{b}{s}} + \func{f}{s} - \cov{\func{b}{s}}{\func{J}{s,\ t}}}\,\gpr{\gang{\func{b}{t}} - \cov{\func{b}{t}}{\func{J}{s,\ t}}}} \nonumber \\
+			&\qquad\qquad \cdot e^{-\gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \widehat{\lambda}\,\gpr{t - s}}\,ds.
+\end{align}
+
+To calculate the second of these terms on the right-hand side, we utilize the identity Eq.~\ref{eqn:zebx_ident} to obtain along with our previous equation for the expected value of $\func{b}{t}$ (Eq.~\ref{eqn:mean_b})
+
+\begin{align}
+	\gang{B}\,\gang{\func{b}{t}} &= \int_{t_0}^{t} \gang{\func{b}{t}}\,\gpr{\gang{\func{b}{s}} + \func{f}{s} - \cov{\func{b}{s}}{\func{J}{s,\ t}}} \nonumber \\
+			&\qquad\qquad \cdot e^{-\gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \widehat{\lambda}\,\gpr{t - s}}\,ds \nonumber.
+\end{align}
+
+The difference of these terms gives us the desired covariance
+
+\begin{align}
+	\cov{B}{\overline{\func{b}{t}}} &= \ev{B\,\func{b}{t}} - \gang{B}\,\gang{\func{b}{t}} \nonumber \\
+		&= \int_{t_0}^{t} \gpr{\cov{\func{b}{s}}{\overline{\func{b}{t}}} - \cov{\func{b}{t}}{\func{J}{s,\ t}}\, \gpr{\gang{\func{b}{s}} + \func{f}{s} - \cov{\func{b}{s}}{\func{J}{s,\ t}}}} \nonumber \\
+			&\qquad\qquad \cdot e^{-\gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \widehat{\lambda}\,\gpr{t - s}}\,ds. \label{eqn:cov_B_conjgb}
+\end{align}
+
+The statistics required to calculate this value are
+
+\begin{itemize}
+	\item [] $\cov{\func{b}{s}}{\overline{\func{b}{t}}}$ -- Eq.~\ref{eqn:cov_bs_conjgbr} (with $r = t$).
+	\item [] $\cov{\func{b}{t}}{\func{J}{s,\ t}}$, $\cov{\func{b}{s}}{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:cov_bs_Jrt} (with appropriate arguments).
+	\item [] $\gang{\func{b}{s}}$ -- Eq.~\ref{eqn:mean_b} (with $t = s$).
+	\item [] $\gang{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:mean_Jst}.
+	\item [] $\vr{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:var_Jst}.
+\end{itemize}
+

@@ -82,9 +82,10 @@
 
 \setlength{\headheight}{14.5pt}
 
+% Reformat section headers.
 \titleformat{\section} % Partition to be formatted
 [block] % Shape
-{\bfseries\large} % Format
+{\bfseries\LARGE} % Format
 {\thesection. } % Label
 {12pt} % Separation between label and title body
 {} % Code preceding title body
@@ -96,11 +97,64 @@
 {-6pt} % Vertical space after title
 [0pt] % Right margin
 
+% Reformat subsection headers.
+\titleformat{\subsection} % Partition to be formatted
+[block] % Shape
+{\bfseries\Large} % Format
+{\thesubsection } % Label
+{12pt} % Separation between label and title body
+{} % Code preceding title body
+[] % Code following title body
+
+\titlespacing*{\subsection} % Command
+{0pt} % Left margin
+{6pt} % Vertical space before title
+{-6pt} % Vertical space after title
+[0pt] % Right margin
+
+% Reformat subsubsection headers.
+\titleformat{\subsubsection} % Partition to be formatted
+[block] % Shape
+{\bfseries\large} % Format
+{\thesubsubsection } % Label
+{12pt} % Separation between label and title body
+{} % Code preceding title body
+[] % Code following title body
+
+\titlespacing*{\subsubsection} % Command
+{0pt} % Left margin
+{6pt} % Vertical space before title
+{-6pt} % Vertical space after title
+[0pt] % Right margin
+
+% Reformat paragraphs to be subsubsubsection.
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph} % Partition to be formatted
+[block] % Shape
+{\bfseries\normalsize} % Format
+{\theparagraph } % Label
+{12pt} % Separation between label and title body
+{} % Code preceding title body
+[]% Code following title body
+
+\titlespacing*{\paragraph}
+{0pt} % Left margin
+{6pt} % Vertical space before title
+{-6pt} % Vertical space after title
+[0pt] % Right margin
+
+% Adds paragraphs to the table of contents.
+\setcounter{tocdepth}{4}
+
 % The title to be places at the top of the front page
 \newcommand{\heading}{\begin{center}\large{Multi-Model Communication Project \\ University of Wisconsin-Madison} \\ \vspace{6em} \Large{Gershgorin-Harlim-Majda 2010 System Simulator} \vspace{6em} \\ \large{Jason L. Torchinsky} \\ \vspace{18em} \Large{\today}\end{center} \newpage}
 
 % Makes a black square at the end of proofs.
 \renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Allows align environments to be broken by page breaks.
+\allowdisplaybreaks  
 
 % Number equations within their subsection.
 \numberwithin{equation}{subsection}

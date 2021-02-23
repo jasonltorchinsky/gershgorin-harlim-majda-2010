@@ -1,0 +1,23 @@
+The calculation of $\ev{A\,\overline{B}}$ is similarly long to the calculation of $\ev{\abs{B}^2}$, including a long list of other statistics we will need to evaluate the equation we obtain for it.
+
+\begin{align}
+    \ev{A\,\overline{B}} &= \ev{\gpr{e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}\,u_0}\,\gpr{\int_{t_0}^{t} \gpr{\overline{\func{b}{s}} + \overline{\func{f}{s}}}\,e^{-\func{J}{s,\ t} + \overline{\widehat{\lambda}}\,\gpr{t - s}}\,ds}} \nonumber \\
+    	&= \ev{\int_{t_0}^{t} u_0\,\overline{\func{b}{s}}\,e^{-\gpr{\func{J}{t_0,\ t} + \func{J}{s,\ t}} - \widehat{\gamma}\,\gpr{2\,t - s - t_0} + i\,\omega\,\gpr{s - t_0}}\,ds} \nonumber \\
+    		&\quad + \ev{\int_{t_0}^{t} u_0\,\overline{\func{f}{s}}\,e^{-\gpr{\func{J}{t_0,\ t} + \func{J}{s,\ t}} - \widehat{\gamma}\,\gpr{2\,t - s - t_0} + i\,\omega\,\gpr{s - t_0}}\,ds} \nonumber \\
+    	&= \int_{t_0}^{t} \left( \cov{u_0}{\func{b}{s}} \right. \nonumber \\
+    		&\phantom{\int_{t_0}^{t}}\qquad \left. + \gpr{\gang{u_0} - \cov{u_0}{\func{J}{t_0,\ t}} - \cov{u_0}{\func{J}{s,\ t}}} \right. \nonumber \\
+    		&\phantom{\int_{t_0}^{t}}\qquad\qquad \left. \cdot \gpr{\overline{\gang{\func{b}{s}}} + \overline{\func{f}{s}} - \overline{\cov{\func{b}{s}}{\func{J}{t_0,\ t}}} - \overline{\cov{\func{b}{s}}{\func{J}{s,\ t}}}} \right) \nonumber \\
+    		&\phantom{\int_{t_0}^{t}}\qquad \cdot e^{-\gang{\func{J}{t_0,\ t}} - \gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{t_0,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \cov{\func{J}{t_0,\ t}}{\func{J}{s,\ t}} - \widehat{\gamma}\,\gpr{2\,t - s - t_0} + i\,\omega\,\gpr{s - t_0}}\,ds. \label{eqn:mean_AconjgB}
+\end{align}
+
+To evaluate this equation, we require the following statistics
+
+\begin{itemize}
+	\item [] $\cov{u_0}{\func{b}{s}}$ -- Eq~\ref{eqn:cov_u0_bs}.
+	\item [] $\cov{u_0}{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:cov_u0_Jt0t}.
+	\item [] $\cov{u_0}{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:cov_u0_Jst}.
+	\item [] $\cov{\func{b}{s}}{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:cov_bs_Jst} (with appropriate arguments).
+	\item [] $\gang{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:mean_Jst} (with appropriate arguments).
+	\item [] $\vr{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:var_Jst} (with appropriate arguments).
+	\item [] $\cov{\func{J}{s,\ t}}{\func{J}{r,\ t}}$ -- Eqs.~\ref{eqn:cov_Jst_Jrt_r_le_s} and \ref{eqn:cov_Jst_Jrt_s_le_r} (with appropriate arguments).
+\end{itemize}

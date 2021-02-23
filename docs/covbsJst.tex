@@ -1,0 +1,46 @@
+The calculate $\cov{\func{b}{s}}{\func{J}{s,\ t}}$, we first note that
+
+\begin{equation}
+	\cov{\func{b}{s}}{\func{J}{s,\ t}} = \ev{\func{b}{s}\,\func{J}{s,\ t}} - \gang{\func{b}{s}}\,\gang{\func{J}{s,\ t}}.
+\end{equation}
+
+As we have the mean of $\func{b}{s}$ (Eq.~\ref{eqn:mean_b}) and the mean of $\func{J}{s,\ t}$ (Eq.~\ref{eqn:mean_Jst}), we need only calculate $\ev{\func{b}{s}\,\func{J}{s,\ t}}$. 
+
+\begin{align}
+    \ev{\func{b}{s}\,\func{J}{s,\ t}} &= \text{E}\left[\gpr{\widehat{b} + \gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}} + \sigma_{b}\,\int_{t_{0}}^{s} e^{\lambda_b\,\gpr{s - t'}}\,\func{d{W}_{b}}{t'}}\right. \nonumber \\
+    		&\qquad \left.\cdot\,\gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds' + \sigma_{\gamma}\,\int_{s}^{t} \int_{t_0}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,d\func{W_{\gamma}}{t'}\,ds'}\right] \nonumber \\
+    	&= \ev{\widehat{b}\,\gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'}} \nonumber \\
+    		&\quad + \ev{\gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,\gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'}} \nonumber \\
+    		&\quad + \ev{\gpr{\int_{t_{0}}^{s} e^{\lambda_b\,\gpr{s - t'}}\,\func{d{W}_{b}}{t'}}\,\gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'}} \nonumber \\
+    		&\quad + \ev{\widehat{b}\,\gpr{\sigma_{\gamma}\,\int_{s}^{t} \int_{t_0}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,d\func{W_{\gamma}}{t'}\,ds'}} \nonumber \\
+    		&\quad + \ev{\gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,\gpr{\sigma_{\gamma}\,\int_{s}^{t} \int_{t_0}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,d\func{W_{\gamma}}{t'}\,ds'}} \nonumber \\
+    		&\quad + \ev{\gpr{\int_{t_{0}}^{s} e^{\lambda_b\,\gpr{s - t'}}\,\func{d{W}_{b}}{t'}}\,\gpr{\sigma_{\gamma}\,\int_{s}^{t} \int_{t_0}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,d\func{W_{\gamma}}{t'}\,ds'}}.
+\end{align}
+
+For the sake of brevity, I will not be showing how the final four terms are each zero. Instead, observe that the third, fourth, and fifth terms each contain a single real-value white noise motion term $d\func{W}{t}$ and thus have an expected value of zero. The two noises in the sixth term are not correlated, and therefore will have an expected value of zero as well. Therefore, 
+
+\begin{align}
+    \ev{\func{b}{s}\,\func{J}{s,\ t}} &= \ev{\widehat{b}\,\gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'}} \nonumber \\
+    		&\quad + \ev{\gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,\gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'}} \nonumber \\
+    	&= \gpr{\frac{\widehat{b}\,\ev{\gamma_0 - \widehat{\gamma}}}{d_{\gamma}}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad + \gpr{\frac{e^{\lambda_{b}\,\gpr{s - t_0}}\,\ev{\gpr{b_0 - \widehat{b}}\,\gpr{\gamma_0 - \widehat{\gamma}}}}{d_{\gamma}}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}}.
+\end{align}
+
+The product of the expected value of $\func{b}{s}$ and the expected value of $\func{J}{s,\ t}$ is given by
+
+\begin{align}
+    \gang{\func{b}{s}}\,\gang{\func{J}{s,\ t}} &= \gpr{\widehat{b} + \gpr{\gang{b_0} - \widehat{b}}\,e^{\lambda_{b}\,\gpr{t - t_0}}}\,\gpr{\frac{\gang{\gamma_0} - \widehat{\gamma}}{d_{\gamma}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}}} \nonumber \\
+    	&= \gpr{\frac{\widehat{b}\,\ev{\gamma_0 - \widehat{\gamma}}}{d_{\gamma}}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad + \gpr{\frac{e^{\lambda_{b}\,\gpr{s - t_0}}\,\func{E}{b_0 - \widehat{b}}\,\func{E}{\gamma_0 - \widehat{\gamma}}}{d_{\gamma}}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}}.
+\end{align}
+
+Therefore
+
+\begin{align}
+    \cov{\func{b}{s}}{\func{J}{s,\ t}} &= \ev{\func{b}{s}\,\func{J}{s,\ t}} - \gang{\func{b}{s}}\,\gang{\func{J}{s,\ t}} \nonumber \\
+    	&= \gpr{\frac{\widehat{b}\,\ev{\gamma_0 - \widehat{\gamma}}}{d_{\gamma}}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad + \gpr{\frac{e^{\lambda_{b}\,\gpr{s - t_0}}\,\ev{\gpr{b_0 - \widehat{b}}\,\gpr{\gamma_0 - \widehat{\gamma}}}}{d_{\gamma}}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad - \gpr{\frac{\widehat{b}\,\ev{\gamma_0 - \widehat{\gamma}}}{d_{\gamma}}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad - \gpr{\frac{e^{\lambda_{b}\,\gpr{s - t_0}}\,\ev{b_0 - \widehat{b}}\,\func{E}{\gamma_0 - \widehat{\gamma}}}{d_{\gamma}}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    	&= \frac{\cov{b_0}{\gamma_0}}{d_{\gamma}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}}. \label{eqn:cov_bs_Jst}
+\end{align}

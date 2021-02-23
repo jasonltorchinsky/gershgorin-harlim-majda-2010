@@ -1,1 +1,68 @@
-Hello world!
+We again follow a very similar procedure to finding the pathwise solution for $\func{b}{t}$ (see Appendix~\ref{app:pathwise_b}).
+
+\begin{alignat}{2}
+    &	& \dv{\func{u}{t}}{t} &= \gpr{-\func{\gamma}{t} + i\,\omega}\,\func{u}{t} + \func{b}{t} + \func{f}{t} + \sigma\,\func{\dot{W}}{t} \nonumber \\
+    	&\impl\qquad& \dv{\func{u}{t}}{t} - \gpr{-\func{\gamma}{t} + i\,\omega}\,\func{u}{t} &= \func{b}{t} + \func{f}{t} + \sigma\,\func{\dot{W}}{t} \nonumber \\
+    	&\impl\qquad& \dv{t} \gbkt{e^{\func{g}{t}}\,\func{u}{t}} &= \gpr{\func{b}{t} + \func{f}{t}}\,e^{\func{g}{t}} + \sigma\,e^{\func{g}{t}}\,\func{\dot{W}}{t} \nonumber \\
+    	&\impl\qquad& \int_{t_{0}}^{t} \dv{s} \gbkt{e^{\func{g}{s}}\,\func{u}{s}}\,ds &= \int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{\func{g}{s}}\,ds + \sigma\,\int_{t_{0}}^{t} e^{\func{g}{s}}\,\dv{\func{W}{s}}{s}\,ds \nonumber \\
+    	&\impl\qquad& e^{\func{g}{t}}\,\func{u}{t} - e^{\func{g}{t_0}}\,u_0 &= \int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{\func{g}{s}}\,ds + \sigma\,\int_{t_{0}}^{t} e^{\func{g}{s}}\,\func{dW}{s} \nonumber \\
+    	&\impl\qquad& \func{u}{t} &= e^{\func{g}{t_0} - \func{g}{t}}\,u_0 + \int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{\func{g}{s} - \func{g}{t}}\,ds \nonumber \\
+    &	&	&\quad + \sigma\,\int_{t_{0}}^{t} e^{\func{g}{s} - \func{g}{t}}\,\func{dW}{s}
+\end{alignat}
+
+where $u_0 := \func{u}{t_0}$. To find $\func{g}{t}$, we note that it must satisfy
+
+\begin{equation}
+    \dv{t} \gbkt{e^{\func{g}{t}}\,\func{u}{t}} = e^{\func{g}{t}}\,\dv{\func{u}{t}}{t} + \dv{\func{g}{t}}{t}\,e^{\func{g}{t}}\,\func{u}{t} = e^{\func{g}{t}}\,\dv{\func{u}{t}}{t} - \gpr{-\func{\gamma}{t} + i\,\omega}\,e^{\func{g}{t}}\,\func{u}{t}.
+\end{equation}
+
+Therefore, we may find $\func{g}{t}$ through integration
+
+\begin{align}
+    &	& \dv{\func{g}{t}}{t} &= -\gpr{-\func{\gamma}{t} + i\,\omega} \nonumber \\
+    &\impl\qquad	& \dv{\func{g}{t}}{t} &= -\gpr{-\func{\gamma}{t} + \widehat{\gamma} - \widehat{\gamma} + i\,\omega} \nonumber \\
+    &\impl\qquad	& \int_{t}^{s} \dv{\func{g}{t'}}{t'}\,dt' &= - \int_{t}^{s} \gpr{-\func{\gamma}{t'} + \widehat{\gamma}}\,dt' - \gpr{-\widehat{\gamma} + i\,\omega}\, \int_{t}^{s} dt' \nonumber \\
+    &\impl\qquad	& \func{g}{s} - \func{g}{t} &= - \int_{s}^{t} \gpr{\func{\gamma}{t'} - \widehat{\gamma}}\,dt' - \gpr{-\widehat{\gamma} + i\,\omega}\,\gpr{s - t} \nonumber \\
+    &\impl\qquad	& \func{g}{s} - \func{g}{t} &= -\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t-s}
+\end{align}
+
+where we have defined $\func{J}{s,\ t} := \int_{s}^{t} \gpr{\func{\gamma}{t'} - \widehat{\gamma}}\,dt'$ and $\widehat{\lambda} := -\widehat{\gamma} + i\,\omega$. Therefore, our pathwise solution for $\func{u}{t}$ is
+
+\begin{equation}
+    \func{u}{t} = e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}\,u_0 + \int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,ds + \sigma\,\int_{t_{0}}^{t} e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,\func{dW}{s}. \label{eqn:pathwise_u}
+\end{equation}
+
+To verify this solution, we first differentiate each term on the right-hand side individually
+
+\begin{align}
+    \dv{t} \gbkt{e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}\,u_0} &= e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}\,u_0\,\gpr{-\dv{t}\gbkt{\func{J}{t_0,\ t}} + \widehat{\lambda}} \nonumber \\
+    	&= e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}\,u_0\,\gpr{-\gpr{\func{\gamma}{t} - \widehat{\gamma}} + \gpr{-\widehat{\gamma} + i\,\omega}} \nonumber \\
+    	&= e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}\,u_0\,\gpr{-\func{\gamma}{t} + i\,\omega},
+\end{align}
+
+\begin{align}
+    \dv{t} \left[\int_{t_0}^{t} \left(\func{b}{s}\right. \right.&\left. + \left.\func{f}{s}\right)\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,ds \right] \nonumber \\
+    	&\quad = \gpr{\func{b}{t} + \func{f}{t}} + \int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,\pdv{t} \gbkt{e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}}\,ds \nonumber \\
+    	&\quad = \gpr{\func{b}{t} + \func{f}{t}} \nonumber \\
+    	&\qquad + \int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,\gpr{-\func{\gamma}{t} + i\,\omega}\,ds \nonumber \\
+    	&\quad = \gpr{\func{b}{t} + \func{f}{t}} \nonumber \\
+    	&\qquad + \gpr{-\func{\gamma}{t} + i\,\omega}\,\int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,ds,
+\end{align}
+
+\begin{align}
+    \dv{t} \gbkt{\sigma\,\int_{t_{0}}^{t} e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,\func{dW}{s}} &= \sigma\,\func{\dot{W}}{t} + \sigma\,\int_{t_{0}}^{t} \pdv{t} \gbkt{e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}}\,\func{dW}{s} \nonumber \\
+    	&= \sigma\,\func{\dot{W}}{t} + \gpr{-\func{\gamma}{t} + i\,\omega}\,\sigma\,\int_{t_{0}}^{t} e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,\func{dW}{s}.
+\end{align}
+
+Adding these together, we obtain
+
+\begin{align}
+    \dv{\func{u}{t}}{t} &= \gpr{\gpr{-\func{\gamma}{t} + i\,\omega}\,e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}\,u_0} \nonumber \\
+    	&\quad + \gpr{\gpr{\func{b}{t} + \func{f}{t}} + \gpr{-\func{\gamma}{t} + i\,\omega}\,\int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,ds} \nonumber \\
+    	&\quad + \gpr{\sigma\,\func{\dot{W}}{t} + \gpr{-\func{\gamma}{t} + i\,\omega}\,\sigma\,\int_{t_{0}}^{t} e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,\func{dW}{s}} \nonumber \\
+    	&= \gpr{-\func{\gamma}{t} + i\,\omega}\,\left(e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}\,u_0 + \int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,ds \right. \nonumber \\
+    	&\qquad \phantom{\gpr{-\func{\gamma}{t} + i\,\omega}} \left. +\ \sigma\,\int_{t_{0}}^{t} e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,\func{dW}{s}\right) + \func{b}{t} + \func{f}{t} + \sigma\,\func{\dot{W}}{t} \nonumber \\
+    	& = \gpr{-\func{\gamma}{t} + i\,\omega}\,\func{u}{t} + \func{b}{t} + \func{f}{t} + \sigma\,\func{\dot{W}}{t} 
+\end{align}
+
+which matches the original differential equation for $\func{u}{t}$ (Eq.~\ref{eqn:diff_u}). 

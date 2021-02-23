@@ -1,0 +1,24 @@
+The calculation of the expected value of $\abs{A}^2$ is fairly straightforward.
+
+\begin{align}
+    \ev{\abs{A}^2} &= \ev{\gpr{u_0\,e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}}\,\gpr{\overline{u_0}\,e^{-\func{J}{t_0,\ t} + \overline{\widehat{\lambda}}\,\gpr{t - t_0}}}} \nonumber \\
+    	&= \ev{u_0\,\overline{u_0}\,e^{-2\,\func{J}{t_0,\ t} - 2\,\widehat{\gamma}\,\gpr{t - t_0}}}.
+\end{align}
+
+Using the identity Eq.~\ref{eqn:zwebx_ident}, we obtain
+
+\begin{align}
+    \ev{\abs{A}^2} &= \gpr{\cov{u_0}{u_0} + \gpr{\gang{u_0} - 2\,\cov{u_0}{\func{J}{t_0,\ t}}}\,\gpr{\overline{\gang{u_0}} - 2\,\cov{\overline{u_0}}{\func{J}{t_0,\ t}}}} \nonumber \\
+    		&\qquad \cdot e^{-2\,\gang{\func{J}{t_0,\ t}} + 2\,\func{\text{Var}}{\func{J}{t_0,\ t}}} \nonumber \\
+    	&= \gpr{\abs{\gang{u_0}}^2 + \vr{u_0} - 4\,\func{\text{Re}}{\overline{\gang{u_0}}\,\cov{u_0}{\func{J}{t_0,\ t}}} + 4\,\abs{\cov{u_0}{\func{J}{t_0,\ t}}}^2} \nonumber \\
+    		&\qquad \cdot e^{-2\,\gang{\func{J}{t_0,\ t}} + 2\,\func{\text{Var}}{\func{J}{t_0,\ t}} - 2\,\widehat{\gamma}\,\gpr{t - t_0}}. \label{eqn:mean_absA2}
+\end{align}
+
+Attempting further simplifcation using our previously derived equations is fruitless, and we instead list the equation numbers here.
+
+\begin{itemize}
+	\item [] $\cov{u_0}{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:cov_u0_Jt0t}.
+	\item [] $\gang{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:mean_Jst} (substituting $s = t_0$).
+	\item [] $\vr{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:var_Jst} (substituting $s = t_0$).
+\end{itemize}
+

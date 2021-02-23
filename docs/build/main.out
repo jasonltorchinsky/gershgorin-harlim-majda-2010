@@ -1,12 +1,58 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [2][-]{subsection.1.1}{The Gershgorin-Majda 2010 System}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.1}{The Gershgorin-Harlim-Majda 2010 System}{section.1}% 2
 \BOOKMARK [1][-]{section.2}{Compiling and running}{}% 3
 \BOOKMARK [1][-]{section.3}{Code structure}{}% 4
-\BOOKMARK [1][-]{Item.3}{Acknowledgements}{}% 5
-\BOOKMARK [1][-]{Item.3}{References}{}% 6
-\BOOKMARK [1][-]{appendix.A}{Pathwise Solutions of the Gershgorin-Harlim-Majda 2010 System}{}% 7
-\BOOKMARK [2][-]{subsection.A.1}{Identities Used in Pathwise Solution Derivations}{appendix.A}% 8
-\BOOKMARK [2][-]{subsection.A.2}{Pathwise solution for b \( t \)}{appendix.A}% 9
-\BOOKMARK [2][-]{subsection.A.3}{Pathwise solution for \040\( t \)}{appendix.A}% 10
-\BOOKMARK [2][-]{subsection.A.4}{Pathwise solution for u \( t \)}{appendix.A}% 11
-\BOOKMARK [1][-]{appendix.B}{Exact Statistics of the Gershgorin-Harlim-Majda 2010 System}{}% 12
+\BOOKMARK [1][-]{section.4}{Future work}{}% 5
+\BOOKMARK [1][-]{Item.18}{Acknowledgements}{}% 6
+\BOOKMARK [1][-]{Item.18}{References}{}% 7
+\BOOKMARK [1][-]{appendix.A}{Pathwise solutions of the Gershgorin-Harlim-Majda 2010 system}{}% 8
+\BOOKMARK [2][-]{subsection.A.1}{Identities used in pathwise solution derivations}{appendix.A}% 9
+\BOOKMARK [2][-]{subsection.A.2}{Pathwise solution for b \( t \)}{appendix.A}% 10
+\BOOKMARK [2][-]{subsection.A.3}{Pathwise solution for \040\( t \)}{appendix.A}% 11
+\BOOKMARK [2][-]{subsection.A.4}{Pathwise solution for u \( t \)}{appendix.A}% 12
+\BOOKMARK [1][-]{appendix.B}{Exact statistics of the Gershgorin-Harlim-Majda 2010 system}{}% 13
+\BOOKMARK [2][-]{subsection.B.1}{Identities used in exact statistics derivations}{appendix.B}% 14
+\BOOKMARK [2][-]{subsection.B.2}{Mean of b \( t \)}{appendix.B}% 15
+\BOOKMARK [2][-]{subsection.B.3}{Mean of \040\( t \)}{appendix.B}% 16
+\BOOKMARK [2][-]{subsection.B.4}{Mean of u \( t \)}{appendix.B}% 17
+\BOOKMARK [3][-]{subsubsection.B.4.1}{Mean of J \( s, t \)}{subsection.B.4}% 18
+\BOOKMARK [3][-]{subsubsection.B.4.2}{Variance of J \( s, t \)}{subsection.B.4}% 19
+\BOOKMARK [3][-]{subsubsection.B.4.3}{Covariance of u0 and J \( t0, t \)}{subsection.B.4}% 20
+\BOOKMARK [3][-]{subsubsection.B.4.4}{Covariance of b \( s \) and J \( s, t \)}{subsection.B.4}% 21
+\BOOKMARK [2][-]{subsection.B.5}{Variance of b \( t \)}{appendix.B}% 22
+\BOOKMARK [2][-]{subsection.B.6}{Covariance of b \( t \) and b \( t \)}{appendix.B}% 23
+\BOOKMARK [2][-]{subsection.B.7}{Variance of \040\( t \)}{appendix.B}% 24
+\BOOKMARK [2][-]{subsection.B.8}{Covariance of b \( t \) and \040\( t \)}{appendix.B}% 25
+\BOOKMARK [2][-]{subsection.B.9}{Variance of u \( t \)}{appendix.B}% 26
+\BOOKMARK [3][-]{subsubsection.B.9.1}{Mean of A2}{subsection.B.9}% 27
+\BOOKMARK [3][-]{subsubsection.B.9.2}{Mean of B2}{subsection.B.9}% 28
+\BOOKMARK [4][-]{paragraph.B.9.2.1}{Covariance of J \( s, t \) and J \( r, t \)}{subsubsection.B.9.2}% 29
+\BOOKMARK [4][-]{paragraph.B.9.2.2}{Covariance of b \( s \) and b \( r \)}{subsubsection.B.9.2}% 30
+\BOOKMARK [4][-]{paragraph.B.9.2.3}{Covariance of b \( s \) and J \( r, t \)}{subsubsection.B.9.2}% 31
+\BOOKMARK [3][-]{subsubsection.B.9.3}{Mean of C2}{subsection.B.9}% 32
+\BOOKMARK [3][-]{subsubsection.B.9.4}{Mean of AB}{subsection.B.9}% 33
+\BOOKMARK [4][-]{paragraph.B.9.4.1}{Covariance of u0 and b \( s \)}{subsubsection.B.9.4}% 34
+\BOOKMARK [4][-]{paragraph.B.9.4.2}{Covariance of u0 and J \( s, t \)}{subsubsection.B.9.4}% 35
+\BOOKMARK [3][-]{subsubsection.B.9.5}{Means of AC and BC}{subsection.B.9}% 36
+\BOOKMARK [2][-]{subsection.B.10}{Covariance of u \( t \) an u \( t \)}{appendix.B}% 37
+\BOOKMARK [3][-]{subsubsection.B.10.1}{Mean of A2}{subsection.B.10}% 38
+\BOOKMARK [3][-]{subsubsection.B.10.2}{Mean of B2}{subsection.B.10}% 39
+\BOOKMARK [4][-]{paragraph.B.10.2.1}{Covariance of b \( s \) and b \( r \)}{subsubsection.B.10.2}% 40
+\BOOKMARK [3][-]{subsubsection.B.10.3}{Mean of C2}{subsection.B.10}% 41
+\BOOKMARK [3][-]{subsubsection.B.10.4}{Mean of AB}{subsection.B.10}% 42
+\BOOKMARK [3][-]{subsubsection.B.10.5}{Means of AC and BC}{subsection.B.10}% 43
+\BOOKMARK [2][-]{subsection.B.11}{Covariance of u \( t \) and b \( t \)}{appendix.B}% 44
+\BOOKMARK [3][-]{subsubsection.B.11.1}{Covariance of A and b \( t \)}{subsection.B.11}% 45
+\BOOKMARK [3][-]{subsubsection.B.11.2}{Covariance of B and b \( t \)}{subsection.B.11}% 46
+\BOOKMARK [3][-]{subsubsection.B.11.3}{Covariance of C and b \( t \)}{subsection.B.11}% 47
+\BOOKMARK [2][-]{subsection.B.12}{Covariance of u \( t \) and b \( t \)}{appendix.B}% 48
+\BOOKMARK [3][-]{subsubsection.B.12.1}{Covariance of A and b \( t \)}{subsection.B.12}% 49
+\BOOKMARK [3][-]{subsubsection.B.12.2}{Covariance of B and b \( t \)}{subsection.B.12}% 50
+\BOOKMARK [3][-]{subsubsection.B.12.3}{Covariance of C and b \( t \)}{subsection.B.12}% 51
+\BOOKMARK [2][-]{subsection.B.13}{Covariance of u \( t \) and \040\( t \)}{appendix.B}% 52
+\BOOKMARK [3][-]{subsubsection.B.13.1}{Covariance of A and \040\( t \)}{subsection.B.13}% 53
+\BOOKMARK [4][-]{paragraph.B.13.1.1}{Covaraince of 0 and J \( t0, t \)}{subsubsection.B.13.1}% 54
+\BOOKMARK [3][-]{subsubsection.B.13.2}{Covariance of B and \040\( t \)}{subsection.B.13}% 55
+\BOOKMARK [4][-]{paragraph.B.13.2.1}{Covariance of b \( s \) and \040\( t \)}{subsubsection.B.13.2}% 56
+\BOOKMARK [4][-]{paragraph.B.13.2.2}{Covariance of \040\( t \) and J \( s, t \)}{subsubsection.B.13.2}% 57
+\BOOKMARK [3][-]{subsubsection.B.13.3}{Covariance of C and \040\( t \)}{subsection.B.13}% 58

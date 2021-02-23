@@ -7,11 +7,11 @@ Following a very similar procedure to finding the pathwise solution for $\func{b
 
 where we have defined $\gamma_{0} := \func{\gamma}{t_0}$. We verify this path-wise solution by differentiating it with respect to $t$ (again utilizing the identity Eq.~\ref{eqn:ftoc_1}).
 
-\begin{align*}
-    \dv{\func{\gamma}{t}}{t} &= \dv{t} \gbkt{\widehat{\gamma} + \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}\,\int_{t_{0}}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,\func{d{W}_{\gamma}}{s}} \\
-    	&= -d_{\gamma}\,\gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}\,\gpr{\func{\dot{W}_{\gamma}}{t} - d_{\gamma}\,\int_{t_{0}}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,\func{d{W}_{\gamma}}{s}} \\
-    	&= -d_{\gamma}\,\gpr{\gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}\,\int_{t_{0}}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,\func{d{W}_{\gamma}}{s}} + \sigma_{\gamma}\,\func{\dot{W}_{\gamma}}{t} \\
+\begin{align}
+    \dv{\func{\gamma}{t}}{t} &= \dv{t} \gbkt{\widehat{\gamma} + \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}\,\int_{t_{0}}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,\func{d{W}_{\gamma}}{s}} \nonumber \\
+    	&= -d_{\gamma}\,\gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}\,\gpr{\func{\dot{W}_{\gamma}}{t} - d_{\gamma}\,\int_{t_{0}}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,\func{d{W}_{\gamma}}{s}} \nonumber \\
+    	&= -d_{\gamma}\,\gpr{\gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}\,\int_{t_{0}}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,\func{d{W}_{\gamma}}{s}} + \sigma_{\gamma}\,\func{\dot{W}_{\gamma}}{t} \nonumber \\
     	&= -d_{\gamma}\,\gpr{\func{\gamma}{t} - \widehat{\gamma}} + \sigma_{\gamma}\,\func{\dot{W}_{\gamma}}{t}
-\end{align*}
+\end{align}
 
 which matches the original differential equation for $\func{\gamma}{t}$ (Eq.~\ref{eqn:diff_gamma}).

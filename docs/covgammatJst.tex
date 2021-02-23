@@ -1,0 +1,31 @@
+To begin our calculation of the covariance of $\func{\gamma}{t}$ and $\func{J}{s,\ t}$, we decompose the covariance into a difference of expected values.
+
+\begin{equation}
+	\cov{\func{\gamma}{t}}{\func{J}{s,\ t}} = \ev{\func{\gamma}{t}\,\func{J}{s,\ t}} - \gang{\func{\gamma}{t}}\,\gang{\func{J}{s,\ t}}.
+\end{equation}
+
+Since we have the expected value of $\func{\gamma}{t}$ (Eq.~\ref{eqn:mean_gamma}) and $\func{J}{s,\ t}$ (Eq.~\ref{eqn:mean_Jst}), it remains to find the expected value of their product. We begin by utilizing the path-wise solution for $\func{\gamma}{t}$ (Eq.~\ref{eqn:pathwise_gamma}) and proceed from there.
+
+\begin{align}
+	\ev{\func{\gamma}{t}\,\func{J}{s,\ t}} &= \int_{s}^{t} \ev{\func{\gamma}{t}\,\,\gpr{\func{\gamma}{t'} - \widehat{\gamma}}}\,dt' \nonumber \\
+		&= \int_{s}^{t} \left(\widehat{\gamma}\,\gpr{\gang{\gamma_0} - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t' - t_0}} + \ev{\gpr{\gamma_0 - \widehat{\gamma}}^2}\,e^{-d_{\gamma}\,\gpr{t + t' - 2\,t_0}} \right. \nonumber \\
+			&\qquad \left. + {\sigma_{\gamma}}^2\,\ev{\gpr{\int_{t_0}^{t} e^{-d_{\gamma}\,\gpr{t - s'}}\,d\func{W_{\gamma}}{s'}}\,\gpr{\int_{t_0}^{t'} e^{-d_{\gamma}\,\gpr{t' - s'}}\,d\func{W_{\gamma}}{s'}}}\right)\,dt' \nonumber \\
+		&= \frac{\widehat{\gamma}\,\gpr{\gang{\gamma_0} - \widehat{\gamma}}}{d_{\gamma}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}} + \frac{\ev{\gpr{\gamma_0 - \widehat{\gamma}}^2}}{d_{\gamma}}\,\gpr{e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+			&\quad + {\sigma_{\gamma}}^2\,\int_{s}^{t} \int_{t_0}^{t'} e^{-d_{\gamma}\,\gpr{t + t' - 2\,s'}}\,ds'\,dt' \nonumber \\
+		&= \frac{\widehat{\gamma}\,\gpr{\gang{\gamma_0} - \widehat{\gamma}}}{d_{\gamma}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}} + \frac{\ev{\gpr{\gamma_0 - \widehat{\gamma}}^2}}{d_{\gamma}}\,\gpr{e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+			&\quad + \frac{{\sigma_{\gamma}}^2}{2\,{d_{\gamma}}^2}\,\gpr{1 - e^{-d_{\gamma}\,\gpr{t - s}} + e^{-2\,d_{\gamma}\,\gpr{t - t_0}} - e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}}}.
+\end{align}
+
+The product of the expected value of $\func{\gamma}{t}$ and the expected value of $\func{J}{s,\ t}$ is given by
+
+\begin{equation}
+	\gang{\func{\gamma}{t}}\,\gang{\func{J}{s,\ t}} = \frac{\widehat{\gamma}\,\gpr{\gang{\gamma_0} - \widehat{\gamma}}}{d_{\gamma}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}} + \frac{\gpr{\gang{\gamma_0} - \widehat{\gamma}}^2}{d_{\gamma}}\,\gpr{e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{t - t_0}}},
+\end{equation}
+
+and therefore
+
+\begin{align}
+	\cov{\func{\gamma}{t}}{\func{J}{s,\ t}} &= \ev{\func{\gamma}{t}\,\func{J}{s,\ t}} - \gang{\func{\gamma}{t}}\,\gang{\func{J}{s,\ t}} \nonumber \\
+		&= \frac{\vr{\gamma_0}}{d_{\gamma}}\,\gpr{e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+			&\quad + \frac{{\sigma_{\gamma}}^2}{2\,{d_{\gamma}}^2}\,\gpr{1 - e^{-d_{\gamma}\,\gpr{t - s}} + e^{-2\,d_{\gamma}\,\gpr{t - t_0}} - e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}}}. \label{eqn:cov_gammat_Jst}
+\end{align}

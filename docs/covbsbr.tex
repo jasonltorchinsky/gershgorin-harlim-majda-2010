@@ -1,0 +1,43 @@
+We begin with the usual decomposition of covariance into a difference of expected values.
+
+\begin{equation}
+	\cov{\func{b}{s}}{\func{b}{r}} = \ev{\func{b}{s}\,\overline{\func{b}{r}}} - \gang{\func{b}{s}}\,\overline{\gang{\func{b}{r}}}.
+\end{equation}
+
+Since the expected values in the second term on the right are given by Eq.~\ref{eqn:mean_b} (with appropriate arguments), we calculate $\ev{\func{b}{s}\,\overline{\func{b}{r}}}$ first and later subtract the product of the expected values.
+
+\begin{align}
+    \ev{\func{b}{s}\,\overline{\func{b}{r}}} &= \text{E}\left[ \gpr{\widehat{b} + \gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}} + \sigma_{b}\,\int_{t_{0}}^{s} e^{\lambda_b\,\gpr{s - t'}}\,\func{d{W}_{b}}{t'}} \right. \nonumber \\
+    		&\phantom{\text{E}}\qquad \left. \cdot \gpr{\overline{\widehat{b}} + \gpr{\overline{b_0} - \overline{\widehat{b}}}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}} + \sigma_{b}\,\int_{t_{0}}^{r} e^{\overline{\lambda_b}\,\gpr{r - t'}}\,\overline{\func{d{W}_{b}}{t'}}} \right] \nonumber \\
+    	&= \ev{\widehat{b}\,\overline{\widehat{b}}} + \ev{\widehat{b}\,\gpr{\overline{b_0} - \overline{\widehat{b}}}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}}} + \ev{\widehat{b}\,\gpr{\sigma_{b}\,\int_{t_{0}}^{r} e^{\overline{\lambda_b}\,\gpr{r - t'}}\,\overline{\func{d{W}_{b}}{t'}}}} \nonumber \\
+    		&\quad + \ev{\gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,\overline{\widehat{b}}} + \ev{\gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,\gpr{\overline{b_0} - \overline{\widehat{b}}}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}}} \nonumber \\
+    		&\quad + \ev{\gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,\gpr{\sigma_{b}\,\int_{t_{0}}^{r} e^{\overline{\lambda_b}\,\gpr{r - t'}}\,\overline{\func{d{W}_{b}}{t'}}}} \nonumber \\
+    		&\quad + \ev{\gpr{\sigma_{b}\,\int_{t_{0}}^{s} e^{\lambda_b\,\gpr{s - t'}}\,\func{d{W}_{b}}{t'}}\,\overline{\widehat{b}}} \nonumber \\
+    		&\quad + \ev{\gpr{\sigma_{b}\,\int_{t_{0}}^{s} e^{\lambda_b\,\gpr{s - t'}}\,\func{d{W}_{b}}{t'}}\,\gpr{\overline{b_0} - \overline{\widehat{b}}}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}}} \nonumber \\
+    		&\quad + \ev{\gpr{\sigma_{b}\,\int_{t_{0}}^{s} e^{\lambda_b\,\gpr{s - t'}}\,\func{d{W}_{b}}{t'}}\,\gpr{\sigma_{b}\,\int_{t_{0}}^{r} e^{\overline{\lambda_b}\,\gpr{r - t'}}\,\overline{\func{d{W}_{b}}{t'}}}} \nonumber \\
+    		&= \widehat{b}\,\overline{\widehat{b}} + \gpr{\overline{\gang{b_0}} - \overline{\widehat{b}}}\,\widehat{b}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}} + 0  + \gpr{\gang{b_0} - \widehat{b}}\,\overline{\widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}} \nonumber \\
+    		&\quad + \ev{\gpr{b_0 - \widehat{b}}\,\gpr{\overline{b_0} - \overline{\widehat{b}}}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}} + 0 + 0 + 0 \nonumber \\
+    		&\quad + \sigma_{b}^{2}\,\ev{e^{-\gamma_{b}\,\gpr{s + r} + i\,\omega_{b}\,\gpr{s - r}}\,\int_{t_{0}}^{\func{\text{min}}{s,\ r}} e^{2\,\gamma_{b}\,t'}\,dt'} \nonumber \\
+    		&= \widehat{b}\,\overline{\widehat{b}} + \gpr{\overline{\gang{b_0}} - \overline{\widehat{b}}}\,\widehat{b}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}}  + \gpr{\gang{b_0} - \widehat{b}}\,\overline{\widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}} \nonumber \\
+    		&\quad + \ev{\gpr{b_0 - \widehat{b}}\,\gpr{\overline{b_0} - \overline{\widehat{b}}}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}} \nonumber \\
+    		&\quad + \frac{\sigma_{b}^{2}}{2\,\gamma_{b}}\,\gpr{e^{-\gamma_{b}\,\gpr{s + r - 2\,\func{\text{min}}{s,\ r}} + i\,\omega_{b}\,\gpr{s - r}} - e^{-\gamma_{b}\,\gpr{s + r - 2\,t_{0}} + i\,\omega_{b}\,\gpr{s - r}}}.
+\end{align}
+
+We also have
+
+\begin{align}
+    \gang{\func{b}{s}}\,\overline{\gang{\func{b}{r}}} &= \gpr{\widehat{b} + \gpr{\gang{b_0} - \widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}}}\,\gpr{\overline{\widehat{b}} + \gpr{\overline{\gang{b_0}} - \overline{\widehat{b}}}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}}} \nonumber \\
+    	&= \widehat{b}\,\overline{\widehat{b}} + \gpr{\overline{\gang{b_0}} - \overline{\widehat{b}}}\,\widehat{b}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}}  + \gpr{\gang{b_0} - \widehat{b}}\,\overline{\widehat{b}}\,e^{\lambda_{b}\,\gpr{s - t_0}} \nonumber \\
+    		&\quad + \gpr{\gang{b_0} - \widehat{b}}\,\gpr{\overline{\gang{b_0}} - \overline{\widehat{b}}}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}},
+\end{align}
+
+and so
+
+\begin{align}
+    \cov{\func{b}{s}}{\func{b}{r}} &= \ev{\func{b}{s}\,\overline{\func{b}{r}}} - \gang{\func{b}{s}}\,\overline{\gang{\func{b}{r}}} \nonumber \\
+    	&= \vr{b_0}\,e^{\lambda_{b}\,\gpr{s - t_0}}\,e^{\overline{\lambda_{b}}\,\gpr{r - t_0}} \nonumber \\
+    		&\quad + \frac{\sigma_{b}^{2}}{2\,\gamma_{b}}\,\gpr{e^{-\gamma_{b}\,\gpr{s + r - 2\,\func{\text{min}}{s,\ r}} + i\,\omega_{b}\,\gpr{s - r}} - e^{-\gamma_{b}\,\gpr{s + r - 2\,t_{0}} + i\,\omega_{b}\,\gpr{s - r}}} \nonumber \\
+    	&= \vr{b_0}\,e^{-\gamma_{b}\,\gpr{s + r - 2\,t_0} + i\,\omega_{b}\,\gpr{s - r}} \nonumber \\
+    		&\quad + \frac{\sigma_{b}^{2}}{2\,\gamma_{b}}\,\gpr{e^{-\gamma_{b}\,\gpr{s + r - 2\,\func{\text{min}}{s,\ r}} + i\,\omega_{b}\,\gpr{s - r}} - e^{-\gamma_{b}\,\gpr{s + r - 2\,t_{0}} + i\,\omega_{b}\,\gpr{s - r}}} \nonumber \\
+    	&= e^{-\gamma_{b}\,\gpr{s + r - 2\,t_0} + i\,\omega_{b}\,\gpr{s - r}}\,\gpr{\func{\text{Var}}{b_0} + \frac{\sigma_{b}^{2}}{2\,\gamma_{b}}\,\gpr{e^{2\,\gamma_b\,\gpr{\func{\text{min}}{s,\ r} - t_0}} - 1}}. \label{eqn:cov_bs_br}
+\end{align}

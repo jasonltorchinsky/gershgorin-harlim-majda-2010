@@ -1,0 +1,7 @@
+The derivation of the mean of $\func{\gamma}{t}$ is similarly straightforward. Using our pathwise solution for $\func{\gamma}{t}$ (Eq.~\ref{eqn:pathwise_gamma}), we obtain
+
+\begin{align}
+    \gang{\func{\gamma}{t}} &= \ev{\widehat{\gamma} + \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}\,\int_{t_{0}}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,\func{d{W}_{\gamma}}{s}} \nonumber \\
+    	&= \widehat{\gamma} + \gpr{\gang{\gamma_0} - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}\,\ev{\int_{t_{0}}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,\func{d{W}_{\gamma}}{s}} \nonumber \\
+    	&= \widehat{\gamma} + \gpr{\gang{\gamma_0} - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{t - t_0}}. \label{eqn:mean_gamma}
+\end{align}

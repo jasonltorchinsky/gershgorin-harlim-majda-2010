@@ -1,0 +1,39 @@
+We calculate the covariance of $B$ (Eq.~\ref{eqn:B}) and $\func{\gamma}{t}$ in a manner very similar to the covariance of $B$ and $\func{b}{t}$ (Appendix~\ref{app:cov_B_b}), we decompose the covariance into the difference of expectations
+
+\begin{equation}
+	\cov{B}{\func{\gamma}{t}} = \ev{B\,\func{\gamma}{t}} - \gang{B}\,\gang{\func{\gamma}{t}}.
+\end{equation}
+
+To calculate the first of these terms on the right-hand side, we utilize the identity Eq.~\ref{eqn:zwebx_ident} to obtain
+
+\begin{align}
+	\ev{B\,\func{\gamma}{t}} &= \int_{t_0}^{t} \ev{\gpr{\func{b}{s} + \func{f}{s}}\,\func{\gamma}{t}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}}\,ds \nonumber \\
+		&= \int_{t_0}^{t} \gpr{\cov{\func{b}{s}}{\func{\gamma}{t}} + \gpr{\gang{\func{b}{s}} + \func{f}{s} - \cov{\func{b}{s}}{\func{J}{s,\ t}}}\,\gpr{\gang{\func{\gamma}{t}} - \cov{\func{\gamma}{t}}{\func{J}{s,\ t}}}} \nonumber \\
+			&\qquad\qquad \cdot e^{-\gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \widehat{\lambda}\,\gpr{t - s}}\,ds.
+\end{align}
+
+To calculate the second of these terms on the right-hand side, we utilize the identity Eq.~\ref{eqn:zebx_ident} to obtain along with our previous equation for the expected value of $\func{\gamma}{t}$ (Eq.~\ref{eqn:mean_gamma})
+
+\begin{align}
+	\gang{B}\,\gang{\func{\gamma}{t}} &= \int_{t_0}^{t} \gang{\func{\gamma}{t}}\,\gpr{\gang{\func{b}{s}} + \func{f}{s} - \cov{\func{b}{s}}{\func{J}{s,\ t}}} \nonumber \\
+			&\qquad\qquad \cdot e^{-\gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \widehat{\lambda}\,\gpr{t - s}}\,ds \nonumber.
+\end{align}
+
+The difference of these terms gives us the desired covariance
+
+\begin{align}
+	\cov{B}{\func{b}{t}} &= \ev{B\,\func{\gamma}{t}} - \gang{B}\,\gang{\func{\gamma}{t}} \nonumber \\
+		&= \int_{t_0}^{t} \gpr{\cov{\func{b}{s}}{\func{\gamma}{t}} - \cov{\func{\gamma}{t}}{\func{J}{s,\ t}}\, \gpr{\gang{\func{b}{s}} + \func{f}{s} - \cov{\func{b}{s}}{\func{J}{s,\ t}}}} \nonumber \\
+			&\qquad\qquad \cdot e^{-\gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \widehat{\lambda}\,\gpr{t - s}}\,ds. \label{eqn:cov_B_gamma}
+\end{align}
+
+The statistics required to calculate this value are
+
+\begin{itemize}
+	\item [] $\cov{\func{b}{s}}{\func{\gamma}{t}}$ -- Eq.~\ref{eqn:cov_bs_gammat}.
+	\item [] $\cov{\func{\gamma}{t}}{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:cov_gammat_Jst}.
+	\item [] $\cov{\func{b}{s}}{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:cov_bs_Jrt} (with appropriate arguments).
+	\item [] $\gang{\func{b}{s}}$ -- Eq.~\ref{eqn:mean_b} (with $t = s$).
+	\item [] $\gang{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:mean_Jst}.
+	\item [] $\vr{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:var_Jst}.
+\end{itemize}

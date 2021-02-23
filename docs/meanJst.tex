@@ -1,0 +1,8 @@
+Finding the expected value of $\func{J}{s,\ t}$ is very straightforwad, as we already have calculated the mean of $\func{\gamma}{t}$ (Eq.~\ref{eqn:mean_gamma}). 
+
+\begin{align}
+    \gang{\func{J}{s,\ t}} &= \ev{\int_{s}^{t} \gpr{\func{\gamma}{s'} - \widehat{\gamma}}\,ds'} \nonumber \\
+    	&= \int_{s}^{t} \gpr{\gang{\func{\gamma}{s'}} - \widehat{\gamma}}\,ds' \nonumber \\
+    	&= \int_{s}^{t} \gpr{\gang{\gamma_0} - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds' \nonumber \\
+    	&= \frac{\gang{\gamma_0} - \widehat{\gamma}}{d_{\gamma}}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}}. \label{eqn:mean_Jst}
+\end{align}

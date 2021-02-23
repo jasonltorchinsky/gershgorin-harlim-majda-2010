@@ -1,0 +1,8 @@
+The derivation of the mean of $\func{b}{t}$ is fairly straightforward. Using our pathwise solution for $\func{b}{t}$ (Eq.~\ref{eqn:pathwise_b}), we obtain
+
+\begin{align}
+    \gang{\func{b}{t}} &= \ev{\widehat{b} + \gpr{b_0 - \widehat{b}}\,e^{\lambda_{b}\,\gpr{t - t_0}} + \sigma_{b}\,\int_{t_{0}}^{t} e^{\lambda_b\,\gpr{t - s}}\,\func{d{W}_{b}}{s}} \nonumber \\
+		&= \widehat{b} + \gpr{\gang{b_0} - \widehat{b}}\,e^{\lambda_{b}\,\gpr{t - t_0}} + \sigma_{b}\,\ev{\int_{t_{0}}^{t} e^{\lambda_b\,\gpr{t - s}}\,\func{d{W}_{b}}{s}} \nonumber \\
+		&= \widehat{b} + \gpr{\gang{b_0} - \widehat{b}}\,e^{\lambda_{b}\,\gpr{t - t_0}}. \label{eqn:mean_b}
+\end{align}
+

@@ -1,1 +1,18 @@
-In this appendix, we will be deriving the exact statistics for the Gershgorin-Harlim-Majda 2010 system. The first subsection will provide various identities used throughout the derivations for the exact statistics, while subsequent subsections will incluse the derivations for individual statistics. We assume that the initial statistics are given.
+In this appendix, we will be deriving the exact statistics for the Gershgorin-Harlim-Majda 2010 system. The first subsection will provide various identities used throughout the derivations for the exact statistics, while subsequent subsections will include the derivations for individual statistics. We assume that the initial statistics are given.
+
+Below we list the statistics and their equation number in this document, for ease of navigation. Note that $\gang{x}$ is the expected value of $x$, $\vr{x}$ to denote the variance of $x$, and $\cov{x}{y}$ to denote the covariance of $x$ and $y$.
+
+\begin{itemize}
+	\item [] $\gang{\func{b}{t}}$ -- Eq.~\ref{eqn:mean_b}. 
+	\item [] $\gang{\func{\gamma}{t}}$ -- Eq.~\ref{eqn:mean_gamma}.
+	\item [] $\gang{\func{u}{t}}$ -- Eq.~\ref{eqn:mean_u}.
+	\item [] $\vr{\func{b}{t}}$ -- Eq.~\ref{eqn:var_b}.
+	\item [] $\cov{\func{b}{t}}{\overline{\func{b}{t}}}$ -- Eq.~\ref{eqn:cov_b_conjgb}.
+	\item [] $\vr{\func{\gamma}{t}}$ -- Eq.~\ref{eqn:var_gamma}.
+	\item [] $\cov{\func{b}{t}}{\func{\gamma}{t}}$ -- Eq.~\ref{eqn:cov_b_gamma}.
+	\item [] $\vr{\func{u}{t}}$ -- Eq.~\ref{eqn:var_u}.
+	\item [] $\cov{\func{u}{t}}{\overline{\func{u}{t}}}$ -- Eq.~\ref{eqn:cov_u_conjgu}.
+	\item [] $\cov{\func{u}{t}}{\func{b}{t}}$ -- Eq.~\ref{eqn:cov_u_b}.
+	\item [] $\cov{\func{u}{t}}{\overline{\func{b}{t}}}$ -- Eq.~\ref{eqn:cov_u_conjgb}.
+	\item [] $\cov{\func{u}{t}}{\func{\gamma}{t}}$ -- Eq.~\ref{eqn:cov_u_gamma}.
+\end{itemize}

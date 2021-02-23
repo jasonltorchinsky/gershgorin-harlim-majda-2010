@@ -1,0 +1,92 @@
+The first identity is very common in stochastic processes: the expected value of the integral of a martingale $\func{f}{t}$ on the interval $\gbkt{a,\ b}$ against a real-value white noise $d\func{W}{t}$ is zero.
+
+\begin{equation}
+	\ev{\int_{a}^{b} \func{f}{t}\,d\func{W}{t}} = 0,
+	\label{eqn:mean_int_basic}
+\end{equation}
+
+where we have used the notation $\ev{x}$ to denote the expected value of $x$. Throughout this document, we will use both this notation and $\gang{x}$ to denote the expected value of $x$, ideally to improve the readability of the equations. 
+
+Knowledge of the identity Eq.~\ref{eqn:mean_int_basic} is so widely used throughout our derivations that we will not refer to this equation specifically and instead leave it to the reader to identify when it has been used.
+
+Similarly fundamental to Eq.~\ref{eqn:mean_int_basic} is the It\^{o} isometry, which states that for stochastic processes $X_t$ and $Y_t$ in the space of square-integrable adapted processes $\func{L^2_{\text{ad}}}{\gbkt{a,\ b} \times \Omega}$, we have
+
+\begin{equation}
+	\ev{\gpr{\int_{a}^{b} X_s\,d\func{W}{s}}\,\gpr{\int_{a}^{b} Y_s\,d\func{W}{s}}} = \func{E}{\int_{t_0}^{t} X_s\,Y_s\,ds},
+	\label{eqn:ito_isometry}
+\end{equation}
+
+where $d\func{W}{s}$ is a real-value white noise. Due to its fundamentality to our derivations, we will also not refer to this equation specifically and instead leave it to the reader to identify when it has been used.
+
+We will also encounter expressions of the form
+
+$$ \int_{a}^{b} \int_{c}^{t} \func{f}{s,\ t}\,d\func{W}{s}\,dt, $$
+
+where $\func{f}{s,\ t}$ satistfies the requirements of the It\^{o} isometry (Eq.~\ref{eqn:ito_isometry}), $d\func{W}{s}$ is real-value white noise, and $c \leq a \leq b$. To utilize the It\^{o} isometry, we must change the order of integration, which is somewhat straightforward once we recognize that the region of integration is trapezoidal
+
+\begin{equation}
+	\int_{a}^{b} \int_{c}^{t} \func{f}{s,\ t}\,d\func{W}{s}\,dt = \int_{c}^{a} \int_{a}^{b} \func{f}{s,\ t}\,dt\,d\func{W}{s} + \int_{a}^{b} \int_{s}^{b} \func{f}{s,\ t}\,dt\,d\func{W}{s}.
+	\label{eqn:dbl_int_ito}
+\end{equation}
+
+For complex-value white noise, which we will encounter in several places throuhgout our derivations, we will utilize the identity given immediately after Lemma 2.2.8 of \cite{Freeman15} which states that, for a complex stochastic process $\func{Z}{s} = \func{X}{s} + i\,\func{Y}{s}$ and complex-value white-noise $d\func{W}{s} = \frac{1}{\sqrt{2}}\,\gpr{d\func{U}{s} + i\,d\func{V}{s}}$, we have
+
+\begin{align}
+    \int_{t_0}^{t} \func{Z}{s}\,d\func{W}{s} &= \frac{1}{\sqrt{2}}\,\left(\int_{t_0}^{t} \func{X}{s}\,d\func{U}{s} - \int_{t_0}^{t} \func{Y}{s}\,d\func{V}{s} \right. \nonumber \\
+    &\qquad  + i\,\left.\gpr{\int_{t_0}^{t} \func{X}{s}\,d\func{V}{s} + \int_{t_0}^{t} \func{Y}{s}\,d\func{U}{s}} \right). \label{eqn:freeman_ident}
+\end{align}
+
+Since complex-value white noise is a local martingale, we may utilize this equation along with It\^{o} isometry to obtain the following identity
+
+\begin{align}
+    \func{E}{\gpr{\int_{t_0}^{t} \func{Z}{s}\,d\func{W}{s}}\,\gpr{\int_{t_0}^{t} \overline{\func{Z}{s}}\,\overline{d\func{W}{s}}}} &= \func{E}{\int_{t_0}^{t} \gpr{\gpr{\func{X}{s}}^2 + \gpr{\func{Y}{s}}^2}\,ds} \nonumber \\
+    &= \func{E}{\int_{t_0}^{t} \func{Z}{s}\,\overline{\func{Z}{s}}\,ds} \label{eqn:complex_ito_isometry}
+\end{align}
+
+We will also require identities regarding functions of complex- and real-valued Gaussian variables. The most general of these identities is given by
+
+\begin{equation}
+    \gang{Z\,W\,e^{b\,X}} = \gpr{\cov{Z}{\overline{W}} + \gpr{\gang{Z} + b\,\cov{Z}{X}}\,\gpr{\gang{W} + b\,\cov{W}{X}}}\,e^{b\,\gang{X} + \frac{b^2}{2}\,\func{\text{Var}}{X}},
+    \label{eqn:zwebx_ident}
+\end{equation}
+
+where $Z$ and $W$ are complex-valued Gaussian variables, $X$ is a real-valued Gaussian variable, and $b$ is a real constant. To verify Eq.~\ref{eqn:zwebx_ident}, we begin by writing $Z = A + i\,B$, $W = U + i\,V$, and defining a vector $\va{v} = \mqty[A & B & U & V & X]^{T}$. Note, $\va{v}$ is a five-dimensional Gaussian variable since each of $A$, $B$, $U$, $V$, and $X$ are Gaussian. To calculate $\gang{Z\,W\,e^{b\,X}}$, we will calculate each term on the right-hand side of the following equation
+
+\begin{equation*}
+    \gang{Z\,W\,e^{b\,X}} = \gang{A\,U\,e^{b\,X}} - \gang{B\,V\,e^{b\,X}} + i\,\gpr{\gang{A\,V\,e^{b\,X}} + \gang{B\,U\,e^{b\,X}}}.
+\end{equation*}
+
+We begin by considering the moment-generating function for $\va{v}$
+
+$$\func{M_{\va{v}}}{\va{t}} = \int_{\R^{5}} e^{\va{t}^{T}\,\va{v}'}\,\func{f_{\va{v}}}{\va{v}'}\,d\va{v}'$$
+
+where $\func{f_{\va{v}}}{\va{v}'}$ is the probability density function for $\va{v}$. For brevity, we denote the $i$\textsuperscript{th} entry of $\va{t}$ by $t_i$ and the $j$\textsuperscript{th} entry of $\va{v}$ by $v_{j}$. We have
+
+\begin{equation*}
+    \pdv{\func{M_{\va{v}}}{\va{t}}}{t_j}{t_i} = \int_{\R^5} {v_i}'\,{v_j}'\,e^{\va{t}^{T}\,\va{v}'}\,\func{f_{\va{v}}}{\va{v}'}\,d\va{v}.
+\end{equation*}
+
+Evaluating this at $\va{t} = \mqty[0 & 0 & 0 & 0 & b]^{T}$ for various $i$, $j$ gives the desired expected values. Now, since $\va{v}$ is a five-dimensional Gaussian variable its moment-generating function is given by 
+
+$$\func{M_{\va{v}}}{\va{t}} = e^{\va{t}^T\,\gpr{\gang{\va{v}} + \frac{1}{2}\,\vb{\Sigma}\,\va{t}}}$$
+
+where $\vb{\Sigma}$ is the covariance matrix of $A$, $B$, $U$, $V$, and $X$. Hence, after much calculus, we find that
+
+\begin{align*}
+    \eval{\pdv{\func{M_{\va{v}}}{\va{t}}}{t_j}{t_i}}_{t_5 = b} &= \gpr{\cov{v_i}{v_j} + \gpr{\gang{v_i} + b\,\cov{v_i}{X}}\,\gpr{\gang{v_j} + b\,\cov{v_j}{X}}}\\
+    	&\qquad \cdot e^{b\,\gang{X} + \frac{b^2}{2}\,\func{\text{Var}}{X}},
+\end{align*}
+
+where we have evaluated the partial derivative at $t_1 = \dots = t_4 = 0$ as well. Using appropriate values of $i$ and $j$, we obtain
+
+\begin{align*}
+    \gang{Z\,W\,e^{b\,X}} &= \gang{A\,U\,e^{b\,X}} - \gang{B\,V\,e^{b\,X}} + i\,\gpr{\gang{A\,V\,e^{b\,X}} + \gang{B\,U\,e^{b\,X}}} \\
+    	&= \gpr{\cov{Z}{\overline{W}} + \gpr{\gang{Z} + b\,\cov{Z}{X}}\,\gpr{\gang{W} + b\,\cov{W}{X}}}\,e^{b\,\gang{X} + \frac{b^2}{2}\,\func{\text{Var}}{X}}
+\end{align*}
+
+as desired. We will also use a simplified form of Eq.~\ref{eqn:zwebx_ident} in which $W = 1$
+
+\begin{equation}
+    \gang{ Z\,e^{b\,X} } = \gpr{\gang{Z} + b\,\func{\text{Cov}}{Z,\ X}}\,e^{b\,\gang{X} + \frac{b^2}{2}\,\func{\text{Var}}{X}}.
+    \label{eqn:zebx_ident}
+\end{equation}

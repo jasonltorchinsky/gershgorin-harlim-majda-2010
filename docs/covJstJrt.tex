@@ -1,0 +1,71 @@
+There are two cases for the calculation of the covariance of $\func{J}{s,\ t}$ and $\func{J}{r,\ t}$: i) $t_0 \leq r \leq s \leq t$, and ii) $t_0 \leq s \leq r \leq t$. The derivations are similar, and boil down to swapping the places of $s$ and $r$ in the final equation. Hence, we will include the entire derivation for the first case and simply include the final result for the second. We begin with the usual decomposition of covariance into a difference of expected values.
+
+\begin{equation}
+    \cov{\func{J}{s,\ t}}{\func{J}{r,\ t}} = \ev{\func{J}{s,\ t}\,\func{J}{r,\ t}} - \gang{\func{J}{s,\ t}}\,\gang{\func{J}{r,\ t}}.
+\end{equation}
+
+Since the expected values in the second term on the right are given by Eq.~\ref{eqn:mean_Jst} (with appropriate arguments), we calculate $\ev{\func{J}{s,\ t}\,\func{J}{r,\ t}}$ first and later subtract the product of the expected values.
+
+\begin{align}
+    \ev{\func{J}{s,\ t}\,\func{J}{r,\ t}} &= \text{E}\left[ \gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds' + \sigma_{\gamma}\,\int_{s}^{t} \int_{t_0}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,d\func{W_{\gamma}}{t'}\,ds'} \right. \\
+    		&\phantom{\text{E}}\qquad \left. \cdot \gpr{\int_{r}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{r' - t_0}}\,dr' + \sigma_{\gamma}\,\int_{r}^{t} \int_{t_0}^{r'} e^{-d_{\gamma}\,\gpr{r' - t'}}\,d\func{W_{\gamma}}{t'}\,dr'} \right] \nonumber \\
+    	&= \ev{\gpr{\gamma_0 - \widehat{\gamma}}^2\,\int_{s}^{t} \int_{r}^{t} e^{-d_{\gamma}\,\gpr{s' + r' - 2\,t_0}}\,dr'\,ds'} \nonumber \\
+    		&\quad + \ev{\gpr{\gpr{\gamma_0 - \widehat{\gamma}}\,\int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'}\,\gpr{\sigma_{\gamma}\,\int_{r}^{t} \int_{t_0}^{r'} e^{-d_{\gamma}\,\gpr{r' - t'}}\,d\func{W_{\gamma}}{t'}\,dr'}} \nonumber \\
+    		&\quad + \ev{\gpr{\sigma_{\gamma}\,\int_{s}^{t} \int_{t_0}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,d\func{W_{\gamma}}{t'}\,ds'}\,\gpr{\gpr{\gamma_0 - \widehat{\gamma}}\,\int_{r}^{t} e^{-d_{\gamma}\,\gpr{r' - t_0}}\,dr'}} \nonumber \\
+    		&\quad + \text{E}\left[\gpr{\sigma_{\gamma}\,\int_{s}^{t} \int_{t_0}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,d\func{W_{\gamma}}{t'}\,ds'} \right. \nonumber \\
+    		&\phantom{\text{E}}\qquad\qquad \left. \cdot \gpr{\sigma_{\gamma}\,\int_{r}^{t} \int_{t_0}^{r'} e^{-d_{\gamma}\,\gpr{r' - t'}}\,d\func{W_{\gamma}}{t'}\,dr'} \right] \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_0 - \widehat{\gamma}}^2}}{d_{\gamma}}\,\int_{s}^{t} \gpr{e^{-d_{\gamma}\,\gpr{s' + r - 2\,t_0}} - e^{-d_{\gamma}\,\gpr{s' + t - 2\,t_0}}}\,ds' + 0 + 0 \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\text{E}\left[ \gpr{\int_{t_{0}}^{s} \int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'} + \int_{s}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}} \right. \nonumber \\
+    		&\phantom{+ {\sigma_{\gamma}}^2\,\text{E}}\qquad \left. \cdot \gpr{\int_{t_{0}}^{r} \int_{r}^{t} e^{-d_{\gamma}\,\gpr{r' - t'}}\,dr'\,\func{d{W}_{\gamma}}{t'} + \int_{r}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{r' - t'}}\,dr'\,\func{d{W}_{\gamma}}{t'}} \right] \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_0 - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-2\,d_{\gamma}\,\gpr{t - t_0}} + e^{-d_{\gamma}\,\gpr{s + r - 2\,t_0}} - e^{-d_{\gamma}\,\gpr{t + r - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{s + t - 2\,t_0}}}  \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\gpr{\int_{t_{0}}^{s} \int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}}\,\gpr{\int_{t_{0}}^{r} \int_{r}^{t} e^{-d_{\gamma}\,\gpr{r' - t'}}\,dr'\,\func{d{W}_{\gamma}}{t'}}} \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\gpr{\int_{t_{0}}^{s} \int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}}\,\gpr{\int_{r}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{r' - t'}}\,dr'\,\func{d{W}_{\gamma}}{t'}}} \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\gpr{\int_{s}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}}\,\gpr{\int_{t_{0}}^{r} \int_{r}^{t} e^{-d_{\gamma}\,\gpr{r' - t'}}\,dr'\,\func{d{W}_{\gamma}}{t'}}} \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\gpr{\int_{s}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}}\,\gpr{\int_{r}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{r' - t'}}\,dr'\,\func{d{W}_{\gamma}}{t'}}} \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_0 - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-2\,d_{\gamma}\,\gpr{t - t_0}} + e^{-d_{\gamma}\,\gpr{s + r - 2\,t_0}} - e^{-d_{\gamma}\,\gpr{t + r - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{s + t - 2\,t_0}}}  \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\int_{t_0}^{r} \int_{s}^{t} \int_{r}^{t} e^{-d_{\gamma}\,\gpr{s' + r' - 2\,t'}}\,dr'\,ds'\,dt'} \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\int_{r}^{s} \int_{s}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' + r' - 2\,t'}}\,dr'\,ds'\,dt'} + 0 \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\int_{s}^{t} \int_{t'}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' + r' - 2\,t'}}\,dr'\,ds'\,dt'} \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_0 - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-2\,d_{\gamma}\,\gpr{t - t_0}} + e^{-d_{\gamma}\,\gpr{s + r - 2\,t_0}} - e^{-d_{\gamma}\,\gpr{t + r - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{s + t - 2\,t_0}}}  \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^{3}}\,\left(\frac{1}{2}\,\gpr{e^{-d_{\gamma}\,\gpr{s - r}} - e^{-d_{\gamma}\,\gpr{s + r - 2\,t_0}}} - \frac{1}{2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - r}} - e^{-d_{\gamma}\,\gpr{t + r - 2\,t_0}}} \right.\nonumber \\
+    		&\qquad \left. + \frac{1}{2}\,\gpr{e^{-2\,d_{\gamma}\,\gpr{t - r}} - e^{-2\,d_{\gamma}\,\gpr{t - t_0}}} - \frac{1}{2}\,\gpr{e^{-d_{\gamma}\,\gpr{s + t - 2\,r}} - e^{-d_{\gamma}\,\gpr{s + t - 2\,t_0}}} \right) \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^{3}}\,\left( \gpr{1 - e^{-d_{\gamma}}} - \gpr{e^{-d_{\gamma}\,\gpr{t - s}} - e^{-d_{\gamma}\,\gpr{t - r}}} \right. \nonumber \\
+    		&\qquad \left. + \frac{1}{2}\,\gpr{e^{-2\,d_{\gamma}\,\gpr{t - s}}  - e^{-2\,d_{\gamma}\,\gpr{t - r}}} - \frac{1}{2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - s}} - e^{-d_{\gamma}\,\gpr{s + t - 2\,r}}} \right) \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^{3}}\,\left( d_{\gamma}\,\gpr{t - s} - \gpr{1 - e^{-d_{\gamma}\,\gpr{t - s}}} \right. \nonumber \\
+    		&\qquad \left. + \frac{1}{2}\,\gpr{1 - e^{-2\,d_{\gamma}\,\gpr{t - s}}} - \gpr{1 - e^{-d_{\gamma}\,\gpr{t - s}}} \right) \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_0 - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-2\,d_{\gamma}\,\gpr{t - t_0}} + e^{-d_{\gamma}\,\gpr{s + r - 2\,t_0}} - e^{-d_{\gamma}\,\gpr{t + r - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{s + t - 2\,t_0}}}  \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^{3}}\,\left(\frac{1}{2}\,e^{-d_{\gamma}\,\gpr{s - r}} - \frac{1}{2}\,e^{-d_{\gamma}\,\gpr{s + r - 2\,t_0}}  + \frac{1}{2}\,e^{-d_{\gamma}\,\gpr{t - r}} + \frac{1}{2}\,e^{-d_{\gamma}\,\gpr{t + r - 2\,t_0}} \right. \nonumber \\
+    		&\qquad \left. - \frac{1}{2}\,e^{-2\,d_{\gamma}\,\gpr{t - t_0}} + \frac{1}{2}\,e^{-d_{\gamma}\,\gpr{s + t - 2\,t_0}} - \frac{1}{2} + \frac{1}{2}\,e^{-d_{\gamma}\,\gpr{t - s}} + d_{\gamma}\,\gpr{t - s} \right) \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_0 - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-2\,d_{\gamma}\,\gpr{t - t_0}} + e^{-d_{\gamma}\,\gpr{s + r - 2\,t_0}} - e^{-d_{\gamma}\,\gpr{t + r - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{s + t - 2\,t_0}}}  \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{2\,d_{\gamma}}^{3}}\,\left( -\gpr{1 + e^{-d_{\gamma}\,\gpr{s - r}}} + 2\,d_{\gamma}\,\gpr{t - s} \right. \nonumber \\
+    		&\phantom{+ \frac{{\sigma_{\gamma}}^2}{{2\,d_{\gamma}}^{3}}}\qquad + e^{-d_{\gamma}\,\gpr{s + t - 2\,t_0}} \nonumber \\
+    		&\qquad\qquad\qquad  \left. \cdot \left( \gpr{1 + e^{d_{\gamma}\,\gpr{s - r}}} + \gpr{e^{2\,d_{\gamma}\,\gpr{s - t_0}} + e^{d_{\gamma}\,\gpr{s + r - 2\,t_0}}} - \gpr{e^{d_{\gamma}\,\gpr{t - r}} + e^{-d_{\gamma}\,\gpr{t - s}}} \right) \right).
+\end{align}
+
+Now, the product of $\gang{\func{J}{s,\ t}}$ and $\gang{\func{J}{r,\ t}}$ is given by
+
+\begin{equation}
+    \gang{\func{J}{s,\ t}}\,\gang{\func{J}{r,\ t}} = \frac{\gpr{\gang{\gamma_0} - \widehat{\gamma}}^2}{{d_{\gamma}}^2}\,\gpr{e^{-2\,d_{\gamma}\,\gpr{t - t_0}} + e^{-d_{\gamma}\,\gpr{s + r - 2\,t_0}} - e^{-d_{\gamma}\,\gpr{t + r - 2\,t_0}} - e^{-2\,d_{\gamma}\,\gpr{s + t - 2\,t_0}}},
+\end{equation}
+
+and so
+
+\begin{align}
+    \cov{\func{J}{s,\ t}}{\func{J}{r,\ t}} &= \ev{\func{J}{s,\ t}\,\func{J}{r,\ t}} - \gang{\func{J}{s,\ t}}\,\gang{\func{J}{r,\ t}} \nonumber \\
+    	&= \frac{\vr{\gamma_0}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_0}} - e^{-d_{\gamma}\,\gpr{s - t_0}}}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_0}} - e^{-d_{\gamma}\,\gpr{r - t_0}}}  \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{2\,d_{\gamma}}^{3}}\,\left( -\gpr{1 + e^{-d_{\gamma}\,\gpr{s - r}}} + 2\,d_{\gamma}\,\gpr{t - s} \right. \nonumber \\
+    		&\phantom{+ \frac{{\sigma_{\gamma}}^2}{{2\,d_{\gamma}}^{3}}}\qquad + e^{-d_{\gamma}\,\gpr{s + t - 2\,t_0}} \nonumber \\
+    		&\qquad\qquad\qquad  \left. \cdot \left( \gpr{1 + e^{d_{\gamma}\,\gpr{s - r}}} + \gpr{e^{2\,d_{\gamma}\,\gpr{s - t_0}} + e^{d_{\gamma}\,\gpr{s + r - 2\,t_0}}} \right. \right. \nonumber \\
+    		&\qquad\qquad\qquad\qquad \left.\left. - \gpr{e^{d_{\gamma}\,\gpr{t - r}} + e^{-d_{\gamma}\,\gpr{t - s}}} \right) \right), \label{eqn:cov_Jst_Jrt_r_le_s}
+\end{align}
+
+for $t_0 \leq r \leq s \leq t$. By plugging in $r = s$, we may verify that this reduces to our previous equation for $\vr{\func{J}{s,\ t}}$ (Eq.~\ref{eqn:var_Jst}). The case of $t_0 \leq s \leq r \leq t$ is given by
+
+\begin{align}
+    \cov{\func{J}{s,\ t}}{\func{J}{r,\ t}} &= \ev{\func{J}{s,\ t}\,\func{J}{r,\ t}} - \gang{\func{J}{s,\ t}}\,\gang{\func{J}{r,\ t}} \nonumber \\
+    	&= \frac{\vr{\gamma_0}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_0}} - e^{-d_{\gamma}\,\gpr{r - t_0}}}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_0}} - e^{-d_{\gamma}\,\gpr{s - t_0}}}  \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{2\,d_{\gamma}}^{3}}\,\left( -\gpr{1 + e^{-d_{\gamma}\,\gpr{r - s}}} + 2\,d_{\gamma}\,\gpr{t - r} \right. \nonumber \\
+    		&\phantom{+ \frac{{\sigma_{\gamma}}^2}{{2\,d_{\gamma}}^{3}}}\qquad + e^{-d_{\gamma}\,\gpr{r + t - 2\,t_0}} \nonumber \\
+    		&\qquad\qquad\qquad  \left. \cdot \left( \gpr{1 + e^{d_{\gamma}\,\gpr{r - s}}} + \gpr{e^{2\,d_{\gamma}\,\gpr{r - t_0}} + e^{d_{\gamma}\,\gpr{r + s - 2\,t_0}}} \right. \right. \nonumber \\
+    		&\qquad\qquad\qquad\qquad \left.\left. - \gpr{e^{d_{\gamma}\,\gpr{t - s}} + e^{-d_{\gamma}\,\gpr{t - r}}} \right) \right). \label{eqn:cov_Jst_Jrt_s_le_r}
+\end{align}

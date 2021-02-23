@@ -1,0 +1,67 @@
+The calculation of the expected value of $\abs{B}^2$ is one of the longest and most involved derivations we will encounter. We begin with an initial calculation which we will divide into four terms, each of which we will compute individually.
+
+\begin{align}
+    \ev{\abs{B}^2} &= \ev{\gpr{\int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,ds}\,\gpr{\int_{t_0}^{t} \gpr{\overline{\func{b}{r}} + \func{f}{r}}\,e^{-\func{J}{r,\ t} + \overline{\widehat{\lambda}}\,\gpr{t - r}}\,dr}} \nonumber \\
+    	&= \int_{t_0}^{t} \int_{t_0}^{t} \left( \ev{\func{b}{s}\,\overline{\func{b}{r}}\,e^{-\gpr{\func{J}{s,\ t} + \func{J}{r,\ t}}}} + \overline{\func{f}{r}}\,\ev{\func{b}{s}\,e^{-\gpr{\func{J}{s,\ t} + \func{J}{r,\ t}}}} \right. \nonumber \\
+    		&\left.\phantom{\int_{t_0}^{t} \int_{t_0}^{t} (}\qquad + \func{f}{s}\,\ev{\overline{\func{b}{r}}\,e^{-\gpr{\func{J}{s,\ t} + \func{J}{r,\ t}}}} + \func{f}{s}\,\overline{\func{f}{r}}\,\ev{e^{-\gpr{\func{J}{s,\ t} + \func{J}{r,\ t}}}}\right) \nonumber \\
+    		&\phantom{\int_{t_0}^{t} \int_{t_0}^{t}}\qquad \cdot e^{- \widehat{\gamma}\,\gpr{2\,t - s - r} + i\,\omega\,\gpr{s - r}}\,ds\,dr \nonumber \\
+    	&= \int_{t_0}^{t} \int_{t_0}^{t} \gpr{\alpha + \overline{\func{f}{r}}\,\beta + \func{f}{s}\,\delta +  \func{f}{s}\,\overline{\func{f}{r}}\,\eta}\,e^{- \widehat{\gamma}\,\gpr{2\,t - s - r} + i\,\omega\,\gpr{s - r}}\,ds\,dr. \label{eqn:pre_mean_absB2}
+\end{align}
+
+
+We now calculate each of $\alpha$, $\beta$, $\delta$, and $\eta$ of the expression on the right, utilizing the identities Eq.~\ref{eqn:zwebx_ident} and Eq.~\ref{eqn:zebx_ident} throughout.
+
+\begin{align}
+    \alpha &= \ev{\func{b}{s}\,\overline{\func{b}{r}}\,e^{-\gpr{\func{J}{s,\ t} + \func{J}{r,\ t}}}}\nonumber \\
+    	&= \left( \cov{\func{b}{s}}{\func{b}{r}} + \gpr{\gang{\func{b}{s}} - \cov{\func{b}{s}}{\func{J}{r,\ t}} - \cov{\func{b}{s}}{\func{J}{s,\ t}}} \phantom{\overline{b}}\right. \nonumber \\
+    		&\phantom{\cov{\func{b}{s}}{\func{b}{r}} +}\qquad \left. \cdot \gpr{\overline{\gang{\func{b}{r}}} - \overline{\cov{\func{b}{r}}{\func{J}{r,\ t}}} - \overline{\cov{\func{b}{r}}{\func{J}{s,\ t}}}} \right) \nonumber \\
+    		&\qquad \cdot e^{-\gang{\func{J}{r,\ t}} - \gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{r,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \cov{\func{J}{r,\ t}}{\func{J}{s,\ t}}},
+\end{align}
+
+\begin{align}
+    \beta &= \ev{\func{b}{s}\,e^{-\gpr{\func{J}{s,\ t} + \func{J}{r,\ t}}}} \nonumber \\
+    	&= \gpr{\gang{\func{b}{s}} - \cov{\func{b}{s}}{\func{J}{s,\ t}} - \cov{\func{b}{s}}{\func{J}{r,\ t}}} \nonumber \\
+    		&\qquad \cdot e^{-\gang{\func{J}{s,\ t}} - \gang{\func{J}{r,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{r,\ t}} + \cov{\func{J}{s,\ t}}{\func{J}{r,\ t}}},
+\end{align}
+
+\begin{align}
+    \delta &= \ev{\overline{\func{b}{r}}\,e^{-\gpr{\func{J}{s,\ t} + \func{J}{r,\ t}}}} \nonumber \\
+    	&= \gpr{\gang{\overline{\func{b}{r}}} - \overline{\cov{\func{b}{r}}{\func{J}{s,\ t}}} - \overline{\cov{\func{b}{r}}{\func{J}{r,\ t}}}} \nonumber \\
+    	&\qquad \cdot e^{-\gang{\func{J}{s,\ t}} - \gang{\func{J}{r,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{r,\ t}} + \cov{\func{J}{s,\ t}}{\func{J}{r,\ t}}},
+\end{align}
+
+\begin{align}
+    \eta &= \ev{e^{-\gpr{\func{J}{s,\ t} + \func{J}{r,\ t}}}} \nonumber \\
+    	&= e^{-\gang{\func{J}{s,\ t}} - \gang{\func{J}{r,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{r,\ t}} + \cov{\func{J}{s,\ t}}{\func{J}{r,\ t}}}.
+\end{align}
+
+We denote the integrand of Eq.~\ref{eqn:pre_mean_absB2} by $\func{b_{var}}{r,\ s}$, and it is given by
+
+\begin{align}
+    \func{b_{var}}{r,\ s} &= e^{-\gang{\func{J}{s,\ t}} - \gang{\func{J}{r,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{r,\ t}} + \cov{\func{J}{s,\ t}}{\func{J}{r,\ t}} - \widehat{\gamma}\,\gpr{2\,t - s - r} + i\,\omega\,\gpr{s - r}} \nonumber \\
+    		&\quad \cdot \left( \cov{\func{b}{s}}{\func{b}{r}} \right. \nonumber \\
+    		&\qquad \left. + \gpr{\gang{\func{b}{s}} - \cov{\func{b}{s}}{\func{J}{r,\ t}} - \cov{\func{b}{s}}{\func{J}{s,\ t}}} \right. \nonumber \\
+    		&\qquad\qquad \left. \cdot \gpr{\overline{\gang{\func{b}{r}}} - \overline{\cov{\func{b}{r}}{\func{J}{r,\ t}}} - \overline{\cov{\func{b}{r}}{\func{J}{s,\ t}}}} \right. \nonumber \\
+    		&\qquad + \overline{\func{f}{r}}\,\gpr{\gang{\func{b}{s}} - \cov{\func{b}{s}}{\func{J}{s,\ t}} - \cov{\func{b}{s}}{\func{J}{r,\ t}}} \nonumber \\
+    		&\qquad + \func{f}{s}\,\gpr{\overline{\gang{\func{b}{r}}} - \overline{\cov{\func{b}{r}}{\func{J}{s,\ t}}} - \overline{\cov{\func{b}{r}}{\func{J}{r,\ t}}}} \nonumber \\
+    		&\qquad \left. + \func{f}{s}\,\overline{\func{f}{r}} \right) \nonumber \\
+    	&= e^{-\gang{\func{J}{s,\ t}} - \gang{\func{J}{r,\ t}} + \frac{1}{2}\,\func{\text{Var}}{\func{J}{s,\ t}} + \frac{1}{2}\,\func{\text{Var}}{\func{J}{r,\ t}} + \func{\text{Cov}}{\func{J}{s,\ t},\ \func{J}{r,\ t}} - \widehat{\gamma}\,\gpr{2\,t - s - r} + i\,\omega\,\gpr{s - r}} \nonumber \\
+    		&\quad \cdot \left(\cov{\func{b}{s}}{\func{b}{r}} \right. \nonumber \\
+    		&\qquad \left. + \gpr{\gang{\func{b}{s}} + \func{f}{s} - \cov{\func{b}{s}}{\func{J}{r,\ t}} - \cov{\func{b}{s}}{\func{J}{s,\ t}}}\right. \nonumber \\
+    		&\qquad\qquad \left. \cdot \gpr{\overline{\gang{\func{b}{r}}} + \overline{\func{f}{r}} - \overline{\cov{\func{b}{r}}{\func{J}{r,\ t}}} - \overline{\cov{\func{b}{r}}{\func{J}{s,\ t}}}} \right). \label{eqn:bvar}
+\end{align}
+
+Hence, the mean value of $\abs{B}^2$ is given by 
+\begin{equation}
+	\ev{\abs{B}^2} = \int_{t_0}^{t} \int_{t_0}^{t} \func{b_{var}}{s,\ r}\,ds\,dr
+	\label{eqn:mean_absB2}
+\end{equation}
+where $\func{b_{var}}{s,\ r}$ is defined in Eq.~\ref{eqn:bvar}. We note that to evaluate $\func{b_{var}}{s,\ r}$, the following statistics are required:
+
+\begin{itemize}
+	\item [] $\cov{\func{J}{s,\ t}}{\func{J}{r,\ t}}$ -- Eqs.~\ref{eqn:cov_Jst_Jrt_r_le_s} and \ref{eqn:cov_Jst_Jrt_s_le_r}.
+	\item [] $\cov{\func{b}{s}}{\func{b}{r}}$ -- Eq.~\ref{eqn:cov_bs_br}.
+	\item [] $\gang{\func{b}{s}}$, $\gang{\func{b}{r}}$ -- Eq.~\ref{eqn:mean_b} (substituting $t = s$ and $t = r$, respectively).
+	\item [] $\cov{\func{b}{s}}{\func{J}{r,\ t}}$ -- Eq.~\ref{eqn:cov_bs_Jrt} (making appropriate argument substitutions).
+\end{itemize}
+

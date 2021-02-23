@@ -4,4 +4,14 @@ In the most overview sense, the simulation code contains a single driver subrout
 	\item Execute the simulation.
 	\item Finalize the simulation.
 \end{enumerate}
+Within executing the simulation, we have five different time-stepping schemes (called \texttt{timeStepScheme} in the code):
+\begin{enumerate}[(1)]
+	\setcounter{enumi}{-1}
+	\item Forward Euler(-Maruyama): This scheme is defined in Chapter 3.2 of \cite{Zhang17}. Due to the various values of $\func{\gamma}{t}$, this method is often unstable (in the sense of absolute stability).
+	\item Backward (Drift-Implicit) Euler: This scheme is likewise defined in Chapter 3.2 of \cite{Zhang17}. Due to the various values of $\func{\gamma}{t}$, this method is often unstable (in the sense of absolute stability), although notably less often than the Forward Euler method.
+	\item Adaptive Forward Euler(-Maruyama): This scheme is based on the forward Euler(-Maruyama) scheme, although it adapts the time-step size to ensure absolute stability. Due to the bounded region of absolute stability for the forward Euler scheme, these time-steps tend to be small.
+	\item Adaptive Backward (Drift-Implicit) Euler: This scheme is based on the forward Euler(-Maruyama) scheme, although it adapts the time-step size to ensure absolute stability. Due to the unbounded region of absolute stability for the backward Euler scheme, the original time-step may not need to be adjusted.
+	\item Analytic Statistics with Trapezoidal Integration: This scheme is based on the equations for the first- and second-order statistics of the system (Appendix~\ref{app:exact_stats}). At each time-step $k$, the state of the system is entirely determined, so each of $\func{b}{t_k} := b_k$, $\func{\gamma}{t_k} := \gamma_k$, and $\func{u}{t_k} := u_k$ may be represented as Dirac-delta distributions. We may then find the mean, variances, and covariances associated with each of $b_{k+1}$, $\gamma_{k+1}$, and $u_{k+1}$ and select them randomly. The implmentation of this scheme is incomplete, and the current progress on implementing it has shown that it may have stability issues for large time-step sizes.
+\end{enumerate}
 
+None of these schemes have been statisically verified to be accurate as of writing this.

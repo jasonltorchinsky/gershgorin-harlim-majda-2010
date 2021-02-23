@@ -1,0 +1,23 @@
+The expected value of $B^2$ is found in a very similar manner the the expected value of $\abs{B}^2$ (see Appendix~\ref{app:mean_absB2}), and is given by
+
+\begin{equation}
+    \gang{B^2} = \int_{t_0}^{t} \int_{t_0}^{t} \func{b_{covar}}{s,\ r}\,ds\,dr, \label{eqn:mean_B2}
+\end{equation}
+
+\begin{align}
+    \func{b_{covar}}{s,\ r} &= e^{-\gang{\func{J}{s,\ t}} - \gang{\func{J}{r,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{r,\ t}} + \cov{\func{J}{s,\ t}}{\func{J}{r,\ t}} + \widehat{\lambda}\,\gpr{2\,t - s - r}} \nonumber \\
+    		&\quad \cdot \left(\cov{\func{b}{s}}{\overline{\func{b}{r}}} + \gpr{\gang{\func{b}{s}} + \func{f}{s} - \cov{\func{b}{s}}{\func{J}{r,\ t}} - \cov{\func{b}{s}}{\func{J}{s,\ t}}}\right. \nonumber \\
+    		&\left.\phantom{\cov{\func{b}{s}}{\overline{\func{b}{r}}} +}\qquad \cdot \gpr{\gang{\func{b}{r}} + \func{f}{r} - \cov{\func{b}{r}}{\func{J}{r,\ t}} - \cov{\func{b}{r}}{\func{J}{s,\ t}}} \right). \label{eqn:bcovar}
+\end{align}
+
+To evaluate $\func{b_{covar}}{s,\ r}$, the following statistics are required
+
+\begin{itemize}
+	\item [] $\gang{\func{J}{s,\ t}}$, $\gang{\func{J}{r,\ t}}$ -- Eq.~\ref{eqn:mean_Jst} (with appropriate arguments).
+	\item [] $\vr{\func{J}{s,\ t}}$, $\vr{\func{J}{r,\ t}}$ -- Eq.~\ref{eqn:var_Jst} (with appropraite arguments).
+	\item [] $\cov{\func{J}{s,\ t}}{\func{J}{r,\ t}}$ -- Eqs.~\ref{eqn:cov_Jst_Jrt_r_le_s} and \ref{eqn:cov_Jst_Jrt_s_le_r}.
+	\item [] $\cov{\func{b}{s}}{\overline{\func{b}{r}}}$ -- Eq.~\ref{eqn:cov_bs_conjgbr}.
+	\item [] $\gang{\func{b}{s}}$, $\gang{\func{b}{r}}$ -- Eq.~\ref{eqn:mean_b} (substituting $t = s$ and $t = r$, respectively).
+	\item [] $\cov{\func{b}{s}}{\func{J}{r,\ t}}$, $\cov{\func{b}{s}}{\func{J}{s,\ t}}$, $\cov{\func{b}{r}}{\func{J}{r,\ t}}$, $\cov{\func{b}{r}}{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:cov_bs_Jrt}.
+\end{itemize}
+

@@ -1,0 +1,22 @@
+We begin our derivation of the mean of $\func{u}{t}$ in a similar manner, by utilizing the pathwise solution for $\func{u}{t}$ (Eq.~\ref{eqn:pathwise_u})
+
+\begin{align}
+    \gang{\func{u}{t}} &= \ev{u_0\,e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}} + \ev{\int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,ds}  \nonumber \\
+    		&\quad + \ev{\sigma\,\int_{t_{0}}^{t} e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,\func{dW}{s}} \nonumber \\
+    	&= e^{\widehat{\lambda}\,\gpr{t - t_0}}\,\ev{u_0\,e^{-\func{J}{t_0,\ t}}} + \int_{t_0}^{t} e^{\widehat{\lambda}\,\gpr{t - s}}\,\ev{\func{b}{s}\,e^{-\func{J}{s,\ t}}}\,ds \nonumber \\
+    		&\quad + \int_{t_0}^{t} \func{f}{s}\,e^{\widehat{\lambda}\,\gpr{t - s}}\,\ev{e^{-\func{J}{s,\ t}}}\,ds \nonumber \\
+    	&= e^{\widehat{\lambda}\,\gpr{t - t_0}}\,\gpr{\gang{u_0} - \cov{u_0}{\func{J}{t_0,\ t}}}\,e^{-\gang{\func{J}{t_0,\ t}} + \frac{1}{2}\,\vr{\func{J}{t_0,\ t}}} \nonumber \\
+    		&\quad + \int_{t_0}^{t} e^{\widehat{\lambda}\,\gpr{t - s}}\,\gpr{\gang{\func{b}{s}} - \cov{\func{b}{s}}{\func{J}{s,\ t}}}\,e^{-\gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}}}\,ds \nonumber \\
+    		&\quad + \int_{t_0}^{t} \func{f}{s}\,e^{\widehat{\lambda}\,\gpr{t - s}}\,e^{-\gang{\func{J}{s,\ t}} + \frac{1}{2}\,\vr{\func{J}{s,\ t}}}\,ds, \label{eqn:mean_u}
+\end{align}
+
+where we have utilized Eq.~\ref{eqn:zebx_ident} to evaluate both $\ev{u_0\,e^{-\func{J}{t_0,\ t}}}$ and $\ev{\func{b}{s}\,e^{-\func{J}{s,\ t}}}$. To calculate the value of this expression, it is necessary to find $\gang{\func{J}{s,\ t}}$, $\vr{\func{J}{s,\ t}}$, $\cov{u_0}{\func{J}{t_0,\ t}}$, and $\cov{\func{b}{s}}{\func{J}{s,\ t}}$. For ease of navigation, we list the equation numbers for these staistics below.
+
+\begin{itemize}
+	\item [] $\gang{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:mean_Jst}.
+	\item [] $\vr{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:var_Jst}.
+	\item [] $\cov{u_0}{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:cov_u0_Jt0t}.
+	\item [] $\cov{\func{b}{s}}{\func{J}{s,\ t}}$ -- Eq.~\ref{eqn:cov_bs_Jst}.
+\end{itemize}
+
+Even with substituting these equations into Eq.~\ref{eqn:mean_u}, the form of Eq.~\ref{eqn:mean_u} is not simplified, so we instead keep it in its current form.

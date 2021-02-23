@@ -1,0 +1,15 @@
+The calculation of the expected value of $A^2$ is fairly straightforward, and is very similar to the derivation of the expected value of $\abs{A}^2$ (see Appendix~\ref{app:mean_absA2}). We utilize the identity Eq.~\ref{eqn:zwebx_ident} to obtain
+
+\begin{align}
+    \ev{A^2} &= \ev{{u_0}^2\,e^{2\,\gpr{\widehat{\lambda}\,\gpr{t - t_0} - \func{J}{t_0,\ t}}}} \nonumber \\
+    	&= \gpr{\cov{u_0}{\overline{u_0}} + \gpr{\gang{u_0} - 2\,\cov{u_0}{\func{J}{t_0,\ t}}}^2}\,e^{2\,\gpr{\vr{\func{J}{t_0,\ t}} + \widehat{\lambda}\,\gpr{t - t_0} - \gang{\func{J}{t_0,\ t}}}}. \label{eqn:mean_A2}
+\end{align}
+
+Attempting further simplification using our previously derived equations is fruitless, and we instead list the equation numbers here:
+
+\begin{itemize}
+	\item [] $\cov{u_0}{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:cov_u0_Jt0t}.
+	\item [] $\vr{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:var_Jst} (substituting $s = t_0$).
+	\item [] $\gang{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:mean_Jst} (substituting $s = t_0$).
+\end{itemize}
+

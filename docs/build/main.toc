@@ -1,13 +1,59 @@
-\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}The Gershgorin-Majda 2010 System}{3}{subsection.1.1}%
-\contentsline {section}{\numberline {2}Compiling and running}{4}{section.2}%
-\contentsline {section}{\numberline {3}Code structure}{4}{section.3}%
-\contentsline {section}{Acknowledgements}{5}{Item.3}%
-\contentsline {section}{References}{6}{Item.3}%
-\contentsline {section}{\numberline {A}Pathwise Solutions of the Gershgorin-Harlim-Majda 2010 System}{6}{appendix.A}%
-\contentsline {subsection}{\numberline {A.1}Identities Used in Pathwise Solution Derivations}{6}{subsection.A.1}%
-\contentsline {subsection}{\numberline {A.2}Pathwise solution for $\ensuremath {b \left ( t \right )}$}{6}{subsection.A.2}%
-\contentsline {subsection}{\numberline {A.3}Pathwise solution for $\ensuremath {\gamma \left ( t \right )}$}{8}{subsection.A.3}%
-\contentsline {subsection}{\numberline {A.4}Pathwise solution for $\ensuremath {u \left ( t \right )}$}{9}{subsection.A.4}%
-\contentsline {section}{\numberline {B}Exact Statistics of the Gershgorin-Harlim-Majda 2010 System}{9}{appendix.B}%
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
+\contentsline {subsection}{\numberline {1.1}The Gershgorin-Harlim-Majda 2010 System}{5}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Compiling and running}{6}{section.2}%
+\contentsline {section}{\numberline {3}Code structure}{6}{section.3}%
+\contentsline {section}{\numberline {4}Future work}{7}{section.4}%
+\contentsline {section}{Acknowledgements}{8}{Item.18}%
+\contentsline {section}{References}{9}{Item.18}%
+\contentsline {section}{\numberline {A}Pathwise solutions of the Gershgorin-Harlim-Majda 2010 system}{9}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Identities used in pathwise solution derivations}{9}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Pathwise solution for $\ensuremath {b \left ( t \right )}$}{10}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Pathwise solution for $\ensuremath {\gamma \left ( t \right )}$}{11}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}Pathwise solution for $\ensuremath {u \left ( t \right )}$}{12}{subsection.A.4}%
+\contentsline {section}{\numberline {B}Exact statistics of the Gershgorin-Harlim-Majda 2010 system}{14}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}Identities used in exact statistics derivations}{15}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Mean of $\ensuremath {b \left ( t \right )}$}{18}{subsection.B.2}%
+\contentsline {subsection}{\numberline {B.3}Mean of $\ensuremath {\gamma \left ( t \right )}$}{18}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}Mean of $\ensuremath {u \left ( t \right )}$}{18}{subsection.B.4}%
+\contentsline {subsubsection}{\numberline {B.4.1}Mean of $\ensuremath {J \left ( s,\ t \right )}$}{19}{subsubsection.B.4.1}%
+\contentsline {subsubsection}{\numberline {B.4.2}Variance of $\ensuremath {J \left ( s,\ t \right )}$}{19}{subsubsection.B.4.2}%
+\contentsline {subsubsection}{\numberline {B.4.3}Covariance of $u_0$ and $\ensuremath {J \left ( t_0,\ t \right )}$}{23}{subsubsection.B.4.3}%
+\contentsline {subsubsection}{\numberline {B.4.4}Covariance of $\ensuremath {b \left ( s \right )}$ and $\ensuremath {J \left ( s,\ t \right )}$}{24}{subsubsection.B.4.4}%
+\contentsline {subsection}{\numberline {B.5}Variance of $\ensuremath {b \left ( t \right )}$}{26}{subsection.B.5}%
+\contentsline {subsection}{\numberline {B.6}Covariance of $\ensuremath {b \left ( t \right )}$ and $\overline {\ensuremath {b \left ( t \right )}}$}{27}{subsection.B.6}%
+\contentsline {subsection}{\numberline {B.7}Variance of $\ensuremath {\gamma \left ( t \right )}$}{28}{subsection.B.7}%
+\contentsline {subsection}{\numberline {B.8}Covariance of $\ensuremath {b \left ( t \right )}$ and $\ensuremath {\gamma \left ( t \right )}$}{28}{subsection.B.8}%
+\contentsline {subsection}{\numberline {B.9}Variance of $\ensuremath {u \left ( t \right )}$}{29}{subsection.B.9}%
+\contentsline {subsubsection}{\numberline {B.9.1}Mean of $\abs {A}^2$}{30}{subsubsection.B.9.1}%
+\contentsline {subsubsection}{\numberline {B.9.2}Mean of $\abs {B}^2$}{30}{subsubsection.B.9.2}%
+\contentsline {paragraph}{\numberline {B.9.2.1}Covariance of $\ensuremath {J \left ( s,\ t \right )}$ and $\ensuremath {J \left ( r,\ t \right )}$}{32}{paragraph.B.9.2.1}%
+\contentsline {paragraph}{\numberline {B.9.2.2}Covariance of $\ensuremath {b \left ( s \right )}$ and $\ensuremath {b \left ( r \right )}$}{36}{paragraph.B.9.2.2}%
+\contentsline {paragraph}{\numberline {B.9.2.3}Covariance of $\ensuremath {b \left ( s \right )}$ and $\ensuremath {J \left ( r,\ t \right )}$}{37}{paragraph.B.9.2.3}%
+\contentsline {subsubsection}{\numberline {B.9.3}Mean of $\abs {C}^2$}{38}{subsubsection.B.9.3}%
+\contentsline {subsubsection}{\numberline {B.9.4}Mean of $A\tmspace +\thinmuskip {.1667em}\overline {B}$}{38}{subsubsection.B.9.4}%
+\contentsline {paragraph}{\numberline {B.9.4.1}Covariance of $u_0$ and $\ensuremath {b \left ( s \right )}$}{39}{paragraph.B.9.4.1}%
+\contentsline {paragraph}{\numberline {B.9.4.2}Covariance of $u_0$ and $\ensuremath {J \left ( s,\ t \right )}$}{39}{paragraph.B.9.4.2}%
+\contentsline {subsubsection}{\numberline {B.9.5}Means of $A\tmspace +\thinmuskip {.1667em}\overline {C}$ and $B\tmspace +\thinmuskip {.1667em}\overline {C}$}{39}{subsubsection.B.9.5}%
+\contentsline {subsection}{\numberline {B.10}Covariance of $\ensuremath {u \left ( t \right )}$ an $\overline {\ensuremath {u \left ( t \right )}}$}{40}{subsection.B.10}%
+\contentsline {subsubsection}{\numberline {B.10.1}Mean of $A^2$}{40}{subsubsection.B.10.1}%
+\contentsline {subsubsection}{\numberline {B.10.2}Mean of $B^2$}{41}{subsubsection.B.10.2}%
+\contentsline {paragraph}{\numberline {B.10.2.1}Covariance of $\ensuremath {b \left ( s \right )}$ and $\overline {\ensuremath {b \left ( r \right )}}$}{41}{paragraph.B.10.2.1}%
+\contentsline {subsubsection}{\numberline {B.10.3}Mean of $C^2$}{42}{subsubsection.B.10.3}%
+\contentsline {subsubsection}{\numberline {B.10.4}Mean of $A\tmspace +\thinmuskip {.1667em}B$}{42}{subsubsection.B.10.4}%
+\contentsline {subsubsection}{\numberline {B.10.5}Means of $A\tmspace +\thinmuskip {.1667em}C$ and $B\tmspace +\thinmuskip {.1667em}C$}{43}{subsubsection.B.10.5}%
+\contentsline {subsection}{\numberline {B.11}Covariance of $\ensuremath {u \left ( t \right )}$ and $\ensuremath {b \left ( t \right )}$}{43}{subsection.B.11}%
+\contentsline {subsubsection}{\numberline {B.11.1}Covariance of $A$ and $\ensuremath {b \left ( t \right )}$}{43}{subsubsection.B.11.1}%
+\contentsline {subsubsection}{\numberline {B.11.2}Covariance of $B$ and $\ensuremath {b \left ( t \right )}$}{44}{subsubsection.B.11.2}%
+\contentsline {subsubsection}{\numberline {B.11.3}Covariance of $C$ and $\ensuremath {b \left ( t \right )}$}{46}{subsubsection.B.11.3}%
+\contentsline {subsection}{\numberline {B.12}Covariance of $\ensuremath {u \left ( t \right )}$ and $\overline {\ensuremath {b \left ( t \right )}}$}{46}{subsection.B.12}%
+\contentsline {subsubsection}{\numberline {B.12.1}Covariance of $A$ and $\overline {\ensuremath {b \left ( t \right )}}$}{46}{subsubsection.B.12.1}%
+\contentsline {subsubsection}{\numberline {B.12.2}Covariance of $B$ and $\overline {\ensuremath {b \left ( t \right )}}$}{47}{subsubsection.B.12.2}%
+\contentsline {subsubsection}{\numberline {B.12.3}Covariance of $C$ and $\overline {\ensuremath {b \left ( t \right )}}$}{49}{subsubsection.B.12.3}%
+\contentsline {subsection}{\numberline {B.13}Covariance of $\ensuremath {u \left ( t \right )}$ and $\ensuremath {\gamma \left ( t \right )}$}{49}{subsection.B.13}%
+\contentsline {subsubsection}{\numberline {B.13.1}Covariance of $A$ and $\ensuremath {\gamma \left ( t \right )}$}{49}{subsubsection.B.13.1}%
+\contentsline {paragraph}{\numberline {B.13.1.1}Covaraince of $\gamma _0$ and $\ensuremath {J \left ( t_0,\ t \right )}$}{50}{paragraph.B.13.1.1}%
+\contentsline {subsubsection}{\numberline {B.13.2}Covariance of $B$ and $\ensuremath {\gamma \left ( t \right )}$}{51}{subsubsection.B.13.2}%
+\contentsline {paragraph}{\numberline {B.13.2.1}Covariance of $\ensuremath {b \left ( s \right )}$ and $\ensuremath {\gamma \left ( t \right )}$}{52}{paragraph.B.13.2.1}%
+\contentsline {paragraph}{\numberline {B.13.2.2}Covariance of $\ensuremath {\gamma \left ( t \right )}$ and $\ensuremath {J \left ( s,\ t \right )}$}{52}{paragraph.B.13.2.2}%
+\contentsline {subsubsection}{\numberline {B.13.3}Covariance of $C$ and $\ensuremath {\gamma \left ( t \right )}$}{53}{subsubsection.B.13.3}%
 \contentsfinish 

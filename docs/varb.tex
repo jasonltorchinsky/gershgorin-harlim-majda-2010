@@ -1,0 +1,27 @@
+Using our equation for the expected value of $\func{b}{t}$ (Eq.~\ref{eqn:mean_b}), we obtain
+
+\begin{align}
+    \vr{\func{b}{t}} &= \cov{\func{b}{t}}{\func{b}{t}} = \ev{\abs{\func{b}{t} - \gang{\func{b}{t}}}^2} \nonumber \\
+    	&= \ev{\abs{\gpr{b_0 - \gang{b_0}}\,e^{\lambda_{b}\,\gpr{t - t_0}} + \sigma_b\,\int_{t_0}^{t} e^{\lambda_{b}\,\gpr{t - s}}\,d\func{W_{b}}{s}}^2} \nonumber \\
+    	&= \ev{\abs{b_0 - \gang{b_0}}^2\,e^{-2\,\gamma_{b}\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad + \ev{\sigma_b\,\gpr{b_0 - \gang{b_0}\,\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - t_0} + \overline{\lambda_b}\gpr{t - s}}\,\overline{d\func{W_b}{s}}}} \nonumber \\
+    		&\quad + \ev{\sigma_b\,\gpr{\overline{b_0} - \overline{\gang{b_0}}\,\int_{t_0}^{t} e^{\overline{\lambda_b}\,\gpr{t - t_0} + \lambda_b\gpr{t - s}}\,d\func{W_b}{s}}} \nonumber \\
+    		&\quad + \ev{\sigma_b^2\,\gpr{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{W_b}{s}}\,\gpr{\int_{t_0}^{t} e^{\overline{\lambda_b}\,\gpr{t - s}}\,\overline{d\func{W_b}{s}}}} \nonumber \\
+    	&= \cov{b_0}{b_0}\,e^{-2\,\gamma_{b}\,\gpr{t - t_0}} \nonumber \\
+    		&\quad + \sigma_b\,\ev{b_0 - \gang{b_0}}\,\ev{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - t_0} + \overline{\lambda_b}\gpr{t - s}}\,\overline{d\func{W_b}{s}}} \nonumber \\
+    		&\quad + \sigma_b\,\ev{\overline{b_0} - \overline{\gang{b_0}}}\,\ev{\int_{t_0}^{t} e^{\overline{\lambda_b}\,\gpr{t - t_0} + \lambda_b\,\gpr{t - s}}\,d\func{W_b}{s}} \nonumber \\
+    		&\quad + \sigma_b^{2}\,\ev{\gpr{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{W_b}{s}}\,\gpr{\int_{t_0}^{t} e^{\overline{\lambda_b}\,\gpr{t - s}}\,\overline{d\func{W_b}{s}}}} \nonumber \\
+    	&= \cov{b_0}{b_0}\,e^{-2\,\gamma_{b}\,\gpr{t - t_0}} \nonumber \\
+    		&\quad + \sigma_b^{2}\,\ev{\gpr{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{W_b}{s}}\,\gpr{\int_{t_0}^{t} e^{\overline{\lambda_b}\,\gpr{t - s}}\,\overline{d\func{W_b}{s}}}},
+\end{align}
+
+where we have utilized the fact that integrating a complex-value function against a complex-value white noise may be decomposed into a real and imaginary part (see Eq.~\ref{eqn:freeman_ident}). Using the identity Eq.~\ref{eqn:complex_ito_isometry}, we may evaluate the final term and complete our calculation.
+
+\begin{align}
+    \vr{\func{b}{t}} &= \vr{b_0}\,e^{-2\,\gamma_{b}\,\gpr{t - t_0}} \nonumber \\
+    		&\quad + \sigma_b^{2}\,\ev{\gpr{\int_{t_0}^{t} e^{\lambda_b\,\gpr{t - s}}\,d\func{W_b}{s}}\,\gpr{\int_{t_0}^{t} e^{\overline{\lambda_b}\,\gpr{t - s}}\,\overline{d\func{W_b}{s}}}} \nonumber \\
+    	&= \vr{b_0}\,e^{-2\,\gamma_{b}\,\gpr{t - t_0}} \nonumber \\
+    		&\quad + \sigma_b^2\,\ev{\int_{t_0}^{t} e^{-2\,\gamma_{b}\,\gpr{t-s}}\,\gpr{\func{\cos^2}{\omega_{b}\,\gpr{t-s}} + \func{\sin^2}{\omega_{b}\,\gpr{t-s}}} \,ds} \nonumber \\
+    	&= \vr{b_0}\,e^{-2\,\gamma_{b}\,\gpr{t - t_0}} + \frac{\sigma_b^2}{2\,\gamma_{b}}\,\gpr{1 - e^{-2\,\gamma_{b}\,\gpr{t - t_0}}}. \label{eqn:var_b}
+\end{align}
+

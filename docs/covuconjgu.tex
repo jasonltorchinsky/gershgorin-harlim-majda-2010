@@ -1,0 +1,23 @@
+We now wish to calculate the covariance of $\func{u}{t}$ with its complex conjugate. Using the same splitting of $\func{u}{t}$ into the terms $A$, $B$, and $C$ given in equations Eq.~\ref{eqn:A}, \ref{eqn:B}, and \ref{eqn:C}, we may see that this statistic is given by
+
+\begin{align}
+    \cov{\func{u}{t}}{\overline{\func{u}{t}}} &= \ev{\gpr{\func{u}{t}}^2} - \gpr{\gang{\func{u}{t}}}^2 \\
+    	&= \ev{A^2} + \ev{B^2} + \ev{C^2} + 2\,\gpr{\ev{A\,B} + \ev{A\,C} + \ev{B\,C}} - \gpr{\gang{\func{u}{t}}}^2.
+\end{align}
+
+As we will soon discover, several of these terms evaluate to zero (specifically $\ev{A\,C}$ and $\ev{B\,C}$, see Appendix~\ref{app:mean_AC_BC}), and attempiting further simplifications of the above equation utilizing our previously derived equation for the expected value of $\func{u}{t}$ (Eq~\ref{eqn:mean_u}) will be fruitless, and so we shall write the report form of $\cov{\func{u}{t}}{\overline{\func{u}{t}}}$ and list below the equation numbers for each term.
+
+\begin{equation}
+    \cov{\func{u}{t}}{\overline{\func{u}{t}}} = \ev{A^2} + \ev{B^2} + \ev{C^2} + 2\,\ev{A\,B} - \gpr{\gang{\func{u}{t}}}^2. \label{eqn:cov_u_conjgu}
+\end{equation}
+
+The equation numbers for the terms of this equation are
+
+\begin{itemize}
+	\item [] $\ev{A^2}$ -- Eq.~\ref{eqn:mean_A2}.
+	\item [] $\ev{B^2}$ -- Eq.~\ref{eqn:mean_B2}.
+	\item [] $\ev{C^2}$ -- Eq.~\ref{eqn:mean_C2}.
+	\item [] $\ev{AB}$ -- Eq.~\ref{eqn:mean_AB}.
+	\item [] $\ev{\func{u}{t}}$ -- Eq.~\ref{eqn:mean_u}.
+\end{itemize}
+

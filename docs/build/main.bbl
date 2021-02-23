@@ -1,8 +1,25 @@
 \begin{thebibliography}{1}
 
+\bibitem{Anderson99}
+{\sc E.~Anderson, Z.~Bai, C.~Bischof, S.~Blackford, J.~Demmel, J.~Dongarra,
+  J.~D. Croz, A.~Greenbaum, S.~Hammarling, A.~McKenney, and D.~Sorensen}, {\em
+  {LAPACK} Users' Guide}, Society for Industrial and Applied Mathematics,
+  Philadelphia, PA, third~ed., 1999.
+
+\bibitem{Freeman15}
+{\sc N.~Freeman}, {\em It\^{o} calculus and complex brownian motion}.
+\newblock
+  \url{http://nicfreeman.staff.shef.ac.uk/teaching_old/cbm\%20notes.pdf}, Jan.
+  2015.
+
 \bibitem{Gershgorin10}
 {\sc B.~Gershgorin, J.~Harlim, and A.~Majda}, {\em Test models for improving
   filtering with model errors through stochastic parameter estimation}, Journal
-  of Computational Physics, 229 (2020), pp.~1--31.
+  of Computational Physics, 229 (2010), pp.~1--31.
+
+\bibitem{Zhang17}
+{\sc Z.~Zhang and G.~Karniadakis}, {\em Numerical Methods for Stochastic
+  Partial Differential Equations with White Noise}, Springer International
+  Publishing AG, Cham, Switzerland, 2017.
 
 \end{thebibliography}

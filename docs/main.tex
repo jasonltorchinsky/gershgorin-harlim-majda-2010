@@ -13,12 +13,17 @@
 
 \section{Introduction}
     \import{}{introduction.tex}
+    \subsection{The Gershgorin-Harlim-Majda 2010 System} \label{sub:GHM10_system}
+    	\import{}{ghm10_system.tex}
     
 \section{Compiling and running}
 	\import{}{use.tex}
 
 \section{Code structure}
 	\import{}{structure.tex}
+	
+\section{Future work}
+	\import{}{future.tex}
 
 \addcontentsline{toc}{section}{Acknowledgements}
 \section*{Acknowledgements}
@@ -32,9 +37,9 @@
 \bibliographystyle{siam}
 
 \appendix
-	\section{Pathwise Solutions of the Gershgorin-Harlim-Majda 2010 System}
+	\section{Pathwise solutions of the Gershgorin-Harlim-Majda 2010 system} \label{app:pathwise_solns}
 		\import{}{pathwisesolns.tex}
-		\subsection{Identities Used in Pathwise Solution Derivations}
+		\subsection{Identities used in pathwise solution derivations}
 			\import{}{pathwiseidents.tex}
 		\subsection{Pathwise solution for $\func{b}{t}$} \label{app:pathwise_b}
 			\import{}{pathwiseb.tex}
@@ -43,8 +48,97 @@
 		\subsection{Pathwise solution for $\func{u}{t}$}
 			\import{}{pathwiseu.tex}
 	
-	\section{Exact Statistics of the Gershgorin-Harlim-Majda 2010 System}
+	\section{Exact statistics of the Gershgorin-Harlim-Majda 2010 system} \label{app:exact_stats}
 		\import{}{exactstats.tex}
-
+		\subsection{Identities used in exact statistics derivations}
+			\import{}{statsidents.tex}
+		\subsection{Mean of $\func{b}{t}$}
+			\import{}{meanb.tex}
+		\subsection{Mean of $\func{\gamma}{t}$}
+			\import{}{meangamma.tex}
+		\subsection{Mean of $\func{u}{t}$}
+			\import{}{meanu.tex}
+			\subsubsection{Mean of $\func{J}{s,\ t}$}
+				\import{}{meanJst.tex}
+			\subsubsection{Variance of $\func{J}{s,\ t}$}
+				\import{}{varJst.tex}
+			\subsubsection{Covariance of $u_0$ and $\func{J}{t_0,\ t}$}
+				\import{}{covu0Jt0t.tex}
+			\subsubsection{Covariance of $\func{b}{s}$ and $\func{J}{s,\ t}$}
+				\import{}{covbsJst.tex}
+		\subsection{Variance of $\func{b}{t}$} \label{app:var_b}
+			\import{}{varb.tex}
+		\subsection{Covariance of $\func{b}{t}$ and $\overline{\func{b}{t}}$}
+			\import{}{covbconjgb.tex}
+		\subsection{Variance of $\func{\gamma}{t}$}
+			\import{}{vargamma.tex}
+		\subsection{Covariance of $\func{b}{t}$ and $\func{\gamma}{t}$}
+			\import{}{covb.gamma.tex} % Different file name to avoid naming conflicts
+		\subsection{Variance of $\func{u}{t}$}
+			\import{}{varu.tex}
+			\subsubsection{Mean of $\abs{A}^2$} \label{app:mean_absA2}
+				\import{}{meanabsA2.tex}
+			\subsubsection{Mean of $\abs{B}^2$} \label{app:mean_absB2}
+				\import{}{meanabsB2.tex}
+				\paragraph{Covariance of $\func{J}{s,\ t}$ and $\func{J}{r,\ t}$}
+					\import{}{covJstJrt.tex}
+				\paragraph{Covariance of $\func{b}{s}$ and $\func{b}{r}$} \label{app:cov_bs_br}
+					\import{}{covbsbr.tex}
+				\paragraph{Covariance of $\func{b}{s}$ and $\func{J}{r,\ t}$}
+					\import{}{covbsJrt.tex}
+			\subsubsection{Mean of $\abs{C}^2$} \label{app:mean_absC2}
+				\import{}{meanabsC2.tex}
+			\subsubsection{Mean of $A\,\overline{B}$} \label{app:mean_AconjgB}
+				\import{}{meanAconjgB.tex}
+				\paragraph{Covariance of $u_0$ and $\func{b}{s}$}
+					\import{}{covu0bs.tex}
+				\paragraph{Covariance of $u_0$ and $\func{J}{s,\ t}$}
+					\import{}{covu0Jst.tex}
+			\subsubsection{Means of $A\,\overline{C}$ and $B\,\overline{C}$} \label{app:mean_AconjgC_BconjgC}
+				\import{}{meanAconjgC_BconjgC.tex}
+		\subsection{Covariance of $\func{u}{t}$ an $\overline{\func{u}{t}}$}
+			\import{}{covuconjgu.tex}
+			\subsubsection{Mean of $A^2$}
+				\import{}{meanA2.tex}
+			\subsubsection{Mean of $B^2$}
+				\import{}{meanB2.tex}
+				\paragraph{Covariance of $\func{b}{s}$ and $\overline{\func{b}{r}}$}
+					\import{}{covbsconjgbr.tex}
+			\subsubsection{Mean of $C^2$}
+				\import{}{meanC2.tex}
+			\subsubsection{Mean of $A\,B$}
+				\import{}{meanAB.tex}
+			\subsubsection{Means of $A\,C$ and $B\,C$} \label{app:mean_AC_BC}
+				\import{}{meanAC_BC.tex}
+		\subsection{Covariance of $\func{u}{t}$ and $\func{b}{t}$} \label{app:cov_u_b}
+			\import{}{covub.tex}
+			\subsubsection{Covariance of $A$ and $\func{b}{t}$} \label{app:cov_A_b}
+				\import{}{covAb.tex}
+			\subsubsection{Covariance of $B$ and $\func{b}{t}$} \label{app:cov_B_b}
+				\import{}{covBb.tex}
+			\subsubsection{Covariance of $C$ and $\func{b}{t}$} \label{app:cov_C_b}
+				\import{}{covCb.tex}
+		\subsection{Covariance of $\func{u}{t}$ and $\overline{\func{b}{t}}$}
+			\import{}{covuconjgb.tex}
+			\subsubsection{Covariance of $A$ and $\overline{\func{b}{t}}$} \label{app:cov_A_conjgb}
+				\import{}{covAconjgb.tex}
+			\subsubsection{Covariance of $B$ and $\overline{\func{b}{t}}$}
+				\import{}{covB.conjgb.tex} % Different file name to avoid naming conficts
+			\subsubsection{Covariance of $C$ and $\overline{\func{b}{t}}$} \label{app:cov_C_conjgb}
+				\import{}{covCconjgb.tex}
+		\subsection{Covariance of $\func{u}{t}$ and $\func{\gamma}{t}$}
+			\import{}{covugamma.tex}
+			\subsubsection{Covariance of $A$ and $\func{\gamma}{t}$} \label{app:cov_A_gamma}
+				\import{}{covAgamma.tex}
+				\paragraph{Covaraince of $\gamma_0$ and $\func{J}{t_0,\ t}$}
+					\import{}{covgammaJt0t.tex}
+			\subsubsection{Covariance of $B$ and $\func{\gamma}{t}$} \label{app:cov_B_gamma}
+				\import{}{covBgamma.tex}
+				\paragraph{Covariance of $\func{b}{s}$ and $\func{\gamma}{t}$}
+					\import{}{covbsgammat.tex}
+				\paragraph{Covariance of $\func{\gamma}{t}$ and $\func{J}{s,\ t}$}
+					\import{}{covgammatJst.tex}
+			\subsubsection{Covariance of $C$ and $\func{\gamma}{t}$} \label{app:cov_C_gamma}
+				\import{}{covCgamma.tex}
 \end{document}
  

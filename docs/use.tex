@@ -1,18 +1,22 @@
-This code utilizes CMake as a build system, and was designed for compilation on Ubuntu 20.04.1. In particular, here are the requirements for compiling and running the code:
+This code utilizes CMake as a build system, and was written on Ubuntu 20.04.1.\footnote{In actuality, I utilized the \href{https://docs.microsoft.com/en-us/windows/wsl/install-win10}{Windows Subsystem for Linux} on my Windows machine, which I find to be very useful for coding in Fortran!} In particular, the requirements for compiling and running the code are:
 \begin{itemize}
 	\item \href{https://gitlab.kitware.com/cmake/cmake}{CMake} (at least version 3.16).
+	\item \href{https://github.com/Reference-LAPACK/lapack}{LAPACK} (at least version 3.9.0).
+	\item \href{https://www.mpi-forum.org/docs/}{MPI} (at least version 4.0).
 	\item \href{https://github.com/Unidata/netcdf-fortran}{netCDF-Fortran} (at least version 4.8.0).
 \end{itemize}
 
-Once you have these, simply navigate to the \texttt{build} subdirectory and enter the standard CMake commands
+The minimum required versions are not ``hard'' minimums; older versions may work, but the code was developed using these versions. Once you have these, enter the standard CMake commands
 \begin{lstlisting}[language=bash]
+	mkdir build
+	cd build
 	cmake ..
 	cmake --build .
 \end{lstlisting}
 
-This will compile the code, build the headers and \texttt{NAMELIST}, and create the executable \texttt{gershgorin\_majda\_10}. To run the code, enter the command
+This will compile the code, build the headers and \texttt{NAMELIST}, and create the executable \texttt{gershgorin\_harlim\_majda\_2010}. To run the code, enter the command
 \begin{lstlisting}[language=bash]
-	./gershgorin_majda_10
+	mpirun -np X gershgorin_harlim_majda_10
 \end{lstlisting}
-and an output file \texttt{out.nc} will be generated.
+(where \texttt{X} is the number of processors) and several output files \texttt{outXXX.nc} will be generated.
  

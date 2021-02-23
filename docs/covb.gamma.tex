@@ -1,0 +1,9 @@
+To find the covariance of $\func{b}{t}$ and $\func{\gamma}{t}$, we utilize their pathwise solutions (Eqs.~\ref{eqn:pathwise_b} and \ref{eqn:pathwise_gamma}, respectively) as well as the equations for their expected values (Eqs.~\ref{eqn:mean_b} and \ref{eqn:mean_gamma}, respectively), and the fact that the white noises $d\func{W_b}{t}$ and $d\func{W_{\gamma}}{t}$ are uncorrelated. We begin by decomposing the covariance into a difference of expected values, and continue from there
+
+\begin{align}
+	\cov{\func{b}{t}}{\func{\gamma}{t}} &= \ev{\func{b}{t}\,\func{\gamma}{t}} - \gang{\func{b}{t}}\,\gang{\func{\gamma}{t}} \nonumber \\
+		&= \widehat{b}\,\gang{\func{\gamma}{t}} + \widehat{\gamma}\,\gang{\func{b}{t}} + \ev{\gpr{b_0 - \widehat{b}}\,\gpr{\gamma_0 - \widehat{\gamma}}}\,e^{\gpr{\lambda_b - d_{\gamma}}\,\gpr{t - t_0}} \nonumber \\
+			&\quad - \gpr{\widehat{b}\,\gang{\func{\gamma}{t}} + \widehat{\gamma}\,\gang{\func{b}{t}} + \ev{b_0 - \widehat{b}}\,\ev{\gamma_0 - \widehat{\gamma}}\,e^{\gpr{\lambda_b - d_{\gamma}}\,\gpr{t - t_0}}} \nonumber \\
+		&= \cov{b_0}{\gamma_0}\,e^{\gpr{\lambda_b - d_{\gamma}}\,\gpr{t - t_0}}. \label{eqn:cov_b_gamma}
+\end{align}
+	

@@ -1,0 +1,15 @@
+The expected value of $C^2$ is obtained in a straightforward manner, similarly to the expected value of $\abs{C}^s$ (see Appendix~\ref{app:mean_absC2})
+
+\begin{align}
+    \gang{C^2} &= \ev{\sigma^2\,\gpr{\int_{t_0}^{t} e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,d\func{W}{s}}^2} \nonumber \\
+    	&= \sigma^2\,\ev{\int_{t_0}^{t} e^{2\,\gpr{\widehat{\lambda}\,\gpr{t - s} - \func{J}{s,\ t}}}\,ds} \nonumber \\
+    	&= \sigma^2\,\int_{t_0}^{t} e^{2\,\gpr{\vr{\func{J}{s,\ t}} + \widehat{\lambda}\,\gpr{t - s} - \gang{\func{J}{s,\ t}}}}\,ds. \label{eqn:mean_C2}
+\end{align}
+
+To evaluate this equation, we need the following statistics
+
+\begin{itemize}
+	\item [] $\gang{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:mean_Jst} (substituting $s = t_0$).
+	\item [] $\vr{\func{J}{t_0,\ t}}$ -- Eq.~\ref{eqn:var_Jst} (substituting $s = t_0$).
+\end{itemize}
+

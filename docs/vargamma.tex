@@ -1,0 +1,11 @@
+The variance of $\func{\gamma}{t}$ is more straightforward to calculate than the variance of $\func{b}{t}$ (Appendix~\ref{app:var_b}), as it only involves a real-value white noise instead of a complex-value one. For our calculation here, we utilize the equation for the expected value of $\func{\gamma}{t}$ (Eq.~\ref{eqn:mean_gamma}).
+
+\begin{align}
+    \vr{\func{\gamma}{t}} &= \ev{\gpr{\func{\gamma}{t} - \gang{\func{\gamma}{t}}}^2} \nonumber \\
+    	&= \ev{\gpr{\gpr{\gamma_0 - \gang{\gamma_0}}\,e^{-d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}\,\int_{t_0}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,d\func{W_{\gamma}}{s}}^2} \nonumber \\
+    	&= \ev{\gpr{\gamma_0 - \gang{\gamma_0}}^2\,e^{-2\,d_{\gamma}\,\gpr{t - t_0}}} \nonumber \\
+    		&\quad + \ev{2\,\sigma_{\gamma}\,\gpr{\gamma_0 - \gang{\gamma_0}}\,\int_{t_0}^{t} e^{-d_{\gamma}\,\gpr{2\,t - s - t_0}}\,d\func{W_{\gamma}}{s}} \nonumber \\
+    		&\quad + \ev{\sigma_{\gamma}^2\,\gpr{\int_{t_0}^{t} e^{-d_{\gamma}\,\gpr{t - s}}\,d\func{W_{\gamma}}{s}}^2} \nonumber \\
+    	&= \vr{\gamma_0}\,e^{-2\,d_{\gamma}\,\gpr{t - t_0}} + \sigma_{\gamma}^2\,\ev{\int_{t_0}^{t} e^{-2\,d_{\gamma}\,\gpr{t - s}}\,ds} \nonumber \\
+    &= \vr{\gamma_0}\,e^{-2\,d_{\gamma}\,\gpr{t - t_0}} + \frac{\sigma_{\gamma}^2}{2\,d_{\gamma}}\,\gpr{1 - e^{-2\,d_{\gamma}\,\gpr{t - t_0}}}. \label{eqn:var_gamma}
+\end{align}

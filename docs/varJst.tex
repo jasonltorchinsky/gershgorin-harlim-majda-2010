@@ -1,0 +1,69 @@
+To find $\vr{\func{J}{s,\ t}}$, we first note that
+
+\begin{equation}
+	\vr{\func{J}{s,\ t}} = \gang{\gpr{\func{J}{s,\ t}}^2} - \gpr{\gang{\func{J}{s,\ t}}}^2.
+\end{equation}
+
+We previously calculated $\gang{\func{J}{s,\ t}}$ (Eq.~\ref{eqn:mean_Jst}), and so it remains to find $\gang{\gpr{\func{J}{s,\ t}}^2}$.
+
+\begin{align}
+    \gang{\gpr{\func{J}{s,\ t}}^2} &= \ev{\gpr{\int_{s}^{t} \gpr{\func{\gamma}{s'} - \widehat{\gamma}}\,ds'}^2} \nonumber \\
+    	&= \ev{\gpr{\int_{s}^{t} \gpr{\gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}} + \sigma_{\gamma}\,\int_{t_{0}}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,\func{d{W}_{\gamma}}{t'}}\,ds'}^2} \nonumber \\
+    	&= \ev{\gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds' + \sigma_{\gamma}\,\int_{s}^{t} \int_{t_{0}}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,\func{d{W}_{\gamma}}{t'}\,ds'}^2} \nonumber \\
+    	&= \ev{\gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'}^2} \nonumber \\
+    		&\quad + 2\,\ev{\gpr{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'}\,\gpr{\sigma_{\gamma}\,\int_{s}^{t} \int_{t_{0}}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,\func{d{W}_{\gamma}}{t'}\,ds'}} \nonumber \\
+    		&\quad + \ev{\gpr{\sigma_{\gamma}\,\int_{s}^{t} \int_{t_{0}}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,\func{d{W}_{\gamma}}{t'}\,ds'}^2}.
+\end{align}
+
+To utilize It\^o isometry, we call upon the identity in Eq.~\ref{eqn:dbl_int_ito} to find that
+
+\begin{equation}
+	\int_{s}^{t} \int_{t_{0}}^{s'} e^{-d_{\gamma}\,\gpr{s' - t'}}\,\func{d{W}_{\gamma}}{t'}\,ds' = \int_{t_{0}}^{s} \int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'} + \int_{s}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'},
+\end{equation}
+
+and so 
+
+\begin{align}
+    \gang{\gpr{\func{J}{s,\ t}}^2} &= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + 2\,\sigma_{\gamma}\,\ev{\int_{s}^{t} \gpr{\gamma_0 - \widehat{\gamma}}\,e^{-d_{\gamma}\,\gpr{s' - t_0}}\,ds'} \nonumber \\
+    			&\qquad \cdot \ev{\int_{t_{0}}^{s} \int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'} + \int_{s}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}} \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\gpr{\int_{t_{0}}^{s} \int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'} + \int_{s}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}}^2} \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\gpr{\int_{t_{0}}^{s} \int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}}^2} \nonumber \\
+    		&\quad + 2\,{\sigma_{\gamma}}^2\,\ev{\gpr{\int_{t_{0}}^{s} \int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}}\,\gpr{\int_{s}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}}} \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\gpr{\int_{s}^{t} \int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'\,\func{d{W}_{\gamma}}{t'}}^2} \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\int_{t_{0}}^{s} \gpr{\int_{s}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'}^2\,dt'} \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\int_{s}^{t} \gpr{\int_{t'}^{t} e^{-d_{\gamma}\,\gpr{s' - t'}}\,ds'}^2\,dt'} \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\int_{t_{0}}^{s} \frac{1}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t'}} - e^{-d_{\gamma}\,\gpr{s - t'}}}^2\,dt'} \nonumber \\
+    		&\quad + {\sigma_{\gamma}}^2\,\ev{\int_{s}^{t} \frac{1}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t-t'}}-1}^2\,dt'} \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^2}\,\ev{\int_{t_{0}}^{s} \gpr{e^{-2\,d_{\gamma}\,\gpr{t - t'}} - 2\,e^{-d_{\gamma}\,\gpr{t + s - 2\,t'}} + e^{-2\,d_{\gamma}\,\gpr{s - t'}}}\,dt'} \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^2}\,\ev{\int_{s}^{t} \,\gpr{e^{-2\,d_{\gamma}\,\gpr{t-t'}} - 2\,e^{-d_{\gamma}\,\gpr{t-t'}} + 1}\,dt'} \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{2\,{d_{\gamma}}^3}\,\left( e^{-2\,d_{\gamma}\,\gpr{t-s}} - e^{-2\,d_{\gamma}\,\gpr{t-t_0}} + 2\,e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} - 2\,e^{-d_{\gamma}\,\gpr{t-s}}  \right. \nonumber \\
+    			&\qquad \left. + 1 - e^{-2\,d_{\gamma}\,\gpr{s - t_0}} \right) \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{2\,d_{\gamma}}^3}\,\gpr{1 - e^{-2\,d_{\gamma}\,\gpr{t - s}} + 4\,e^{-d_{\gamma}\,\gpr{t-s}} - 4 + 2\,d_{\gamma}\,\gpr{t-s}} \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{2\,{d_{\gamma}}^3}\,\left(-2 + 2\,d_{\gamma}\,\gpr{t-s} + 2\,e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}}  - e^{-2\,d_{\gamma}\,\gpr{t-t_0}}   \right. \nonumber \\
+    			&\qquad \left. + 2\,e^{-d_{\gamma}\,\gpr{t-s}} - e^{-2\,d_{\gamma}\,\gpr{s - t_0}} \right) \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    	&\quad + \frac{{\sigma_{\gamma}}^2}{2\,{d_{\gamma}}^3}\,\left(-2 + 2\,d_{\gamma}\,\gpr{t-s} \phantom{\frac{1}{2}} \right.\nonumber \\
+    		&\phantom{\frac{{\sigma_{\gamma}}^2}{2\,{d_{\gamma}}^3}\,}\qquad  \left. + 2\,e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} \left[ 1  - \frac{1}{2}\,e^{-d_{\gamma}\,\gpr{t-s}}  + \,e^{2\,d_{\gamma}\,\gpr{s-t_0}} - \frac{1}{2}\,e^{d_{\gamma}\,\gpr{t - s}} \right] \right) \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    	&	\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^3}\,\left(-1 + d_{\gamma}\,\gpr{t-s} + e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} \left[ 1 + \,e^{2\,d_{\gamma}\,\gpr{s-t_0}} - \func{\cosh}{d_{\gamma}\,\gpr{t - s}} \right] \right).
+\end{align}
+
+We may now calculate $\vr{\func{J}{s,\ t}}$
+
+\begin{align}
+    \vr{\func{J}{s,\ t}} &= \gang{\gpr{\func{J}{s,\ t}}^2} - \gang{\func{J}{s,\ t}}^2 \nonumber \\
+		&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^3}\,\left(-1 + d_{\gamma}\,\gpr{t-s} + e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} \left[ 1 + \,e^{2\,d_{\gamma}\,\gpr{s-t_0}} - \func{\cosh}{d_{\gamma}\,\gpr{t - s}} \right] \right) \nonumber \\
+    		&\quad - \frac{\gpr{\gang{\gamma_0} - \widehat{\gamma}}^{2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{s - t_0}} - e^{-d_{\gamma}\,\gpr{t - t_0}}}^2 \nonumber \\
+    	&= \frac{\ev{\gpr{\gamma_{0} - \widehat{\gamma}}^2} - \gpr{\gang{\gamma_0} - \widehat{\gamma}}^{2}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^3}\,\left(-1 + d_{\gamma}\,\gpr{t-s} + e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} \left[ 1 + \,e^{2\,d_{\gamma}\,\gpr{s-t_0}} - \func{\cosh}{d_{\gamma}\,\gpr{t - s}} \right] \right). \nonumber \\
+    	&= \frac{\vr{\gamma_0}}{{d_{\gamma}}^2}\,\gpr{e^{-d_{\gamma}\,\gpr{t - t_{0}}} - e^{-d_{\gamma}\,\gpr{s - t_{0}}}}^2 \nonumber \\
+    		&\quad + \frac{{\sigma_{\gamma}}^2}{{d_{\gamma}}^3}\,\left(-1 + d_{\gamma}\,\gpr{t-s} + e^{-d_{\gamma}\,\gpr{t + s - 2\,t_0}} \left[ 1 + \,e^{2\,d_{\gamma}\,\gpr{s-t_0}} - \func{\cosh}{d_{\gamma}\,\gpr{t - s}} \right] \right). \label{eqn:var_Jst}
+\end{align}

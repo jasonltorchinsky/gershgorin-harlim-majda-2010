@@ -1,0 +1,37 @@
+To obtain the variance of $\func{u}{t}$, we will first split the pathwise solution of $\func{u}{t}$ (Eq.~\ref{eqn:pathwise_u}) into three terms
+
+\begin{align}
+    A &= e^{-\func{J}{t_0,\ t} + \widehat{\lambda}\,\gpr{t - t_0}}\,u_0 \label{eqn:A} \\
+    B &= \int_{t_0}^{t} \gpr{\func{b}{s} + \func{f}{s}}\,e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,ds \label{eqn:B} \\
+    C &= \sigma\,\int_{t_{0}}^{t} e^{-\func{J}{s,\ t} + \widehat{\lambda}\,\gpr{t - s}}\,\func{dW}{s}. \label{eqn:C}
+\end{align}
+
+The variance of $\func{u}{t}$ is thus given by
+
+\begin{align}
+    \vr{\func{u}{t}} &= \cov{\func{u}{t}}{\func{u}{t}} = \ev{\abs{\func{u}{t} - \gang{\func{u}{t}}}^2} \nonumber \\
+    	&= \ev{\abs{\func{u}{t}}^2} - \abs{\ev{\func{u}{t}}}^2 \nonumber \\
+    	&= \ev{\abs{A}^2} + \ev{\abs{B}^2} + \ev{\abs{C}^2} + \ev{A\,\overline{B}} + \ev{A\,\overline{C}} \nonumber \\
+    	&\quad + \ev{B\,\overline{A}} + \ev{B\,\overline{C}} + \ev{C\,\overline{A}} + \ev{C\,\overline{B}} - \abs{\gang{\func{u}{t}}}^2 \nonumber \\
+    	&= \ev{\abs{A}^2} + \ev{\abs{B}^2} + \ev{\abs{C}^2} \nonumber \\
+    		&\quad + 2\,\gpr{\func{\text{Re}}{\ev{A\,\overline{B}}} + \func{\text{Re}}{\ev{A\,\overline{C}}} + \func{\text{Re}}{\ev{B\,\overline{C}}}} \nonumber \\
+    		&\quad - \abs{\gang{\func{u}{t}}}^2.
+\end{align}
+
+As we will soon discover, several of these terms evaluate to zero (specifically $\ev{A\,\overline{C}}$ and $\ev{B\,\overline{C}}$, see Appendix~\ref{app:mean_AconjgC_BconjgC}), and attempting further simplifications of the above equation utilizing our previously derived equation for the expected value of $\func{u}{t}$ (Eq.~\ref{eqn:mean_u}) will be fruitless, an so we shall write the reported form of $\vr{\func{u}{t}}$ and list below the equation numbers for each term.
+
+\begin{equation}
+	\vr{\func{u}{t}} = \ev{\abs{A}^2} + \ev{\abs{B}^2} + \ev{\abs{C}^2} + 2\,\func{\text{Re}}{\ev{A\,\overline{B}}} - \abs{\gang{\func{u}{t}}}^2.
+	\label{eqn:var_u}
+\end{equation}
+
+The equation numbers for the terms of this equation are
+
+\begin{itemize}
+	\item [] $\ev{\abs{A}^2}$ -- Eq.~\ref{eqn:mean_absA2}.
+	\item [] $\ev{\abs{B}^2}$ -- Eq.~\ref{eqn:mean_absB2}.
+	\item [] $\ev{\abs{C}^2}$ -- Eq.~\ref{eqn:mean_absC2}.
+	\item [] $\ev{A\,\overline{B}}$ -- Eq.~\ref{eqn:mean_AconjgB}.
+	\item [] $\gang{\func{u}{t}}$ -- Eq.~\ref{eqn:mean_u}.
+\end{itemize}
+

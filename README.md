@@ -1,6 +1,6 @@
 # Overview
 
-This code is an implementation of the Gershgorin-Harlim-Majda 2010 system (see Subsection~\ref{sub:GHM10_system}). It inlcudes a Forward Euler, Backward Euler, adaptive Forward Euler, adaptive Backward Euler, and an analytic statistics solver (using the trapezoidal method for required integrals). It was originally intended for use in the multi-model communication project (working title).
+This code is an implementation of the Gershgorin-Harlim-Majda 2010 system. It inlcudes a Forward Euler, Backward Euler, adaptive Forward Euler, adaptive Backward Euler, and an analytic statistics solver (using the trapezoidal method for required integrals). It was originally intended for use in the multi-model communication project (working title).
 
 The `docs\build` subdirectory contains a `.pdf` document for additional documentation and background regarding this code, as well as the `.tex` files used to generate it and acknowledgements/references.
 

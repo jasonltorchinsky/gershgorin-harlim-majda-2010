@@ -33,7 +33,7 @@ If you end up using this code in your work, please include the following stateme
 
 # Acknowledgements
 
-This project took advantage of CMake software developed by Kitware, LAPACK software, MPI software, and netCDF software developed by UCAR/Unidata (\href{http://doi.org/10.5065/D6H70CW6}{http://doi.org/ 10.5065/D6H70CW6}). This work was funded by the Department of Energy's Computational Science Graduate Fellowship, under grant number DE-SC0020347. We would also like to acknowledge Samuel Stechmann for advising the development of this simulator, and Nelia Mann for insight into debugging some features.
+This project took advantage of CMake software developed by Kitware, LAPACK software, MPI software, and netCDF software developed by UCAR/Unidata [http://doi.org/10.5065/D6H70CW6]. This work was funded by the Department of Energy's Computational Science Graduate Fellowship, under grant number DE-SC0020347. We would also like to acknowledge Samuel Stechmann for advising the development of this simulator, and Nelia Mann for insight into debugging some features.
 
 Please refer to the `main.pdf` document in the `docs\build` subdirectory for further acknowledgements and citations.
 
